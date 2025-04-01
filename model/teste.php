@@ -1,3 +1,3 @@
 <?php 
-    echo "O Luciano é feio."
+    echo "You are my friend!."
 ?>
