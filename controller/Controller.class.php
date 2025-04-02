@@ -492,7 +492,7 @@ class Controller
         print '    <div class="collapse navbar-collapse" id="navbarNav">';
         print '        <ul class="navbar-nav me-auto">';
         //Principal
-        print '            <li class="nav-item">';
+        print '            <li class="nav-item justify-content-center">';
         print '                <a class="nav-link" href="index.php?principal">Início</a>';
         print '            </li>';
         //Lançamentos
@@ -507,8 +507,9 @@ class Controller
         print '                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
         print '                    <li><a class="dropdown-item" href="index.php?consultar"> <i class="bi bi-search"></i> Formas de rec/pag</a></li>';
         print '                    <li><a class="dropdown-item" href="index.php?inserir"><i class="bi bi-file-earmark-plus"></i> Planos de contas</a></li>';
-        print '                    <li><a class="dropdown-item" href="index.php?inserir"><i class="bi bi-file-earmark-plus"></i> Banco</a></li>';
-        print '                    <li><a class="dropdown-item" href="index.php?inserir"><i class="bi bi-file-earmark-plus"></i> Cartão</a></li>';
+        print '                    <li><a class="dropdown-item" href="index.php?inserir"><i class="bi bi-file-earmark-plus"></i> Bancos</a></li>';
+        print '                    <li><a class="dropdown-item" href="index.php?inserir"><i class="bi bi-file-earmark-plus"></i> Cartões</a></li>';
+        print '                    <li><a class="dropdown-item" href="index.php?inserir"><i class="bi bi-file-earmark-plus"></i> Bandeiras de Cartões</a></li>';
         print '                </ul>';
         print '            </li>';
         //Relatórios
@@ -517,8 +518,9 @@ class Controller
         print '                    <i class="bi bi-journal-album"></i> Relatórios';
         print '                </a>';
         print '                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-        print '                    <li><a class="dropdown-item" href="index.php?consultar_editora"> <i class="bi bi-search"></i> Consultar</a></li>';
-        print '                    <li><a class="dropdown-item" href="index.php?inserir_editora"><i class="bi bi-file-earmark-plus"></i> Inserir</a></li>';
+        print '                    <li><a class="dropdown-item" href="index.php?consultar_editora"> <i class="bi bi-search"></i> Receitas/mês</a></li>';
+        print '                    <li><a class="dropdown-item" href="index.php?inserir_editora"><i class="bi bi-file-earmark-plus"></i> Despesas/mês</a></li>';
+        print '                    <li><a class="dropdown-item" href="index.php?inserir_editora"><i class="bi bi-file-earmark-plus"></i> Saldo/mês</a></li>';
         print '                </ul>';
         print '            </li>';
         
@@ -671,14 +673,14 @@ class Controller
     }
 
     //select de editora
-    public function selectEditora()
+    public function selectBandeira()
     {
         //instanciar a classe Editora
-        $objEditora = new Editora();
+        $objBandeira = new Bandeira();
         //invocar o método
-        $resultado = $objEditora->consultarEditora(null);
+        $resultado = $objBandeira->consultarEditora(null);
         //montar o select dinamicamente
-        print '<label for="editora" class="form-label">Editora</label>';
+        print '<label for="bandeira" class="form-label">Bandeira</label>';
         print '<select name="id_editora" class="form-select" aria-label="Default select example" required>';
         print '    <option value="" selected>Selecine a editora</option>';
         foreach ($resultado as $key => $valor) {

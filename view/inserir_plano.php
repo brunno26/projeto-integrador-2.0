@@ -17,10 +17,24 @@
     <body>
         <header>
             <!-- place navbar here -->
-            <?php echo $menu ?>
         </header>
         <main>
-
+        <div class="container d-flex justify-content-center mt-5">
+        <br>
+        <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="plano" class="form-label">Planos de Contas:</label>
+                    <input type="text" required name="plano" class="form-control" id="plano" placeholder="Cadastre os tipos de planos de contas...">
+                </div>
+            </div>
+        <br>
+        <div>
+        <button type="reset" class="btn btn-danger"><i class="bi bi-x-circle"></i> Cancelar</button>
+        <button type="submit" name="inserir_editora" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
+        </div>
+        </form>
+    </div>
         </main>
         <footer>
             <!-- place footer here -->
