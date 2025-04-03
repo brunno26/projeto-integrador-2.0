@@ -2,10 +2,6 @@
 //classe de controle
 class Controller
 {
-    //atributos
-
-    //métodos
-
     //redirecionar pagina
     public function redirecionar($pagina)
     {
@@ -101,7 +97,6 @@ class Controller
             include_once 'recuperar.php';
             $this->mostrarMensagem("E-mail não cadastrado!");
         }
-
     }
 
     //consultar_geral
@@ -114,6 +109,96 @@ class Controller
         //invocar o método
         $_SESSION['resultado'] = $objLivro->consultarGeral($palavra);
         header("location: livro.php");
+    }
+
+    //mostrar menu
+    public function menu()
+    {
+        echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
+        echo '<div class="container-fluid">';
+        echo '    <a class="navbar-brand" href="#">SFP-GZ</a>';
+        echo '    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">';
+        echo '        <span class="navbar-toggler-icon"></span>';
+        echo '    </button>';
+        echo '    <div class="collapse navbar-collapse" id="navbarNav">';
+        echo '        <ul class="navbar-nav me-auto">';
+        //Principal
+        echo '            <li class="nav-item justify-content-center">';
+        echo '                <a class="nav-link" href="index.php?principal">Início</a>';
+        echo '            </li>';
+        //Lançamentos
+        echo '            <li class="nav-item">';
+        echo '                <a class="nav-link" href="index.php?principal">Lançamentos</a>';
+        echo '            </li>';
+        //Cadastros
+        echo '            <li class="nav-item dropdown">';
+        echo '                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
+        echo '                    <i class="bi bi-people-fill"></i> Cadastros';
+        echo '                </a>';
+        echo '                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
+        echo '                    <li><a class="dropdown-item" href="index.php?inserir_forma"> <i class="bi bi-search"></i> Formas de rec/pag</a></li>';
+        echo '                    <li><a class="dropdown-item" href="index.php?inserir_plano"><i class="bi bi-file-earmark-plus"></i> Planos de contas</a></li>';
+        echo '                    <li><a class="dropdown-item" href="index.php?inserir_banco"><i class="bi bi-file-earmark-plus"></i> Bancos</a></li>';
+        echo '                    <li><a class="dropdown-item" href="index.php?inserir_cartao"><i class="bi bi-file-earmark-plus"></i> Cartões</a></li>';
+        echo '                    <li><a class="dropdown-item" href="index.php?inserir_bandeira"><i class="bi bi-file-earmark-plus"></i> Bandeiras de Cartões</a></li>';
+        echo '                </ul>';
+        echo '            </li>';
+        //Relatórios
+        echo '            <li class="nav-item dropdown">';
+        echo '                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
+        echo '                    <i class="bi bi-journal-album"></i> Relatórios';
+        echo '                </a>';
+        echo '                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
+        echo '                    <li><a class="dropdown-item" href="index.php?consultar_editora"> <i class="bi bi-search"></i> Receitas/mês</a></li>';
+        echo '                    <li><a class="dropdown-item" href="index.php?inserir_editora"><i class="bi bi-file-earmark-plus"></i> Despesas/mês</a></li>';
+        echo '                    <li><a class="dropdown-item" href="index.php?inserir_editora"><i class="bi bi-file-earmark-plus"></i> Saldo/mês</a></li>';
+        echo '                </ul>';
+        echo '            </li>';
+
+        echo '        </ul>';
+        echo '        <ul class="navbar-nav ms-auto">';
+        echo '            <li class="nav-item dropdown">';
+        echo '                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
+        echo '                    <i class="bi bi-person-fill"></i>' . $_SESSION['email'];
+        echo '                </a>';
+        echo '                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">';
+        echo '                    <li><a class="dropdown-item" href="index.php?sair"><i class="bi bi-box-arrow-right"></i> Sair</a></li>';
+        echo '                </ul>';
+        echo '            </li>';
+        echo '        </ul>';
+        echo '    </div>';
+        echo '</div>';
+        echo '</nav>';
+    }
+
+    public function mostrarMensagem($mensagem)
+    {
+        //<!-- Modal -->
+        echo '<div class="modal fade" id="mensagem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo '  <div class="modal-dialog">';
+        echo '    <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '        <h5 class="modal-title" id="exampleModalLabel">Informação</h5>';
+        echo '        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '      <div class="modal-body">';
+        echo '        <div class="alert alert-warning" role="alert">';
+        echo $mensagem;
+        echo '        </div>';
+        echo '      </div>';
+        echo '      <div class="modal-footer">';
+        echo '        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">X</button>';
+        echo '      </div>';
+        echo '    </div>';
+        echo '  </div>';
+        echo '</div>';
+
+        //JS
+        echo '<script>';
+        echo '    document.addEventListener("DOMContentLoaded", function() {';
+        echo '    var myModal = new bootstrap.Modal(document.getElementById("mensagem"));';
+        echo '    myModal.show();});';
+        echo '</script>';
     }
 
     //inserir autor
@@ -224,47 +309,47 @@ class Controller
         }
     }
 
-    #editora
-    //inserir editora
-    public function inserir_editora($nome_editora)
+    #Bandeira
+    //inserir Bandeira
+    public function inserir_bandeira($nome_bandeira)
     {
         //instanciar a classe Autor
-        $objEditora = new Editora();
+        $objBandeira = new Bandeira();
         //invocar o método
-        if ($objEditora->inserirEditora($nome_editora) == true) {
+        if ($objBandeira->inserirBandeira($nome_bandeira) == true) {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar_editora.php';
+            include_once 'view/inserir_bandeira.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Ediora inserida com sucesso!");
+            $this->mostrarMensagem("Bandeira inserida com sucesso!");
         } else {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar_editora.php';
+            include_once 'view/inserir_bandeira.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Erro ao inserir editora!");
+            $this->mostrarMensagem("Erro ao inserir bandeira!");
         }
     }
 
     //consultar editora
-    public function consultar_editora($nome_editora)
+    public function consultar_bandeira($nome_bandeira)
     {
         //instanciar a classe Autor
-        $objEditora = new Editora();
+        $objbandeira = new Bandeira();
         //invocar o método
-        if ($objEditora->consultarEditora($nome_editora) == false) {
+        if ($objBandeira->consultarBandeira($nome_bandeira) == false) {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar_editora.php';
+            include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
             $this->mostrarMensagem("Erro ao consultar!");
         } else {
@@ -273,9 +358,9 @@ class Controller
             //inserir menu
             $menu = $this->menu();
             //resultado da consulta
-            $resultado = $objEditora->consultarEditora($nome_editora);
+            $resultado = $objBandeira->consultarBandeira($nome_bandeira);
             //incluir a view
-            include_once 'view/consultar_editora.php';
+            include_once 'view/consultar_bandeira.php';
         }
     }
 
@@ -480,196 +565,104 @@ class Controller
         }
     }
 
-    //mostrar menu
-    public function menu()
-    {
-        print '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
-        print '<div class="container-fluid">';
-        print '    <a class="navbar-brand" href="#">SFP-GZ</a>';
-        print '    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">';
-        print '        <span class="navbar-toggler-icon"></span>';
-        print '    </button>';
-        print '    <div class="collapse navbar-collapse" id="navbarNav">';
-        print '        <ul class="navbar-nav me-auto">';
-        //Principal
-        print '            <li class="nav-item justify-content-center">';
-        print '                <a class="nav-link" href="index.php?principal">Início</a>';
-        print '            </li>';
-        //Lançamentos
-        print '            <li class="nav-item">';
-        print '                <a class="nav-link" href="index.php?principal">Lançamentos</a>';
-        print '            </li>';
-        //Cadastros
-        print '            <li class="nav-item dropdown">';
-        print '                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-        print '                    <i class="bi bi-people-fill"></i> Cadastros';
-        print '                </a>';
-        print '                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-        print '                    <li><a class="dropdown-item" href="index.php?consultar"> <i class="bi bi-search"></i> Formas de rec/pag</a></li>';
-        print '                    <li><a class="dropdown-item" href="index.php?inserir"><i class="bi bi-file-earmark-plus"></i> Planos de contas</a></li>';
-        print '                    <li><a class="dropdown-item" href="index.php?inserir"><i class="bi bi-file-earmark-plus"></i> Bancos</a></li>';
-        print '                    <li><a class="dropdown-item" href="index.php?inserir"><i class="bi bi-file-earmark-plus"></i> Cartões</a></li>';
-        print '                    <li><a class="dropdown-item" href="index.php?inserir"><i class="bi bi-file-earmark-plus"></i> Bandeiras de Cartões</a></li>';
-        print '                </ul>';
-        print '            </li>';
-        //Relatórios
-        print '            <li class="nav-item dropdown">';
-        print '                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-        print '                    <i class="bi bi-journal-album"></i> Relatórios';
-        print '                </a>';
-        print '                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-        print '                    <li><a class="dropdown-item" href="index.php?consultar_editora"> <i class="bi bi-search"></i> Receitas/mês</a></li>';
-        print '                    <li><a class="dropdown-item" href="index.php?inserir_editora"><i class="bi bi-file-earmark-plus"></i> Despesas/mês</a></li>';
-        print '                    <li><a class="dropdown-item" href="index.php?inserir_editora"><i class="bi bi-file-earmark-plus"></i> Saldo/mês</a></li>';
-        print '                </ul>';
-        print '            </li>';
-        
-        print '        </ul>';
-        print '        <ul class="navbar-nav ms-auto">';
-        print '            <li class="nav-item dropdown">';
-        print '                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-        print '                    <i class="bi bi-person-fill"></i>' . $_SESSION['email'];
-        print '                </a>';
-        print '                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">';
-        print '                    <li><a class="dropdown-item" href="index.php?sair"><i class="bi bi-box-arrow-right"></i> Sair</a></li>';
-        print '                </ul>';
-        print '            </li>';
-        print '        </ul>';
-        print '    </div>';
-        print '</div>';
-        print '</nav>';
-
-    }
-
-    public function mostrarMensagem($mensagem)
-    {
-        //<!-- Modal -->
-        print '<div class="modal fade" id="mensagem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-        print '  <div class="modal-dialog">';
-        print '    <div class="modal-content">';
-        print '      <div class="modal-header">';
-        print '        <h5 class="modal-title" id="exampleModalLabel">Informação</h5>';
-        print '        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
-        print '      </div>';
-        print '      <div class="modal-body">';
-        print '        <div class="alert alert-warning" role="alert">';
-        print $mensagem;
-        print '        </div>';
-        print '      </div>';
-        print '      <div class="modal-footer">';
-        print '        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">X</button>';
-        print '      </div>';
-        print '    </div>';
-        print '  </div>';
-        print '</div>';
-
-        //JS
-        print '<script>';
-        print '    document.addEventListener("DOMContentLoaded", function() {';
-        print '    var myModal = new bootstrap.Modal(document.getElementById("mensagem"));';
-        print '    myModal.show();});';
-        print '</script>';
-
-    }
-
     public function modal_excluir_autor($id_autor, $nome_autor)
     {
-        print '<!-- Modal -->';
-        print '<div class="modal fade" id="excluir_autor' . $id_autor . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-        print ' <div class="modal-dialog">';
-        print '     <div class="modal-content">';
-        print '      <div class="modal-header">';
-        print '         <h5 class="modal-title" id="exampleModalLabel">Excluir Autor</h5>';
-        print '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
-        print '      </div>';
-        print '  <div class="modal-body">';
-        print $nome_autor;
-        print '  </div>';
-        print '<form method="post" action="index.php">';
-        print ' <div class="modal-footer">';
-        print '    <input type="hidden" name="id_autor" value="' . $id_autor . '">';
-        print '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        print '    <button type="submit" name="excluir_autor" class="btn btn-danger">Excluir</button>';
-        print ' </div>';
-        print '</form>';
-        print '</div>';
-        print '</div>';
-        print '</div>';
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="excluir_autor' . $id_autor . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Autor</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '  <div class="modal-body">';
+        echo $nome_autor;
+        echo '  </div>';
+        echo '<form method="post" action="index.php">';
+        echo ' <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_autor" value="' . $id_autor . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_autor" class="btn btn-danger">Excluir</button>';
+        echo ' </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
 
     public function modal_alterar_autor($id_autor, $nome_autor)
     {
-        print '<!-- Modal -->';
-        print '<div class="modal fade" id="alterar_autor' . $id_autor . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-        print ' <div class="modal-dialog">';
-        print '     <div class="modal-content">';
-        print '      <div class="modal-header">';
-        print '         <h5 class="modal-title" id="exampleModalLabel">Alterar Autor</h5>';
-        print '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
-        print '      </div>';
-        print '<form method="post" action="index.php">';
-        print '  <div class="modal-body">';
-        print '     <input type="text" class="form-control" name="nome_autor" value="' . $nome_autor . '">';
-        print '  </div>';
-        print '  <div class="modal-footer">';
-        print '    <input type="hidden" name="id_autor" value="' . $id_autor . '">';
-        print '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        print '    <button type="submit" name="alterar_autor" class="btn btn-primary">Alterar</button>';
-        print '  </div>';
-        print '</form>';
-        print '</div>';
-        print '</div>';
-        print '</div>';
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="alterar_autor' . $id_autor . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Autor</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '<form method="post" action="index.php">';
+        echo '  <div class="modal-body">';
+        echo '     <input type="text" class="form-control" name="nome_autor" value="' . $nome_autor . '">';
+        echo '  </div>';
+        echo '  <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_autor" value="' . $id_autor . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_autor" class="btn btn-primary">Alterar</button>';
+        echo '  </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
 
     public function modal_excluir_editora($id_editora, $nome_editora)
     {
-        print '<!-- Modal -->';
-        print '<div class="modal fade" id="excluir_editora' . $id_editora . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-        print ' <div class="modal-dialog">';
-        print '     <div class="modal-content">';
-        print '      <div class="modal-header">';
-        print '         <h5 class="modal-title" id="exampleModalLabel">Excluir Editora</h5>';
-        print '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
-        print '      </div>';
-        print '  <div class="modal-body">';
-        print $nome_editora;
-        print '  </div>';
-        print '<form method="post" action="index.php">';
-        print ' <div class="modal-footer">';
-        print '    <input type="hidden" name="id_editora" value="' . $id_editora . '">';
-        print '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        print '    <button type="submit" name="excluir_editora" class="btn btn-danger">Excluir</button>';
-        print ' </div>';
-        print '</form>';
-        print '</div>';
-        print '</div>';
-        print '</div>';
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="excluir_editora' . $id_editora . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Editora</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '  <div class="modal-body">';
+        echo $nome_editora;
+        echo '  </div>';
+        echo '<form method="post" action="index.php">';
+        echo ' <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_editora" value="' . $id_editora . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_editora" class="btn btn-danger">Excluir</button>';
+        echo ' </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
 
     public function modal_alterar_editora($id_editora, $nome_editora)
     {
-        print '<!-- Modal -->';
-        print '<div class="modal fade" id="alterar_editora' . $id_editora . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-        print ' <div class="modal-dialog">';
-        print '     <div class="modal-content">';
-        print '      <div class="modal-header">';
-        print '         <h5 class="modal-title" id="exampleModalLabel">Alterar Editora</h5>';
-        print '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
-        print '      </div>';
-        print '<form method="post" action="index.php">';
-        print '  <div class="modal-body">';
-        print '     <input type="text" class="form-control" name="nome_editora" value="' . $nome_editora . '">';
-        print '  </div>';
-        print '  <div class="modal-footer">';
-        print '    <input type="hidden" name="id_editora" value="' . $id_editora . '">';
-        print '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        print '    <button type="submit" name="alterar_editora" class="btn btn-primary">Alterar</button>';
-        print '  </div>';
-        print '</form>';
-        print '</div>';
-        print '</div>';
-        print '</div>';
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="alterar_editora' . $id_editora . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Editora</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '<form method="post" action="index.php">';
+        echo '  <div class="modal-body">';
+        echo '     <input type="text" class="form-control" name="nome_editora" value="' . $nome_editora . '">';
+        echo '  </div>';
+        echo '  <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_editora" value="' . $id_editora . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_editora" class="btn btn-primary">Alterar</button>';
+        echo '  </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
 
     //select de editora
@@ -678,15 +671,15 @@ class Controller
         //instanciar a classe Editora
         $objBandeira = new Bandeira();
         //invocar o método
-        $resultado = $objBandeira->consultarEditora(null);
+        $resultado = $objBandeira->consultarBandeira(null);
         //montar o select dinamicamente
-        print '<label for="bandeira" class="form-label">Bandeira</label>';
-        print '<select name="id_editora" class="form-select" aria-label="Default select example" required>';
-        print '    <option value="" selected>Selecine a editora</option>';
+        echo '<label for="bandeira" class="form-label">Bandeira do cartão</label>';
+        echo '<select name="id_cad_band" class="form-select" aria-label="Default select example" required>';
+        echo '    <option value="" selected>Selecione a bandeira do cartão</option>';
         foreach ($resultado as $key => $valor) {
-            print '<option value="' . $valor->id_editora . '">' . $valor->nome . '</option>';
+            echo '<option value="' . $valor->id_cad_band . '">' . $valor->nome_band . '</option>';
         }
-        print '</select>';
+        echo '</select>';
     }
 
     //select de genero
@@ -697,13 +690,13 @@ class Controller
         //invocar o método
         $resultado = $objGenero->consultarGenero(null);
         //montar o select dinamicamente
-        print '<label for="genero" class="form-label">Genero</label>';
-        print '<select name="id_genero" class="form-select" aria-label="Default select example">';
-        print '    <option value="" selected>Selecine o genero</option>';
+        echo '<label for="genero" class="form-label">Genero</label>';
+        echo '<select name="id_genero" class="form-select" aria-label="Default select example">';
+        echo '    <option value="" selected>Selecine o genero</option>';
         foreach ($resultado as $key => $valor) {
-            print '<option value="' . $valor->id_genero . '">' . $valor->descricao . '</option>';
+            echo '<option value="' . $valor->id_genero . '">' . $valor->descricao . '</option>';
         }
-        print '</select>';
+        echo '</select>';
     }
 
     //selec autor
@@ -713,62 +706,62 @@ class Controller
         $objAutor = new Autor();
         //invocar o método
         $resultado = $objAutor->consultarAutor(null);
-        print '<select class="form-select" multiple aria-label="multiple select example" name="autor[]">';
+        echo '<select class="form-select" multiple aria-label="multiple select example" name="autor[]">';
         foreach ($resultado as $key => $valor) {
-            print '<option value="' . $valor->id_autor . '">' . $valor->nome . '</option>';
+            echo '<option value="' . $valor->id_autor . '">' . $valor->nome . '</option>';
         }
-        print '</select>';
+        echo '</select>';
     }
 
     public function modal_excluir_livro($id_livro, $titulo)
     {
-        print '<!-- Modal -->';
-        print '<div class="modal fade" id="excluir_livro' . $id_livro . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-        print ' <div class="modal-dialog">';
-        print '     <div class="modal-content">';
-        print '      <div class="modal-header">';
-        print '         <h5 class="modal-title" id="exampleModalLabel">Excluir Editora</h5>';
-        print '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
-        print '      </div>';
-        print '  <div class="modal-body">';
-        print 'Deseja excluir o livro ' . $titulo . '?';
-        print '  </div>';
-        print '<form method="post" action="index.php">';
-        print ' <div class="modal-footer">';
-        print '    <input type="hidden" name="id_livro" value="' . $id_livro . '">';
-        print '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        print '    <button type="submit" name="excluir_livro" class="btn btn-danger">Excluir</button>';
-        print ' </div>';
-        print '</form>';
-        print '</div>';
-        print '</div>';
-        print '</div>';
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="excluir_livro' . $id_livro . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Editora</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '  <div class="modal-body">';
+        echo 'Deseja excluir o livro ' . $titulo . '?';
+        echo '  </div>';
+        echo '<form method="post" action="index.php">';
+        echo ' <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_livro" value="' . $id_livro . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_livro" class="btn btn-danger">Excluir</button>';
+        echo ' </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
 
     public function modal_alterar_livro($id_livro, $titulo)
     {
-        print '<!-- Modal -->';
-        print '<div class="modal fade" id="alterar_livro' . $id_livro . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-        print ' <div class="modal-dialog">';
-        print '     <div class="modal-content">';
-        print '      <div class="modal-header">';
-        print '         <h5 class="modal-title" id="exampleModalLabel">Alterar Livro</h5>';
-        print '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
-        print '      </div>';
-        print '<form method="post" action="index.php">';
-        print '  <div class="modal-body">';
-        print '     <label for="titulo" class="form-label">Titulo</label>';
-        print '     <input type="text" class="form-control" name="titulo" value="' . $titulo . '">';
-        print '  </div>';
-        print '  <div class="modal-footer">';
-        print '    <input type="hidden" name="id_livro" value="' . $id_livro . '">';
-        print '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        print '    <button type="submit" name="alterar_livro" class="btn btn-primary">Alterar</button>';
-        print '  </div>';
-        print '</form>';
-        print '</div>';
-        print '</div>';
-        print '</div>';
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="alterar_livro' . $id_livro . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Livro</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '<form method="post" action="index.php">';
+        echo '  <div class="modal-body">';
+        echo '     <label for="titulo" class="form-label">Titulo</label>';
+        echo '     <input type="text" class="form-control" name="titulo" value="' . $titulo . '">';
+        echo '  </div>';
+        echo '  <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_livro" value="' . $id_livro . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_livro" class="btn btn-primary">Alterar</button>';
+        echo '  </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
 
     public function nomeAutorLivro($id_livro)
@@ -779,7 +772,7 @@ class Controller
         $resultado = $objAutor->nomeAutorLivro($id_livro);
         //mostrar autores do livro
         foreach ($resultado as $key => $valor) {
-            print $valor->nome . '<br>';
+            echo $valor->nome . '<br>';
         }
     }
 

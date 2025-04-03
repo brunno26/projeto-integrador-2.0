@@ -76,25 +76,25 @@ if (isset($_POST['alterar_autor'])) {
     $objController->alterar_autor($id_autor, $nome_autor);
 }
 
-#EDITORA
-//inserir_editora
-if (isset($_POST['inserir_editora'])) {
+#Bandeira
+//inserir bandeira
+if (isset($_POST['inserir_bandeira'])) {
     //instanciar controller
     $objController = new Controller();
     //dados
-    $nome_editora = htmlspecialchars($_POST['nome_editora']);
-    //invocar o método de _editora
-    $objController->inserir_editora($nome_editora);
+    $nome_bandeira = htmlspecialchars($_POST['nome_bandeira']);
+    //invocar o método de inserir bandeira
+    $objController->inserir_bandeira($nome_bandeira);
 }
 
-//consultar_editora
-if (isset($_POST['consultar_editora'])) {
+//consultar bandeira
+if (isset($_POST['consultar_bandeira'])) {
     //instanciar controller
     $objController = new Controller();
     //dados
-    $nome_editora = htmlspecialchars($_POST['nome_editora']);
-    //invocar o método de consultar_editora
-    $objController->consultar_editora($nome_editora);
+    $nome_bandeira = htmlspecialchars($_POST['nome_bandeira']);
+    //invocar o método de consultar bandeira
+    $objController->consultar_bandeira($nome_bandeira);
 }
 
 //excluir_editora

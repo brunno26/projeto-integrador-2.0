@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-br">
     <head>
-        <title>SFP-GZ</title>
+        <title>Cadastro de Formas de rec/pag</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -19,22 +19,20 @@
             <!-- place navbar here -->
         </header>
         <main>
-        <div class="container d-flex justify-content-center mt-5">
-        <br>
-        <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
-            <div class="col">
-                <div class="mb-3">
-                    <label for="forma" class="form-label">Formas de rec/pag:</label>
-                    <input type="text" required name="forma" class="form-control" id="forma" placeholder="Cadastre as formas de recebimentos e pagamentos...">
-                </div>
+            <div class="container d-flex justify-content-center mt-5">
+                <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="forma" class="form-label">Forma de rec/pag:</label>
+                            <input type="text" required name="forma" class="form-control" id="forma" placeholder="Cadastre a forma de recebimento ou pagamento...">
+                        </div>
+                    </div>
+                    <div>
+                        <button type="reset" class="btn btn-danger"><i class="bi bi-x-circle"></i> Cancelar</button>
+                        <button type="submit" name="inserir_forma" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
+                    </div>
+                </form>
             </div>
-        <br>
-        <div>
-        <button type="reset" class="btn btn-danger"><i class="bi bi-x-circle"></i> Cancelar</button>
-        <button type="submit" name="inserir_editora" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
-        </div>
-        </form>
-    </div>
         </main>
         <footer>
             <!-- place footer here -->

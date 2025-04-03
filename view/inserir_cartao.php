@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-br">
     <head>
-        <title>Cadastro de plano de contas</title>
+        <title>Cadastro de cartões</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -23,13 +23,20 @@
                 <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
                     <div class="col">
                         <div class="mb-3">
-                            <label for="plano" class="form-label">Plano de Contas:</label>
-                            <input type="text" required name="plano" class="form-control" id="plano" placeholder="Cadastre os tipos de planos de contas...">
+                        <?php $this->selectBandeira(); ?>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nome_cartao" class="form-label">Nome do cartão:</label>
+                            <input type="text" required name="nome_cartao" class="form-control" id="nome_cartao" placeholder="Cadastre o nome do cartão...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="numero_cartao" class="form-label">Número do cartão:</label>
+                            <input type="text" name="numero_cartao" class="form-control" id="numero_cartao" placeholder="Cadastre o número do cartão...">
                         </div>
                     </div>
                     <div>
                         <button type="reset" class="btn btn-danger"><i class="bi bi-x-circle"></i> Cancelar</button>
-                        <button type="submit" name="inserir_plano" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
+                        <button type="submit" name="inserir_cartao" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
                     </div>
                 </form>
             </div>

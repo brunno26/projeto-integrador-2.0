@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-br">
     <head>
-        <title>SFP-GZ</title>
+        <title>Tela principal</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
