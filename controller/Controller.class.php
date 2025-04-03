@@ -130,17 +130,27 @@ class Controller
         echo '            <li class="nav-item">';
         echo '                <a class="nav-link" href="index.php?principal">Lançamentos</a>';
         echo '            </li>';
-        //Cadastros
+        //Ação
         echo '            <li class="nav-item dropdown">';
         echo '                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-        echo '                    <i class="bi bi-people-fill"></i> Cadastros';
+        echo '                    <i class="bi bi-people-fill"></i> Ação';
         echo '                </a>';
         echo '                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
+        echo'                     <div class="text-center">Cadastros</div>';
+        echo '                    <div class="dropdown-divider"></div>';
         echo '                    <li><a class="dropdown-item" href="index.php?inserir_forma"> <i class="bi bi-search"></i> Formas de rec/pag</a></li>';
         echo '                    <li><a class="dropdown-item" href="index.php?inserir_plano"><i class="bi bi-file-earmark-plus"></i> Planos de contas</a></li>';
         echo '                    <li><a class="dropdown-item" href="index.php?inserir_banco"><i class="bi bi-file-earmark-plus"></i> Bancos</a></li>';
         echo '                    <li><a class="dropdown-item" href="index.php?inserir_cartao"><i class="bi bi-file-earmark-plus"></i> Cartões</a></li>';
         echo '                    <li><a class="dropdown-item" href="index.php?inserir_bandeira"><i class="bi bi-file-earmark-plus"></i> Bandeiras de Cartões</a></li>';
+        echo '                    <div class="dropdown-divider"></div>';
+        echo'                     <div class="text-center">Consultas</div>';
+        echo '                    <div class="dropdown-divider"></div>';
+        echo '                    <li><a class="dropdown-item" href="index.php?consultar_forma"> <i class="bi bi-search"></i> Formas de rec/pag</a></li>';
+        echo '                    <li><a class="dropdown-item" href="index.php?consultar_plano"><i class="bi bi-file-earmark-plus"></i> Planos de contas</a></li>';
+        echo '                    <li><a class="dropdown-item" href="index.php?consultar_banco"><i class="bi bi-file-earmark-plus"></i> Bancos</a></li>';
+        echo '                    <li><a class="dropdown-item" href="index.php?consultar_cartao"><i class="bi bi-file-earmark-plus"></i> Cartões</a></li>';
+        echo '                    <li><a class="dropdown-item" href="index.php?consultar_bandeira"><i class="bi bi-file-earmark-plus"></i> Bandeiras de Cartões</a></li>';
         echo '                </ul>';
         echo '            </li>';
         //Relatórios
@@ -322,7 +332,7 @@ class Controller
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/inserir_bandeira.php';
+            include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
             $this->mostrarMensagem("Bandeira inserida com sucesso!");
         } else {
@@ -331,7 +341,7 @@ class Controller
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/inserir_bandeira.php';
+            include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
             $this->mostrarMensagem("Erro ao inserir bandeira!");
         }

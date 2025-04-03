@@ -81,7 +81,7 @@ class Bandeira extends Conexao
             $query = $bd->prepare($sql);
             //blidagem dos dados
             if ($this->getNomeBandeira() != null) {
-                $this->setNomeBandeira("%" . $nome_band . "%");
+                $this->setNomeBandeira("%" . $nome_bandeira . "%");
                 $query->bindValue(':nome_bandeira', $this->getNomeBandeira(), PDO::PARAM_STR);
             }
             //excutar a query
