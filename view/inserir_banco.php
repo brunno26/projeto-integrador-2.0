@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="reset" class="btn btn-danger"><i class="bi bi-x-circle"></i> Cancelar</button>
+                        <button type="reset" class="btn btn-danger"><i class="bi bi-x-circle"></i> Apagar</button>
                         <button type="submit" name="inserir_banco" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
                     </div>
                 </form>

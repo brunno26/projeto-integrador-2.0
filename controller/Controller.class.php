@@ -136,7 +136,7 @@ class Controller
         echo '                    <i class="bi bi-people-fill"></i> Ação';
         echo '                </a>';
         echo '                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-        echo'                     <div class="text-center">Cadastros</div>';
+        echo '                     <div class="text-center">Cadastros</div>';
         echo '                    <div class="dropdown-divider"></div>';
         echo '                    <li><a class="dropdown-item" href="index.php?inserir_forma"> <i class="bi bi-search"></i> Formas de rec/pag</a></li>';
         echo '                    <li><a class="dropdown-item" href="index.php?inserir_plano"><i class="bi bi-file-earmark-plus"></i> Planos de contas</a></li>';
@@ -144,7 +144,7 @@ class Controller
         echo '                    <li><a class="dropdown-item" href="index.php?inserir_cartao"><i class="bi bi-file-earmark-plus"></i> Cartões</a></li>';
         echo '                    <li><a class="dropdown-item" href="index.php?inserir_bandeira"><i class="bi bi-file-earmark-plus"></i> Bandeiras de Cartões</a></li>';
         echo '                    <div class="dropdown-divider"></div>';
-        echo'                     <div class="text-center">Consultas</div>';
+        echo '                     <div class="text-center">Consultas</div>';
         echo '                    <div class="dropdown-divider"></div>';
         echo '                    <li><a class="dropdown-item" href="index.php?consultar_forma"> <i class="bi bi-search"></i> Formas de rec/pag</a></li>';
         echo '                    <li><a class="dropdown-item" href="index.php?consultar_plano"><i class="bi bi-file-earmark-plus"></i> Planos de contas</a></li>';
@@ -356,19 +356,19 @@ class Controller
         if ($objBandeira->consultarBandeira($nome_bandeira) == false) {
             //iniciar sessao
             session_start();
+            //inserir menu
+            $menu = $this->menu();
             //incluir a view
             include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
             $this->mostrarMensagem("Erro ao consultar!");
-            //inserir menu
-            $menu = $this->menu();
         } else {
             //iniciar sessao
             session_start();
-            //inserir menu
-            $menu = $this->menu();
             //resultado da consulta
             $resultado = $objBandeira->consultarBandeira($nome_bandeira);
+            //inserir menu
+            $menu = $this->menu();
             //incluir a view
             include_once 'view/consultar_bandeira.php';
         }
