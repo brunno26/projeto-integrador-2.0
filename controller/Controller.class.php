@@ -132,26 +132,29 @@ class Controller
         echo '            </li>';
         //Ação
         echo '            <li class="nav-item dropdown">';
-        echo '                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-        echo '                    <i class="bi bi-people-fill"></i> Ação';
+        echo '                <a class="nav-link dropdown-toggle" data-bs-auto-close="outside" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
+        echo '                    </i> Ação';
         echo '                </a>';
         echo '                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-        echo '                     <div class="text-center">Cadastros</div>';
-        echo '                    <div class="dropdown-divider"></div>';
-        echo '                    <li><a class="dropdown-item" href="index.php?inserir_forma"> <i class="bi bi-search"></i> Formas de rec/pag</a></li>';
-        echo '                    <li><a class="dropdown-item" href="index.php?inserir_plano"><i class="bi bi-file-earmark-plus"></i> Planos de contas</a></li>';
-        echo '                    <li><a class="dropdown-item" href="index.php?inserir_banco"><i class="bi bi-file-earmark-plus"></i> Bancos</a></li>';
-        echo '                    <li><a class="dropdown-item" href="index.php?inserir_cartao"><i class="bi bi-file-earmark-plus"></i> Cartões</a></li>';
-        echo '                    <li><a class="dropdown-item" href="index.php?inserir_bandeira"><i class="bi bi-file-earmark-plus"></i> Bandeiras de Cartões</a></li>';
-        echo '                    <div class="dropdown-divider"></div>';
-        echo '                     <div class="text-center">Consultas</div>';
-        echo '                    <div class="dropdown-divider"></div>';
-        echo '                    <li><a class="dropdown-item" href="index.php?consultar_forma"> <i class="bi bi-search"></i> Formas de rec/pag</a></li>';
-        echo '                    <li><a class="dropdown-item" href="index.php?consultar_plano"><i class="bi bi-file-earmark-plus"></i> Planos de contas</a></li>';
-        echo '                    <li><a class="dropdown-item" href="index.php?consultar_banco"><i class="bi bi-file-earmark-plus"></i> Bancos</a></li>';
-        echo '                    <li><a class="dropdown-item" href="index.php?consultar_cartao"><i class="bi bi-file-earmark-plus"></i> Cartões</a></li>';
-        echo '                    <li><a class="dropdown-item" href="index.php?consultar_bandeira"><i class="bi bi-file-earmark-plus"></i> Bandeiras de Cartões</a></li>';
-        echo '                </ul>';
+        echo '                  <li class="dropend">';
+        echo '                      <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Cadastros</a>';
+        echo '                       <ul class="dropdown-menu">';
+        echo '                            <li><a href="index.php?inserir_plano" class="dropdown-item">Bancos</a></li>';
+        echo '                            <li><a href="index.php?inserir_banco" class="dropdown-item">Bandeiras</a></li>';
+        echo '                            <li><a href="index.php?inserir_cartao" class="dropdown-item">Cartões</a></li>';
+        echo '                            <li><a href="index.php?inserir_bandeira" class="dropdown-item">Contas</a></li>';
+        echo '                       </ul>';
+        echo '                  </li>';
+        echo '                  <li class="dropend">';
+        echo '                      <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Consultas</a>';
+        echo '                       <ul class="dropdown-menu">';
+        echo '                            <li><a href="index.php?consultar_plano" class="dropdown-item">Bancos</a></li>';
+        echo '                            <li><a href="index.php?consultar_banco" class="dropdown-item">Bandeiras</a></li>';
+        echo '                            <li><a href="index.php?consultar_cartao" class="dropdown-item">Cartões</a></li>';
+        echo '                            <li><a href="index.php?consultar_bandeira" class="dropdown-item">Contas</a></li>';
+        echo '                       </ul>';
+        echo '                  </li>';
+        echo '                </ul>'; 
         echo '            </li>';
         //Relatórios
         echo '            <li class="nav-item dropdown">';
@@ -164,7 +167,6 @@ class Controller
         echo '                    <li><a class="dropdown-item" href="index.php?inserir_editora"><i class="bi bi-file-earmark-plus"></i> Saldo/mês</a></li>';
         echo '                </ul>';
         echo '            </li>';
-
         echo '        </ul>';
         echo '        <ul class="navbar-nav ms-auto">';
         echo '            <li class="nav-item dropdown">';
