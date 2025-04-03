@@ -34,33 +34,32 @@
                     </div>
                 </form>
             </div>
-        <div class="container-fluid">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>CÓDIGO</th>
-                        <th>NOME DA BANDEIRA</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        //mostrar os resultados
-                        foreach ($resultado as $key => $valor) {
-                            echo '<tr>';
-                            echo '  <th scope="row">' . $valor->id_cad_band . '</th>';
-                            echo '  <td>' . $valor->nome_band . '</td>';
-                            echo '  <td>
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#alterar_bandeira' . $valor->id_cad_band . '"><i class="bi bi-pencil-square"></i> Alterar</button>
-                                        <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#excluir_bandeira' . $valor->id_cad_band . '"><i class="bi bi-x-square-fill"></i> Excluir</button>
-                                    </td>';
-                            echo '</tr>';
-                        }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-
+            <div class="container-fluid">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>CÓDIGO</th>
+                            <th>NOME DA BANDEIRA</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            //mostrar os resultados
+                            foreach ($resultado as $key => $valor) {
+                                echo '<tr>';
+                                echo '  <th scope="row">' . $valor->id_cad_band . '</th>';
+                                echo '  <td>' . $valor->nome_band . '</td>';
+                                echo '  <td>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#alterar_bandeira' . $valor->id_cad_band . '"><i class="bi bi-pencil-square"></i> Alterar</button>
+                                            <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#excluir_bandeira' . $valor->id_cad_band . '"><i class="bi bi-x-square-fill"></i> Excluir</button>
+                                        </td>';
+                                echo '</tr>';
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
             <?php
                 //criar os Modais de excluir e alterar
                 foreach ($resultado as $key => $valor) {
@@ -68,7 +67,7 @@
                     $this->modal_alterar_bandeira($valor->id_cad_band, $valor->nome_band);
                 }
             ?>
-            </main>
+        </main>
             <footer>
                 <!-- place footer here -->
             </footer>

@@ -322,7 +322,7 @@ class Controller
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/inserir_bandeira.php';
+            include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
             $this->mostrarMensagem("Bandeira inserida com sucesso!");
         } else {
@@ -331,27 +331,27 @@ class Controller
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/inserir_bandeira.php';
+            include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
             $this->mostrarMensagem("Erro ao inserir bandeira!");
         }
     }
 
-    //consultar editora
+    //consultar bandeira
     public function consultar_bandeira($nome_bandeira)
     {
         //instanciar a classe Autor
-        $objbandeira = new Bandeira();
+        $objBandeira = new Bandeira();
         //invocar o método
         if ($objBandeira->consultarBandeira($nome_bandeira) == false) {
             //iniciar sessao
             session_start();
-            //inserir menu
-            $menu = $this->menu();
             //incluir a view
             include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
             $this->mostrarMensagem("Erro ao consultar!");
+            //inserir menu
+            $menu = $this->menu();
         } else {
             //iniciar sessao
             session_start();
