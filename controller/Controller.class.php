@@ -406,7 +406,7 @@ class Controller
         }
     }
 
-    //alterar editora
+    //alterar bandeira
     public function alterar_bandeira($id_cad_band, $nome_band)
     {
         //instanciar a classe bandeira
@@ -430,6 +430,62 @@ class Controller
             include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
             $this->mostrarMensagem("Erro ao alterar Bandeira!");
+        }
+    }
+
+    #Forma Pagamento ou Recebimento
+    //inserir forma
+    public function inserir_forma($desc_forma)
+    {
+        //instanciar a classe forma
+        $objForma = new Forma();
+        //invocar o método
+        if ($objForma->inserirForma($desc_forma) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            $resultado = $objForma->consultarForma(null);
+            //incluir a view
+            include_once 'view/consultar_forma.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Forma inserida com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_forma.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao inserir forma!");
+        }
+    }
+
+    //consultar forma
+    public function consultar_forma($desc_forma)
+    {
+        //instanciar a classe Autor
+        $objForma = new Forma();
+        //invocar o método
+        if ($objForma->consultarForma($desc_forma) == false) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_forma.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao consultar forma!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //resultado da consulta
+            $resultado = $objBandeira->consultarForma($desc_forma);
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_forma.php';
         }
     }
 
@@ -693,6 +749,23 @@ class Controller
         echo '    <option value="" selected>Selecione a bandeira do cartão</option>';
         foreach ($resultado as $key => $valor) {
             echo '<option value="' . $valor->id_cad_band . '">' . $valor->nome_band . '</option>';
+        }
+        echo '</select>';
+    }
+
+    //select de forma
+    public function selectForma()
+    {
+        //instanciar a classe Forma
+        $objForma = new Forma();
+        //invocar o método
+        $resultado = $objForma->consultarForma(null);
+        //montar o select dinamicamente
+        echo '<label for="forma" class="form-label">Forma de Rec/Pag</label>';
+        echo '<select name="id_cad_band" class="form-select" aria-label="Default select example" required>';
+        echo '    <option value="" selected>Selecione a forma de pagamento</option>';
+        foreach ($resultado as $key => $valor) {
+            echo '<option value="' . $valor->id_cad_forma . '">' . $valor->cad_forma . '</option>';
         }
         echo '</select>';
     }

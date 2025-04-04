@@ -118,6 +118,27 @@ if (isset($_POST['alterar_bandeira'])) {
     $objController->alterar_bandeira($id_cad_band, $nome_band);
 }
 
+#Forma
+//inserir forma
+if (isset($_POST['inserir_forma'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $desc_forma = htmlspecialchars($_POST['desc_forma']);
+    //invocar o método de inserir bandeira
+    $objController->inserir_forma($desc_forma);
+}
+
+//consultar forma
+if (isset($_POST['consultar_forma'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $desc_forma = htmlspecialchars($_POST['desc_forma']);
+    //invocar o método de consultar bandeira
+    $objController->consultar_forma($desc_forma);
+}
+
 #GENERO
 //inserir_genero
 if (isset($_POST['inserir_genero'])) {
