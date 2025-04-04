@@ -139,19 +139,21 @@ class Controller
         echo '                  <li class="dropend">';
         echo '                      <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Cadastros</a>';
         echo '                       <ul class="dropdown-menu">';
-        echo '                            <li><a href="index.php?inserir_plano" class="dropdown-item">Bancos</a></li>';
-        echo '                            <li><a href="index.php?inserir_banco" class="dropdown-item">Bandeiras</a></li>';
+        echo '                            <li><a href="index.php?inserir_banco" class="dropdown-item">Bancos</a></li>';
+        echo '                            <li><a href="index.php?inserir_bandeira" class="dropdown-item">Bandeiras de cartões</a></li>';
         echo '                            <li><a href="index.php?inserir_cartao" class="dropdown-item">Cartões</a></li>';
-        echo '                            <li><a href="index.php?inserir_bandeira" class="dropdown-item">Contas</a></li>';
+        echo '                            <li><a href="index.php?inserir_forma" class="dropdown-item">Formas de rec/pag</a></li>';
+        echo '                            <li><a href="index.php?inserir_plano" class="dropdown-item">Plano de contas</a></li>';
         echo '                       </ul>';
         echo '                  </li>';
         echo '                  <li class="dropend">';
         echo '                      <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Consultas</a>';
         echo '                       <ul class="dropdown-menu">';
-        echo '                            <li><a href="index.php?consultar_plano" class="dropdown-item">Bancos</a></li>';
-        echo '                            <li><a href="index.php?consultar_banco" class="dropdown-item">Bandeiras</a></li>';
+        echo '                            <li><a href="index.php?consultar_banco" class="dropdown-item">Bancos</a></li>';
+        echo '                            <li><a href="index.php?consultar_bandeira" class="dropdown-item">Bandeiras de cartões</a></li>';
         echo '                            <li><a href="index.php?consultar_cartao" class="dropdown-item">Cartões</a></li>';
-        echo '                            <li><a href="index.php?consultar_bandeira" class="dropdown-item">Contas</a></li>';
+        echo '                            <li><a href="index.php?consultar_forma" class="dropdown-item">Formas de rec/pag</a></li>';
+        echo '                            <li><a href="index.php?consultar_plano" class="dropdown-item">Plano de contas</a></li>';
         echo '                       </ul>';
         echo '                  </li>';
         echo '                </ul>'; 
@@ -333,6 +335,7 @@ class Controller
             session_start();
             //inserir menu
             $menu = $this->menu();
+            $resultado = $objBandeira->consultarBandeira(null);
             //incluir a view
             include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
@@ -376,57 +379,57 @@ class Controller
         }
     }
 
-    //excluir editora
-    public function excluir_editora($id_editora)
+    //excluir bandeira
+    public function excluir_bandeira($id_cad_band)
     {
-        //instanciar a classe Autor
-        $objEditora = new Editora();
+        //instanciar a classe Bandeira
+        $objBandeira = new Bandeira();
         //invocar o método
-        if ($objEditora->excluirEditora($id_editora) == true) {
+        if ($objBandeira->excluirBandeira($id_cad_band) == true) {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar_editora.php';
+            include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Editora excluída com sucesso!");
+            $this->mostrarMensagem("Bandeira excluída com sucesso!");
         } else {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar_editora.php';
+            include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Erro ao excluir Editora!");
+            $this->mostrarMensagem("Erro ao excluir Bandeira!");
         }
     }
 
     //alterar editora
-    public function alterar_editora($id_editora, $nome_editora)
+    public function alterar_bandeira($id_cad_band, $nome_band)
     {
-        //instanciar a classe Autor
-        $objEditora = new Editora();
+        //instanciar a classe bandeira
+        $objBandeira = new Bandeira();
         //invocar o método
-        if ($objEditora->alterarEditora($id_editora, $nome_editora) == true) {
+        if ($objBandeira->alterarBandeira($id_cad_band, $nome_band) == true) {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar_editora.php';
+            include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Editora alterado com sucesso!");
+            $this->mostrarMensagem("Bandeira alterada com sucesso!");
         } else {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar_editora.php';
+            include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Erro ao alterar Editora!");
+            $this->mostrarMensagem("Erro ao alterar Bandeira!");
         }
     }
 
@@ -627,24 +630,24 @@ class Controller
         echo '</div>';
     }
 
-    public function modal_excluir_editora($id_editora, $nome_editora)
+    public function modal_excluir_bandeira($id_cad_band, $nome_band)
     {
         echo '<!-- Modal -->';
-        echo '<div class="modal fade" id="excluir_editora' . $id_editora . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo '<div class="modal fade" id="excluir_bandeira' . $id_cad_band . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
         echo ' <div class="modal-dialog">';
         echo '     <div class="modal-content">';
         echo '      <div class="modal-header">';
-        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Editora</h5>';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Bandeira</h5>';
         echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
         echo '      </div>';
         echo '  <div class="modal-body">';
-        echo $nome_editora;
+        echo $nome_band;
         echo '  </div>';
         echo '<form method="post" action="index.php">';
         echo ' <div class="modal-footer">';
-        echo '    <input type="hidden" name="id_editora" value="' . $id_editora . '">';
+        echo '    <input type="hidden" name="id_cad_band" value="' . $id_cad_band . '">';
         echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="excluir_editora" class="btn btn-danger">Excluir</button>';
+        echo '    <button type="submit" name="excluir_bandeira" class="btn btn-danger">Excluir</button>';
         echo ' </div>';
         echo '</form>';
         echo '</div>';
@@ -652,24 +655,24 @@ class Controller
         echo '</div>';
     }
 
-    public function modal_alterar_editora($id_editora, $nome_editora)
+    public function modal_alterar_bandeira($id_cad_band, $nome_band)
     {
         echo '<!-- Modal -->';
-        echo '<div class="modal fade" id="alterar_editora' . $id_editora . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo '<div class="modal fade" id="alterar_bandeira' . $id_cad_band . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
         echo ' <div class="modal-dialog">';
         echo '     <div class="modal-content">';
         echo '      <div class="modal-header">';
-        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Editora</h5>';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Bandeira</h5>';
         echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
         echo '      </div>';
         echo '<form method="post" action="index.php">';
         echo '  <div class="modal-body">';
-        echo '     <input type="text" class="form-control" name="nome_editora" value="' . $nome_editora . '">';
+        echo '     <input type="text" class="form-control" name="nome_band" value="' . $nome_band . '">';
         echo '  </div>';
         echo '  <div class="modal-footer">';
-        echo '    <input type="hidden" name="id_editora" value="' . $id_editora . '">';
+        echo '    <input type="hidden" name="id_cad_band" value="' . $id_cad_band . '">';
         echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="alterar_editora" class="btn btn-primary">Alterar</button>';
+        echo '    <button type="submit" name="alterar_bandeira" class="btn btn-primary">Alterar</button>';
         echo '  </div>';
         echo '</form>';
         echo '</div>';
@@ -677,7 +680,7 @@ class Controller
         echo '</div>';
     }
 
-    //select de editora
+    //select de bandeira
     public function selectBandeira()
     {
         //instanciar a classe Editora

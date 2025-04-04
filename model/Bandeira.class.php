@@ -97,15 +97,15 @@ class Bandeira extends Conexao
 
     }
 
-    //método alterar Editora
-    public function alterarEditora($id_editora, $nome_editora)
+    //método alterar bandeira
+    public function alterarBandeira($id_cad_band, $nome_band)
     {
         //setar os atributos
-        $this->setIdEditora($id_editora);
-        $this->setNome($nome_editora);
+        $this->setIdBandeira($id_cad_band);
+        $this->setNomeBandeira($nome_band);
 
         //montar query
-        $sql = "UPDATE tb_editora SET nome = :nome WHERE id_editora = :id_editora";
+        $sql = "UPDATE tb_cad_bandeira SET nome_band = :nome_bandeira WHERE id_cad_band = :id_cad_band";
 
         //executa a query
         try {
@@ -114,8 +114,8 @@ class Bandeira extends Conexao
             //preparar o sql
             $query = $bd->prepare($sql);
             //blidagem dos dados
-            $query->bindValue(':id_editora', $this->getIdEditora(), PDO::PARAM_INT);
-            $query->bindValue(':nome', $this->getNome(), PDO::PARAM_STR);
+            $query->bindValue(':id_cad_band', $this->getIdBandeira(), PDO::PARAM_INT);
+            $query->bindValue(':nome_bandeira', $this->getNomeBandeira(), PDO::PARAM_STR);
             //excutar a query
             $query->execute();
             //retorna o resultado
@@ -128,14 +128,14 @@ class Bandeira extends Conexao
         }
     }
 
-    //método excluir Editora
-    public function excluirEditora($id_editora)
+    //método excluir bandeira
+    public function excluirBandeira($id_cad_band)
     {
         //setar os atributos
-        $this->setIdEditora($id_editora);
+        $this->setIdBandeira($id_cad_band);
 
         //montar query
-        $sql = "DELETE FROM tb_editora WHERE id_editora = :id_editora";
+        $sql = "DELETE FROM tb_cad_bandeira WHERE id_cad_band = :id_cad_band";
 
         //executa a query
         try {
@@ -143,8 +143,8 @@ class Bandeira extends Conexao
             $bd = $this->conectar();
             //preparar o sql
             $query = $bd->prepare($sql);
-            //blidagem dos dados
-            $query->bindValue(':id_editora', $this->getIdEditora(), PDO::PARAM_INT);
+            //blindagem dos dados
+            $query->bindValue(':id_cad_band', $this->getIdBandeira(), PDO::PARAM_INT);
             //excutar a query
             $query->execute();
             //retorna o resultado

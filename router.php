@@ -97,25 +97,25 @@ if (isset($_POST['consultar_bandeira'])) {
     $objController->consultar_bandeira($nome_bandeira);
 }
 
-//excluir_editora
-if (isset($_POST['excluir_editora'])) {
+//excluir bandeira
+if (isset($_POST['excluir_bandeira'])) {
     //instanciar controller
     $objController = new Controller();
     //dados
-    $id_editora = htmlspecialchars($_POST['id_editora']);
-    //invocar o método de excluir_autor
-    $objController->excluir_editora($id_editora);
+    $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
+    //invocar o método de excluir bandeira
+    $objController->excluir_bandeira($id_cad_band);
 }
 
-//alterar_editora
-if (isset($_POST['alterar_editora'])) {
+//alterar bandeira
+if (isset($_POST['alterar_bandeira'])) {
     //instanciar controller
     $objController = new Controller();
     //dados
-    $id_editora = htmlspecialchars($_POST['id_editora']);
-    $nome_editora = htmlspecialchars($_POST['nome_editora']);
-    //invocar o método de alterar_editora
-    $objController->alterar_editora($id_editora, $nome_editora);
+    $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
+    $nome_band = htmlspecialchars($_POST['nome_band']);
+    //invocar o método de alterar bandeira
+    $objController->alterar_bandeira($id_cad_band, $nome_band);
 }
 
 #GENERO
