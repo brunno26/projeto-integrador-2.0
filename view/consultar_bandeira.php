@@ -19,12 +19,12 @@
             <!-- place navbar here -->
         </header>
         <main>
-            <div class="container-fluid">
-                <form method="post" action="index.php">
+            <div class="container d-flex justify-content-center mt-1">
+                <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col">
                             <div class="mb-3">
-                                <label for="nome_bandeira" class="form-label">Bandeira</label>
+                                <label for="nome_bandeira" class="form-label">Bandeira do cartão</label>
                                 <input type="text" name="nome_bandeira" class="form-control" id="nome_bandeira" placeholder="Digite o nome da bandeira de cartão...">
                             </div>
                         </div>
@@ -34,25 +34,25 @@
                     </div>
                 </form>
             </div>
-            <div class="container-fluid">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
+            <div class="container table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-secondary">
+                        <tr class="text-center">
                             <th>CÓDIGO</th>
                             <th>NOME DA BANDEIRA</th>
-                            <th>Ação</th>
+                            <th>AÇÃO</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                             //mostrar os resultados
                             foreach ($resultado as $key => $valor) {
-                                echo '<tr>';
+                                echo '<tr class="text-center">';
                                 echo '  <th scope="row">' . $valor->id_cad_band . '</th>';
-                                echo '  <td>' . $valor->nome_band . '</td>';
+                                echo '  <td class="text-start">' . $valor->nome_band . '</td>';
                                 echo '  <td>
-                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#alterar_bandeira' . $valor->id_cad_band . '"><i class="bi bi-pencil-square"></i> Alterar</button>
-                                            <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#excluir_bandeira' . $valor->id_cad_band . '"><i class="bi bi-x-square-fill"></i> Excluir</button>
+                                            <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_bandeira' . $valor->id_cad_band . '"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_bandeira' . $valor->id_cad_band . '"><i class="bi bi-trash"></i></button>
                                         </td>';
                                 echo '</tr>';
                             }
