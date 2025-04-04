@@ -51,8 +51,8 @@
                                 echo '  <th scope="row">' . $valor->id_cad_forma . '</th>';
                                 echo '  <td class="text-start">' . $valor->desc_forma . '</td>';
                                 echo '  <td>
-                                            <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_bandeira' . $valor->id_cad_forma . '"><i class="bi bi-pencil"></i></button>
-                                            <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_bandeira' . $valor->id_cad_forma . '"><i class="bi bi-trash"></i></button>
+                                            <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_forma' . $valor->id_cad_forma . '"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_forma' . $valor->id_cad_forma . '"><i class="bi bi-trash"></i></button>
                                         </td>';
                                 echo '</tr>';
                             }

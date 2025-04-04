@@ -481,7 +481,7 @@ class Controller
             //iniciar sessao
             session_start();
             //resultado da consulta
-            $resultado = $objBandeira->consultarForma($desc_forma);
+            $resultado = $objForma->consultarForma($desc_forma);
             //inserir menu
             $menu = $this->menu();
             //incluir a view
