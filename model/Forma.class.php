@@ -99,7 +99,37 @@ class Forma extends Conexao{
             //print "Erro ao consultar forma";
             return false;
         }
+    }
 
+    //método alterar forma
+    public function alterarForma($id_cad_forma, $desc_forma)
+    {
+        //setar os atributos
+        $this->setIdCadForma($id_cad_forma);
+        $this->setDescForma($desc_forma);
+
+        //montar query
+        $sql = "UPDATE tb_cad_forma SET desc_forma = :desc_forma WHERE id_cad_forma = :id_cad_forma";
+
+        //executa a query
+        try {
+            //conectar com o banco
+            $bd = $this->conectar();
+            //preparar o sql
+            $query = $bd->prepare($sql);
+            //blidagem dos dados
+            $query->bindValue(':id_cad_forma', $this->getIdCadForma(), PDO::PARAM_INT);
+            $query->bindValue(':desc_forma', $this->getDescForma(), PDO::PARAM_STR);
+            //excutar a query
+            $query->execute();
+            //retorna o resultado
+            //print "Alterado";
+            return true;
+
+        } catch (PDOException $e) {
+            //print "Erro ao alterar";
+            return false;
+        }
     }
 }
 

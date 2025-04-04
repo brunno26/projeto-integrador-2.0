@@ -489,6 +489,33 @@ class Controller
         }
     }
 
+    //alterar forma
+    public function alterar_forma($id_cad_forma, $desc_forma)
+    {
+        //instanciar a classe forma
+        $objForma = new Forma();
+        //invocar o método
+        if ($objForma->alterarForma($id_cad_forma, $desc_forma) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_forma.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Forma alterada com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_forma.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao alterar forma!");
+        }
+    }
+
     #genero
     public function inserir_genero($nome_genero)
     {
@@ -751,6 +778,31 @@ class Controller
             echo '<option value="' . $valor->id_cad_band . '">' . $valor->nome_band . '</option>';
         }
         echo '</select>';
+    }
+
+    public function modal_alterar_forma($id_cad_forma, $desc_forma)
+    {
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="alterar_forma' . $id_cad_forma . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Forma</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '<form method="post" action="index.php">';
+        echo '  <div class="modal-body">';
+        echo '     <input type="text" class="form-control" name="desc_forma" value="' . $desc_forma . '">';
+        echo '  </div>';
+        echo '  <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_cad_forma" value="' . $id_cad_forma . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_forma" class="btn btn-primary">Alterar</button>';
+        echo '  </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
 
     //select de forma

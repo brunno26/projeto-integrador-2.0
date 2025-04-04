@@ -23,8 +23,8 @@
                 <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
                     <div class="col">
                         <div class="mb-3">
-                            <label for="forma" class="form-label">Forma de rec/pag:</label>
-                            <input type="text" required name="forma" class="form-control" id="forma" placeholder="Cadastre a forma de recebimento ou pagamento...">
+                            <label for="desc_forma" class="form-label">Forma de rec/pag:</label>
+                            <input type="text" required name="desc_forma" class="form-control" id="desc_forma" placeholder="Cadastre a forma de recebimento ou pagamento...">
                         </div>
                     </div>
                     <div>

@@ -139,6 +139,17 @@ if (isset($_POST['consultar_forma'])) {
     $objController->consultar_forma($desc_forma);
 }
 
+//alterar forma
+if (isset($_POST['alterar_forma'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_forma = htmlspecialchars($_POST['id_cad_forma']);
+    $desc_forma = htmlspecialchars($_POST['desc_forma']);
+    //invocar o método de alterar forma
+    $objController->alterar_forma($id_cad_forma, $desc_forma);
+}
+
 #GENERO
 //inserir_genero
 if (isset($_POST['inserir_genero'])) {
