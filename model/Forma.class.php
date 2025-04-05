@@ -131,6 +131,35 @@ class Forma extends Conexao{
             return false;
         }
     }
+
+    //método excluir forma
+    public function excluirForma($id_cad_forma)
+    {
+        //setar os atributos
+        $this->setIdCadForma($id_cad_forma);
+
+        //montar query
+        $sql = "DELETE FROM tb_cad_forma WHERE id_cad_forma = :id_cad_forma";
+
+        //executa a query
+        try {
+            //conectar com o banco
+            $bd = $this->conectar();
+            //preparar o sql
+            $query = $bd->prepare($sql);
+            //blindagem dos dados
+            $query->bindValue(':id_cad_forma', $this->getIdCadForma(), PDO::PARAM_INT);
+            //excutar a query
+            $query->execute();
+            //retorna o resultado
+            print "Excluido";
+            return true;
+
+        } catch (PDOException $e) {
+            // print "Erro ao excluir: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 
 ?>

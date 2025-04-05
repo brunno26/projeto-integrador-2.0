@@ -516,6 +516,33 @@ class Controller
         }
     }
 
+        //excluir forma
+        public function excluir_forma($id_cad_forma)
+        {
+            //instanciar a classe Bandeira
+            $objForma = new Forma();
+            //invocar o método
+            if ($objForma->excluirForma($id_cad_forma) == true) {
+                //iniciar sessao
+                session_start();
+                //inserir menu
+                $menu = $this->menu();
+                //incluir a view
+                include_once 'view/consultar_forma.php';
+                //mostrar mensagem
+                $this->mostrarMensagem("Forma excluída com sucesso!");
+            } else {
+                //iniciar sessao
+                session_start();
+                //inserir menu
+                $menu = $this->menu();
+                //incluir a view
+                include_once 'view/consultar_forma.php';
+                //mostrar mensagem
+                $this->mostrarMensagem("Erro ao excluir forma!");
+            }
+        }
+
     #genero
     public function inserir_genero($nome_genero)
     {
@@ -804,6 +831,31 @@ class Controller
         echo '</div>';
         echo '</div>';
     }
+
+    public function modal_excluir_forma($id_cad_forma, $desc_forma)
+    {
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="excluir_forma' . $id_cad_forma . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Forma</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '  <div class="modal-body">';
+        echo $desc_forma;
+        echo '  </div>';
+        echo '<form method="post" action="index.php">';
+        echo ' <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_cad_forma" value="' . $id_cad_forma . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_forma" class="btn btn-danger">Excluir</button>';
+        echo ' </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    } 
 
     //select de forma
     public function selectForma()

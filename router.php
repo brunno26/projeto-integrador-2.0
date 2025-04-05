@@ -150,6 +150,15 @@ if (isset($_POST['alterar_forma'])) {
     $objController->alterar_forma($id_cad_forma, $desc_forma);
 }
 
+//excluir bandeira
+if (isset($_POST['excluir_forma'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_forma = htmlspecialchars($_POST['id_cad_forma']);
+    //invocar o método de excluir bandeira
+    $objController->excluir_forma($id_cad_forma);
+}
 #GENERO
 //inserir_genero
 if (isset($_POST['inserir_genero'])) {
