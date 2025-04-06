@@ -33,47 +33,49 @@ if (isset($_POST['recuperar_senha'])) {
     $objController->recuperarSenha($email);
 }
 
-#AUTOR
+#CARTÃO
 
-//inserir autor
-if (isset($_POST['inserir_autor'])) {
+//inserir cartão
+if (isset($_POST['inserir_cartao'])) {
     //instanciar controller
     $objController = new Controller();
     //dados
-    $nome_autor = htmlspecialchars($_POST['nome_autor']);
-    //invocar o método de inserir_autor
-    $objController->inserir_autor($nome_autor);
+    $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
+    $nome_cartao = htmlspecialchars($_POST['nome_cartao']);
+    $num_cartao = htmlspecialchars($_POST['num_cartao']);
+    //invocar o método de inserir cartão
+    $objController->inserir_cartao($id_cad_band, $nome_cartao, $num_cartao);
 }
 
-//consultar consultar_autor
-if (isset($_POST['consultar_autor'])) {
+//consultar cartão
+if (isset($_POST['consultar_cartao'])) {
     //instanciar controller
     $objController = new Controller();
     //dados
-    $nome_autor = htmlspecialchars($_POST['nome_autor']);
-    //invocar o método de consultar_autor
-    $objController->consultar_autor($nome_autor);
+    $nome_cartao = htmlspecialchars($_POST['nome_cartao']);
+    //invocar o método de consultar cartao
+    $objController->consultar_cartao($nome_cartao);
 }
 
-//excluir_autor
-if (isset($_POST['excluir_autor'])) {
+//excluir cartão
+if (isset($_POST['excluir_cartao'])) {
     //instanciar controller
     $objController = new Controller();
     //dados
-    $id_autor = htmlspecialchars($_POST['id_autor']);
-    //invocar o método de excluir_autor
-    $objController->excluir_autor($id_autor);
+    $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
+    //invocar o método de excluir cartão
+    $objController->excluir_cartao($id_cad_cartao);
 }
 
-//alterar_autor
-if (isset($_POST['alterar_autor'])) {
+//alterar cartão
+if (isset($_POST['alterar_cartao'])) {
     //instanciar controller
     $objController = new Controller();
     //dados
-    $id_autor = htmlspecialchars($_POST['id_autor']);
-    $nome_autor = htmlspecialchars($_POST['nome_autor']);
-    //invocar o método de alterar_autor
-    $objController->alterar_autor($id_autor, $nome_autor);
+    $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
+    $nome_cartao = htmlspecialchars($_POST['nome_cartao']);
+    //invocar o método de alterar cartão
+    $objController->alterar_cartao($id_cad_cartao, $nome_cartao);
 }
 
 #Bandeira

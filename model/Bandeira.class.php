@@ -73,6 +73,9 @@ class Bandeira extends Conexao
             $sql .= " and nome_band like :nome_bandeira";
         }
 
+        //ordenar a tabela
+        $sql .= " order by nome_band ";
+
         //executa a query
         try {
             //conectar com o banco

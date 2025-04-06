@@ -207,46 +207,47 @@ class Controller
         echo '</script>';
     }
 
-    //inserir autor
-    public function inserir_autor($nome_autor)
+    //inserir cartão
+    public function inserir_cartao($id_cad_band, $nome_cartao, $num_cartao)
     {
-        //instanciar a classe Autor
-        $objAutor = new Autor();
+        //instanciar a classe Cartão
+        $objCartao = new Cartao();
         //invocar o método
-        if ($objAutor->inserirAutor($nome_autor) == true) {
+        if ($objCartao->inserirCartao($id_cad_band, $nome_cartao, $num_cartao) == true) {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
+            $resultado = $objCartao->consultarCartao(null);
             //incluir a view
-            include_once 'view/consultar.php';
+            include_once 'view/consultar_cartao.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Autor inserido com sucesso!");
+            $this->mostrarMensagem("Cartão inserido com sucesso!");
         } else {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar.php';
+            include_once 'view/consultar_cartao.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Erro ao inserir autor!");
+            $this->mostrarMensagem("Erro ao inserir cartão!");
         }
     }
 
-    //consultar autor
-    public function consultar_autor($nome_autor)
+    //consultar cartão
+    public function consultar_cartao($nome_cartao)
     {
-        //instanciar a classe Autor
-        $objAutor = new Autor();
+        //instanciar a classe Cartão
+        $objCartao = new Cartao();
         //invocar o método
-        if ($objAutor->consultarAutor($nome_autor) == false) {
+        if ($objCartao->consultarCartao($nome_cartao) == false) {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar.php';
+            include_once 'view/consultar_cartao.php';
             //mostrar mensagem
             $this->mostrarMensagem("Erro ao consultar!");
         } else {
@@ -255,63 +256,63 @@ class Controller
             //inserir menu
             $menu = $this->menu();
             //resultado da consulta
-            $resultado = $objAutor->consultarAutor($nome_autor);
+            $resultado = $objCartao->consultarCartao($nome_cartao);
             //incluir a view
-            include_once 'view/consultar.php';
+            include_once 'view/consultar_cartao.php';
         }
     }
 
-    //excluir autor
-    public function excluir_autor($id_autor)
+    //excluir cartão
+    public function excluir_cartao($id_cad_cartao)
     {
-        //instanciar a classe Autor
-        $objAutor = new Autor();
+        //instanciar a classe Cartão
+        $objCartao = new Cartao();
         //invocar o método
-        if ($objAutor->excluirAutor($id_autor) == true) {
+        if ($objCartao->excluirCartao($id_cad_cartao) == true) {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar.php';
+            include_once 'view/consultar_cartao.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Autor excluído com sucesso!");
+            $this->mostrarMensagem("Cartão excluído com sucesso!");
         } else {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar.php';
+            include_once 'view/consultar_cartao.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Erro ao excluir autor!");
+            $this->mostrarMensagem("Erro ao excluir cartão!");
         }
     }
 
-    //alterar autor
-    public function alterar_autor($id_autor, $nome_autor)
+    //alterar cartão
+    public function alterar_cartao($id_cad_cartao, $nome_cartao)
     {
-        //instanciar a classe Autor
-        $objAutor = new Autor();
+        //instanciar a classe Cartão
+        $objCartao = new Cartao();
         //invocar o método
-        if ($objAutor->alterarAutor($id_autor, $nome_autor) == true) {
+        if ($objCartao->alterarCartao($id_cad_cartao, $nome_cartao) == true) {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar.php';
+            include_once 'view/consultar_cartao.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Autor alterado com sucesso!");
+            $this->mostrarMensagem("Cartão alterado com sucesso!");
         } else {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar.php';
+            include_once 'view/consultar_cartao.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Erro ao alterar autor!");
+            $this->mostrarMensagem("Erro ao alterar cartão!");
         }
     }
 
@@ -682,24 +683,24 @@ class Controller
         }
     }
 
-    public function modal_excluir_autor($id_autor, $nome_autor)
+    public function modal_excluir_cartao($id_cad_cartao, $nome_cartao)
     {
         echo '<!-- Modal -->';
-        echo '<div class="modal fade" id="excluir_autor' . $id_autor . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo '<div class="modal fade" id="excluir_cartao' . $id_cad_cartao . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
         echo ' <div class="modal-dialog">';
         echo '     <div class="modal-content">';
         echo '      <div class="modal-header">';
-        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Autor</h5>';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Cartão</h5>';
         echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
         echo '      </div>';
         echo '  <div class="modal-body">';
-        echo $nome_autor;
+        echo $nome_cartao;
         echo '  </div>';
         echo '<form method="post" action="index.php">';
         echo ' <div class="modal-footer">';
-        echo '    <input type="hidden" name="id_autor" value="' . $id_autor . '">';
+        echo '    <input type="hidden" name="id_cad_cartao" value="' . $id_cad_cartao . '">';
         echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="excluir_autor" class="btn btn-danger">Excluir</button>';
+        echo '    <button type="submit" name="excluir_cartao" class="btn btn-danger">Excluir</button>';
         echo ' </div>';
         echo '</form>';
         echo '</div>';
@@ -707,24 +708,24 @@ class Controller
         echo '</div>';
     }
 
-    public function modal_alterar_autor($id_autor, $nome_autor)
+    public function modal_alterar_cartao($id_cad_cartao, $nome_cartao)
     {
         echo '<!-- Modal -->';
-        echo '<div class="modal fade" id="alterar_autor' . $id_autor . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo '<div class="modal fade" id="alterar_cartao' . $id_cad_cartao . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
         echo ' <div class="modal-dialog">';
         echo '     <div class="modal-content">';
         echo '      <div class="modal-header">';
-        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Autor</h5>';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Cartão</h5>';
         echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
         echo '      </div>';
         echo '<form method="post" action="index.php">';
         echo '  <div class="modal-body">';
-        echo '     <input type="text" class="form-control" name="nome_autor" value="' . $nome_autor . '">';
+        echo '     <input type="text" class="form-control" name="nome_cartao" value="' . $nome_cartao . '">';
         echo '  </div>';
         echo '  <div class="modal-footer">';
-        echo '    <input type="hidden" name="id_autor" value="' . $id_autor . '">';
+        echo '    <input type="hidden" name="id_cad_cartao" value="' . $id_cad_cartao . '">';
         echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="alterar_autor" class="btn btn-primary">Alterar</button>';
+        echo '    <button type="submit" name="alterar_cartao" class="btn btn-primary">Alterar</button>';
         echo '  </div>';
         echo '</form>';
         echo '</div>';

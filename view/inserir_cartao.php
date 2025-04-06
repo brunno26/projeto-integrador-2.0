@@ -30,8 +30,8 @@
                             <input type="text" required name="nome_cartao" class="form-control" id="nome_cartao" placeholder="Cadastre o nome do cartão...">
                         </div>
                         <div class="mb-3">
-                            <label for="numero_cartao" class="form-label">Número do cartão:</label>
-                            <input type="text" name="numero_cartao" class="form-control" id="numero_cartao" placeholder="Cadastre o número do cartão...">
+                            <label for="num_cartao" class="form-label">Número do cartão:</label>
+                            <input type="text" name="num_cartao" class="form-control" id="num_cartao" placeholder="Cadastre o número do cartão...">
                         </div>
                     </div>
                     <div>

@@ -78,6 +78,9 @@ class Forma extends Conexao{
             $sql .= " and desc_forma like :desc_forma";
         }
 
+        //ordenar a tabela
+        $sql .= " order by desc_forma ";
+
         //executa a query
         try {
             //conectar com o banco
