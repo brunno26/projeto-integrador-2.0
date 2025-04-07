@@ -124,11 +124,11 @@ class Controller
         echo '          <ul class="navbar-nav mx-auto fs-5">';
         //Principal
         echo '              <li class="nav-item">';
-        echo '                  <a class="nav-link" href="index.php?principal">Início</a>';
+        echo '                  <a class="nav-link" href="index.php?principal">Dashboard</a>';
         echo '              </li>';
         //Lançamentos
         echo '              <li class="nav-item">';
-        echo '                  <a class="nav-link" href="index.php?principal">Lançamentos</a>';
+        echo '                  <a class="nav-link" href="index.php?inserir_lancamento">Lançamentos</a>';
         echo '              </li>';
         //Ação
         echo '              <li class="nav-item dropdown">';
