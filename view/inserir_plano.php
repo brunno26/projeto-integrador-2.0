@@ -23,8 +23,8 @@
                 <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
                     <div class="col">
                         <div class="mb-3">
-                            <label for="plano" class="form-label">Plano de Contas:</label>
-                            <input type="text" required name="plano" class="form-control" id="plano" placeholder="Cadastre os tipos de planos de contas...">
+                            <label for="desc_plano" class="form-label">Plano de Contas:</label>
+                            <input type="text" required name="desc_plano" class="form-control" id="desc_plano" placeholder="Cadastre os planos de contas...">
                         </div>
                     </div>
                     <div>

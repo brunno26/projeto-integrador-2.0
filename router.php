@@ -34,7 +34,6 @@ if (isset($_POST['recuperar_senha'])) {
 }
 
 #CARTÃO
-
 //inserir cartão
 if (isset($_POST['inserir_cartao'])) {
     //instanciar controller
@@ -57,16 +56,6 @@ if (isset($_POST['consultar_cartao'])) {
     $objController->consultar_cartao($nome_cartao);
 }
 
-//excluir cartão
-if (isset($_POST['excluir_cartao'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
-    //invocar o método de excluir cartão
-    $objController->excluir_cartao($id_cad_cartao);
-}
-
 //alterar cartão
 if (isset($_POST['alterar_cartao'])) {
     //instanciar controller
@@ -76,6 +65,16 @@ if (isset($_POST['alterar_cartao'])) {
     $nome_cartao = htmlspecialchars($_POST['nome_cartao']);
     //invocar o método de alterar cartão
     $objController->alterar_cartao($id_cad_cartao, $nome_cartao);
+}
+
+//excluir cartão
+if (isset($_POST['excluir_cartao'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
+    //invocar o método de excluir cartão
+    $objController->excluir_cartao($id_cad_cartao);
 }
 
 #Bandeira
@@ -99,16 +98,6 @@ if (isset($_POST['consultar_bandeira'])) {
     $objController->consultar_bandeira($nome_bandeira);
 }
 
-//excluir bandeira
-if (isset($_POST['excluir_bandeira'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
-    //invocar o método de excluir bandeira
-    $objController->excluir_bandeira($id_cad_band);
-}
-
 //alterar bandeira
 if (isset($_POST['alterar_bandeira'])) {
     //instanciar controller
@@ -118,6 +107,16 @@ if (isset($_POST['alterar_bandeira'])) {
     $nome_band = htmlspecialchars($_POST['nome_band']);
     //invocar o método de alterar bandeira
     $objController->alterar_bandeira($id_cad_band, $nome_band);
+}
+
+//excluir bandeira
+if (isset($_POST['excluir_bandeira'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
+    //invocar o método de excluir bandeira
+    $objController->excluir_bandeira($id_cad_band);
 }
 
 #Forma
@@ -152,7 +151,7 @@ if (isset($_POST['alterar_forma'])) {
     $objController->alterar_forma($id_cad_forma, $desc_forma);
 }
 
-//excluir bandeira
+//excluir forma
 if (isset($_POST['excluir_forma'])) {
     //instanciar controller
     $objController = new Controller();
@@ -161,15 +160,47 @@ if (isset($_POST['excluir_forma'])) {
     //invocar o método de excluir bandeira
     $objController->excluir_forma($id_cad_forma);
 }
-#GENERO
-//inserir_genero
-if (isset($_POST['inserir_genero'])) {
+
+#Plano
+//inserir plano
+if (isset($_POST['inserir_plano'])) {
     //instanciar controller
     $objController = new Controller();
     //dados
-    $descricao_genero = htmlspecialchars($_POST['descricao_genero']);
-    //invocar o método de _editora
-    $objController->inserir_genero($descricao_genero);
+    $desc_plano = htmlspecialchars($_POST['desc_plano']);
+    //invocar o método de inserir plano
+    $objController->inserir_plano($desc_plano);
+}
+
+//consultar plano
+if (isset($_POST['consultar_plano'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $desc_plano = htmlspecialchars($_POST['desc_plano']);
+    //invocar o método de consultar plano
+    $objController->consultar_plano($desc_plano);
+}
+
+//alterar plano
+if (isset($_POST['alterar_plano'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
+    $desc_plano = htmlspecialchars($_POST['desc_plano']);
+    //invocar o método de alterar plano
+    $objController->alterar_plano($id_cad_plano, $desc_plano);
+}
+
+//excluir plano
+if (isset($_POST['excluir_plano'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
+    //invocar o método de excluir plano
+    $objController->excluir_plano($id_cad_plano);
 }
 
 #LIVRO

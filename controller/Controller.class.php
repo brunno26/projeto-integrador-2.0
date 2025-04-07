@@ -207,6 +207,7 @@ class Controller
         echo '</script>';
     }
 
+    #Cartão
     //inserir cartão
     public function inserir_cartao($id_cad_band, $nome_cartao, $num_cartao)
     {
@@ -217,7 +218,7 @@ class Controller
             //iniciar sessao
             session_start();
             //inserir menu
-            $menu = $this->menu();
+            $menu      = $this->menu();
             $resultado = $objCartao->consultarCartao(null);
             //incluir a view
             include_once 'view/consultar_cartao.php';
@@ -262,33 +263,6 @@ class Controller
         }
     }
 
-    //excluir cartão
-    public function excluir_cartao($id_cad_cartao)
-    {
-        //instanciar a classe Cartão
-        $objCartao = new Cartao();
-        //invocar o método
-        if ($objCartao->excluirCartao($id_cad_cartao) == true) {
-            //iniciar sessao
-            session_start();
-            //inserir menu
-            $menu = $this->menu();
-            //incluir a view
-            include_once 'view/consultar_cartao.php';
-            //mostrar mensagem
-            $this->mostrarMensagem("Cartão excluído com sucesso!");
-        } else {
-            //iniciar sessao
-            session_start();
-            //inserir menu
-            $menu = $this->menu();
-            //incluir a view
-            include_once 'view/consultar_cartao.php';
-            //mostrar mensagem
-            $this->mostrarMensagem("Erro ao excluir cartão!");
-        }
-    }
-
     //alterar cartão
     public function alterar_cartao($id_cad_cartao, $nome_cartao)
     {
@@ -316,6 +290,33 @@ class Controller
         }
     }
 
+    //excluir cartão
+    public function excluir_cartao($id_cad_cartao)
+    {
+        //instanciar a classe Cartão
+        $objCartao = new Cartao();
+        //invocar o método
+        if ($objCartao->excluirCartao($id_cad_cartao) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_cartao.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Cartão excluído com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_cartao.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao excluir cartão!");
+        }
+    }
+
     #Bandeira
     //inserir Bandeira
     public function inserir_bandeira($nome_bandeira)
@@ -327,7 +328,7 @@ class Controller
             //iniciar sessao
             session_start();
             //inserir menu
-            $menu = $this->menu();
+            $menu      = $this->menu();
             $resultado = $objBandeira->consultarBandeira(null);
             //incluir a view
             include_once 'view/consultar_bandeira.php';
@@ -372,33 +373,6 @@ class Controller
         }
     }
 
-    //excluir bandeira
-    public function excluir_bandeira($id_cad_band)
-    {
-        //instanciar a classe Bandeira
-        $objBandeira = new Bandeira();
-        //invocar o método
-        if ($objBandeira->excluirBandeira($id_cad_band) == true) {
-            //iniciar sessao
-            session_start();
-            //inserir menu
-            $menu = $this->menu();
-            //incluir a view
-            include_once 'view/consultar_bandeira.php';
-            //mostrar mensagem
-            $this->mostrarMensagem("Bandeira excluída com sucesso!");
-        } else {
-            //iniciar sessao
-            session_start();
-            //inserir menu
-            $menu = $this->menu();
-            //incluir a view
-            include_once 'view/consultar_bandeira.php';
-            //mostrar mensagem
-            $this->mostrarMensagem("Erro ao excluir Bandeira!");
-        }
-    }
-
     //alterar bandeira
     public function alterar_bandeira($id_cad_band, $nome_band)
     {
@@ -426,6 +400,33 @@ class Controller
         }
     }
 
+    //excluir bandeira
+    public function excluir_bandeira($id_cad_band)
+    {
+        //instanciar a classe Bandeira
+        $objBandeira = new Bandeira();
+        //invocar o método
+        if ($objBandeira->excluirBandeira($id_cad_band) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_bandeira.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Bandeira excluída com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_bandeira.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao excluir Bandeira!");
+        }
+    }
+
     #Forma Pagamento ou Recebimento
     //inserir forma
     public function inserir_forma($desc_forma)
@@ -437,7 +438,7 @@ class Controller
             //iniciar sessao
             session_start();
             //inserir menu
-            $menu = $this->menu();
+            $menu      = $this->menu();
             $resultado = $objForma->consultarForma(null);
             //incluir a view
             include_once 'view/consultar_forma.php';
@@ -509,57 +510,140 @@ class Controller
         }
     }
 
-        //excluir forma
-        public function excluir_forma($id_cad_forma)
-        {
-            //instanciar a classe Bandeira
-            $objForma = new Forma();
-            //invocar o método
-            if ($objForma->excluirForma($id_cad_forma) == true) {
-                //iniciar sessao
-                session_start();
-                //inserir menu
-                $menu = $this->menu();
-                //incluir a view
-                include_once 'view/consultar_forma.php';
-                //mostrar mensagem
-                $this->mostrarMensagem("Forma excluída com sucesso!");
-            } else {
-                //iniciar sessao
-                session_start();
-                //inserir menu
-                $menu = $this->menu();
-                //incluir a view
-                include_once 'view/consultar_forma.php';
-                //mostrar mensagem
-                $this->mostrarMensagem("Erro ao excluir forma!");
-            }
-        }
-
-    #genero
-    public function inserir_genero($nome_genero)
+    //excluir forma
+    public function excluir_forma($id_cad_forma)
     {
-        //instanciar a classe Genero
-        $objGenero = new Genero();
+        //instanciar a classe Bandeira
+        $objForma = new Forma();
         //invocar o método
-        if ($objGenero->inserirGenero($nome_genero) == true) {
+        if ($objForma->excluirForma($id_cad_forma) == true) {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar_genero.php';
+            include_once 'view/consultar_forma.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Genero inserido com sucesso!");
+            $this->mostrarMensagem("Forma excluída com sucesso!");
         } else {
             //iniciar sessao
             session_start();
             //inserir menu
             $menu = $this->menu();
             //incluir a view
-            include_once 'view/consultar_genero.php';
+            include_once 'view/consultar_forma.php';
             //mostrar mensagem
-            $this->mostrarMensagem("Erro ao inserir genero!");
+            $this->mostrarMensagem("Erro ao excluir forma!");
+        }
+    }
+
+    #Plano de contas
+    //inserir plano
+    public function inserir_plano($desc_plano)
+    {
+        //instanciar a classe forma
+        $objPlano = new Plano();
+        //invocar o método
+        if ($objPlano->inserirPlano($desc_plano) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            $resultado = $objPlano->consultarPlano(null);
+            //incluir a view
+            include_once 'view/consultar_plano.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Plano de contas inserido com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_plano.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao inserir plano de contas!");
+        }
+    }
+
+    //consultar plano
+    public function consultar_plano($desc_plano)
+    {
+        //instanciar a classe plano
+        $objPlano = new Plano();
+        //invocar o método
+        if ($objPlano->consultarPlano($desc_plano) == false) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_plano.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao consultar plano de contas!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //resultado da consulta
+            $resultado = $objPlano->consultarPlano($desc_plano);
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_plano.php';
+        }
+    }
+
+    //alterar forma
+    public function alterar_plano($id_cad_plano, $desc_plano)
+    {
+        //instanciar a classe plano
+        $objPlano = new Plano();
+        //invocar o método
+        if ($objPlano->alterarPlano($id_cad_plano, $desc_plano) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_plano.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Plano de contas alterado com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_plano.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao alterar plano de contas!");
+        }
+    }
+
+    //excluir plano
+    public function excluir_plano($id_cad_plano)
+    {
+        //instanciar a classe Plano
+        $objPlano = new Plano();
+        //invocar o método
+        if ($objPlano->excluirPlano($id_cad_plano) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_plano.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Plano de contas excluído com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_plano.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao excluir plano de contas!");
         }
     }
 
@@ -848,7 +932,57 @@ class Controller
         echo '</div>';
         echo '</div>';
         echo '</div>';
-    } 
+    }
+
+    public function modal_alterar_plano($id_cad_plano, $desc_plano)
+    {
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="alterar_plano' . $id_cad_plano . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Plano</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '<form method="post" action="index.php">';
+        echo '  <div class="modal-body">';
+        echo '     <input type="text" class="form-control" name="desc_plano" value="' . $desc_plano . '">';
+        echo '  </div>';
+        echo '  <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_cad_plano" value="' . $id_cad_plano . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_plano" class="btn btn-primary">Alterar</button>';
+        echo '  </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function modal_excluir_plano($id_cad_plano, $desc_plano)
+    {
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="excluir_plano' . $id_cad_plano . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Plano</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '  <div class="modal-body">';
+        echo $desc_plano;
+        echo '  </div>';
+        echo '<form method="post" action="index.php">';
+        echo ' <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_cad_plano" value="' . $id_cad_plano . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_plano" class="btn btn-danger">Excluir</button>';
+        echo ' </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
 
     //select de forma
     public function selectForma()
@@ -900,6 +1034,7 @@ class Controller
 
     public function modal_excluir_livro($id_livro, $titulo)
     {
+
         echo '<!-- Modal -->';
         echo '<div class="modal fade" id="excluir_livro' . $id_livro . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
         echo ' <div class="modal-dialog">';
