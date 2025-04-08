@@ -20,26 +20,42 @@
         </header>
         <main>
             <div class="container d-flex justify-content-center mt-5">
-                <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
+                <form class="row p-3 border shadow-lg" method="post" action="index.php">
                     <div class="container text-center pb-2">
                         <h6>LANÇAMENTOS DE RECEBIMENTOS E PAGAMENTOS</h6>
                     </div>
                     <div class="col">
                         <div class="mb-3">
-                        <?php $this->selectBandeira(); ?>
+                            <?php $this->selectTipo(); ?>
                         </div>
                         <div class="mb-3">
-                            <label for="nome_cartao" class="form-label">Nome do cartão:</label>
-                            <input type="text" required name="nome_cartao" class="form-control" id="nome_cartao" placeholder="Cadastre o nome do cartão...">
+                            <?php $this->selectPlano(); ?>
                         </div>
                         <div class="mb-3">
-                            <label for="num_cartao" class="form-label">Número do cartão:</label>
-                            <input type="text" name="num_cartao" class="form-control" id="num_cartao" placeholder="Cadastre o número do cartão...">
+                            <label for="desc_lanc" class="form-label">Descrição do lançamento:</label>
+                            <input type="text" required name="desc_lanc" class="form-control" id="desc_lanc" placeholder="Digite a descrição do recebimento ou pagamento...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="data_venc" class="form-label">Data de vencimento:</label>
+                            <input type="date" name="data_venc" class="form-control" id="data_venc" placeholder="Digite a data do vencimento...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="valor_lanc" class="form-label">Valor do lançamento:</label>
+                            <input type="number" name="valor_lanc" class="form-control" id="valor_lanc" placeholder="Digite o valor do lançamento...">
+                        </div>
+                        <div class="mb-3">
+                            <?php $this->selectForma(); ?>
+                        </div>
+                        <div class="mb-3">
+                            <?php $this->selectBanco(); ?>
+                        </div>
+                        <div class="mb-3">
+                            <?php $this->selectCartao(); ?>
                         </div>
                     </div>
                     <div>
                         <button type="reset" class="btn btn-danger"><i class="bi bi-x-circle"></i> Apagar</button>
-                        <button type="submit" name="inserir_cartao" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
+                        <button type="submit" name="inserir_lancamento" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
                     </div>
                 </form>
             </div>

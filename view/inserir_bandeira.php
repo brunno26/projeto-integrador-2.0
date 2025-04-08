@@ -21,6 +21,9 @@
         <main>
             <div class="container d-flex justify-content-center mt-5">
                 <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
+                    <div class="container text-center pb-2">
+                        <h6>CADASTRO DE BANDEIRAS DE CARTÕES</h6>
+                    </div>
                     <div class="col">
                         <div class="mb-3">
                             <label for="nome_bandeira" class="form-label">Bandeira do cartão:</label>

@@ -21,6 +21,9 @@
         <main>
             <div class="container d-flex justify-content-center mt-1">
                 <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
+                    <div class="container text-center pb-2">
+                        <h6>CONSULTA DE PLANOS DE CONTAS</h6>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">

@@ -203,6 +203,17 @@ if (isset($_POST['excluir_plano'])) {
     $objController->excluir_plano($id_cad_plano);
 }
 
+#TIPO
+//consultar tipo
+if (isset($_POST['consultar_tipo'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $desc_tipo = htmlspecialchars($_POST['desc_tipo']);
+    //invocar o método de consultar plano
+    $objController->consultar_tipo($desc_tipo);
+}
+
 #LIVRO
 //inserir_livro
 if (isset($_POST['inserir_livro'])) {
