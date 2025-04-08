@@ -59,7 +59,7 @@ class Bandeira extends Conexao
         }
     }
 
-    //metodo consultar
+    //metodo consultar bandeira
     public function consultarBandeira($nome_bandeira)
     {
         //setar os atributos

@@ -647,7 +647,7 @@ class Controller
         }
     }
 
-    #Bandco
+    #Banco
     //inserir Banco
     public function inserir_banco($nome_banco, $num_agencia, $num_conta)
     {
@@ -673,6 +673,33 @@ class Controller
             include_once 'view/consultar_banco.php';
             //mostrar mensagem
             $this->mostrarMensagem("Erro ao inserir banco!");
+        }
+    }
+
+    //consultar banco
+    public function consultar_banco($nome_banco)
+    {
+        //instanciar a classe Autor
+        $objBanco = new Banco();
+        //invocar o método
+        if ($objBanco->consultarBanco($nome_banco) == false) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_banco.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao consultar banco!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //resultado da consulta
+            $resultado = $objBanco->consultarBanco($nome_banco);
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_banco.php';
         }
     }
 

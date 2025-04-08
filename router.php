@@ -216,6 +216,16 @@ if (isset($_POST['inserir_banco'])) {
     $objController->inserir_banco($nome_banco, $num_agencia, $num_conta);
 }
 
+//consultar banco
+if (isset($_POST['consultar_banco'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $nome_banco = htmlspecialchars($_POST['nome_banco']);
+    //invocar o método de consultar bandeira
+    $objController->consultar_banco($nome_banco);
+}
+
 #TIPO
 //consultar tipo
 if (isset($_POST['consultar_tipo'])) {
