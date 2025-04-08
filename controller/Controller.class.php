@@ -647,6 +647,35 @@ class Controller
         }
     }
 
+    #Bandco
+    //inserir Banco
+    public function inserir_banco($nome_banco, $num_agencia, $num_conta)
+    {
+        //instanciar a classe Autor
+        $objBanco = new Banco();
+        //invocar o método
+        if ($objBanco->inserirBanco($nome_banco, $num_agencia, $num_conta) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            // $resultado = $objBanco->consultarBanco(null);
+            //incluir a view
+            include_once 'view/consultar_banco.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Banco inserido com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_banco.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao inserir banco!");
+        }
+    }
+
     #livro
     //inserir livro
     public function inserir_livro($preco, $id_editora, $id_genero, $titulo, $autor, $imagem)

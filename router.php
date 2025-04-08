@@ -203,6 +203,19 @@ if (isset($_POST['excluir_plano'])) {
     $objController->excluir_plano($id_cad_plano);
 }
 
+#Plano
+//inserir plano
+if (isset($_POST['inserir_banco'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $nome_banco = htmlspecialchars($_POST['nome_banco']);
+    $num_agencia = htmlspecialchars($_POST['num_agencia']);
+    $num_conta= htmlspecialchars($_POST['num_conta']);
+    //invocar o método de inserir plano
+    $objController->inserir_banco($nome_banco, $num_agencia, $num_conta);
+}
+
 #TIPO
 //consultar tipo
 if (isset($_POST['consultar_tipo'])) {

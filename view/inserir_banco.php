@@ -26,16 +26,16 @@
                     </div>
                     <div class="col">
                         <div class="mb-3">
-                            <label for="banco" class="form-label">Banco:</label>
-                            <input type="text" required name="banco" class="form-control" id="banco" placeholder="Cadastre o nome do banco...">
+                            <label for="nome_banco" class="form-label">Banco:</label>
+                            <input type="text" required name="nome_banco" class="form-control" id="nome_banco" placeholder="Cadastre o nome do banco...">
                         </div>
                         <div class="mb-3">
-                            <label for="agencia" class="form-label">Agência:</label>
-                            <input type="text" name="agencia" class="form-control" id="agencia" placeholder="Cadastre o número da agência...">
+                            <label for="num_agencia" class="form-label">Agência:</label>
+                            <input type="text" name="num_agencia" class="form-control" id="num_agencia" placeholder="Cadastre o número da agência...">
                         </div>
                         <div class="mb-3">
-                            <label for="conta" class="form-label">Conta:</label>
-                            <input type="text" name="conta" class="form-control" id="conta" placeholder="Cadastre o número da conta...">
+                            <label for="num_conta" class="form-label">Conta:</label>
+                            <input type="text" name="num_conta" class="form-control" id="num_conta" placeholder="Cadastre o número da conta...">
                         </div>
                     </div>
                     <div>
