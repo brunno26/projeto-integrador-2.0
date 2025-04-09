@@ -985,7 +985,7 @@ class Controller
         //invocar o método
         $resultado = $objBandeira->consultarBandeira(null);
         //montar o select dinamicamente
-        echo '<label for="id_cad_band" class="form-label">Bandeira do cartão</label>';
+        echo '<label for="id_cad_band" class="form-label">Bandeira do cartão:</label>';
         echo '<select name="id_cad_band" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione a bandeira do cartão</option>';
         foreach ($resultado as $key => $valor) {
@@ -1002,7 +1002,7 @@ class Controller
         //invocar o método
         $resultado = $objPlano->consultarPlano(null);
         //montar o select dinamicamente
-        echo '<label for="id_cad_plano" class="form-label">Plano de contas</label>';
+        echo '<label for="id_cad_plano" class="form-label">Plano de contas:</label>';
         echo '<select name="id_cad_plano" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione o plano de contas</option>';
         foreach ($resultado as $key => $valor) {
@@ -1019,7 +1019,7 @@ class Controller
         //invocar o método
         $resultado = $objForma->consultarForma(null);
         //montar o select dinamicamente
-        echo '<label for="id_cad_forma" class="form-label">Forma de Rec/Pag</label>';
+        echo '<label for="id_cad_forma" class="form-label">Forma de Rec/Pag:</label>';
         echo '<select name="id_cad_forma" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione a forma de rec/pag</option>';
         foreach ($resultado as $key => $valor) {
@@ -1036,7 +1036,7 @@ class Controller
         //invocar o método
         $resultado = $objTipo->consultarTipo(null);
         //montar o select dinamicamente
-        echo '<label for="id_cad_tipo" class="form-label">Tipo</label>';
+        echo '<label for="id_cad_tipo" class="form-label">Tipo:</label>';
         echo '<select name="id_cad_tipo" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione o tipo</option>';
         foreach ($resultado as $key => $valor) {
@@ -1053,11 +1053,11 @@ class Controller
         //invocar o método
         $resultado = $objBanco->consultarBanco(null);
         //montar o select dinamicamente
-        echo '<label for="id_cad_banco" class="form-label">Banco</label>';
+        echo '<label for="id_cad_banco" class="form-label">Banco:</label>';
         echo '<select name="id_cad_banco" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione o banco</option>';
         foreach ($resultado as $key => $valor) {
-            echo '<option value="' . $valor->id_cad_banco . '">' . $valor->desc_banco . '</option>';
+            echo '<option value="' . $valor->id_cad_banco . '">' . $valor->nome_banco . '</option>';
         }
         echo '</select>';
     }
@@ -1070,11 +1070,11 @@ class Controller
         //invocar o método
         $resultado = $objCartao->consultarCartao(null);
         //montar o select dinamicamente
-        echo '<label for="id_cad_cartao" class="form-label">Cartão</label>';
+        echo '<label for="id_cad_cartao" class="form-label">Cartão:</label>';
         echo '<select name="id_cad_cartao" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione o cartão</option>';
         foreach ($resultado as $key => $valor) {
-            echo '<option value="' . $valor->id_cad_cartao . '">' . $valor->desc_cartao . '</option>';
+            echo '<option value="' . $valor->id_cad_cartao . '">' . $valor->nome_cartao . '</option>';
         }
         echo '</select>';
     }
