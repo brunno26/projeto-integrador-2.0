@@ -87,7 +87,7 @@ class Usuario extends Conexao
          }
      }
 
-      //metodo consultar banco
+      //metodo consultar usuário
     public function consultarUsuario($nome_usuario)
     {
         //setar os atributos
@@ -123,6 +123,70 @@ class Usuario extends Conexao
 
         } catch (PDOException $e) {
             //print "Erro ao consultar usuário";
+            return false;
+        }
+    }
+
+    //método alterar usuario
+    public function alterarUsuario($id_cad_usuario, $nome_usuario, $email, $senha)
+    {
+        //setar os atributos
+        $this->setIdCadUsuario($id_cad_usuario);
+        $this->setNomeUsuario($nome_usuario);
+        $this->setEmail($email);
+        $this->setSenha($senha);
+
+        //montar query
+        $sql = "UPDATE tb_cad_usuario SET nome_usuario = :nome_usuario, email = :email, senha = :senha WHERE id_cad_usuario = :id_cad_usuario";
+
+        //executa a query
+        try {
+            //conectar com o banco
+            $bd = $this->conectar();
+            //preparar o sql
+            $query = $bd->prepare($sql);
+            //blidagem dos dados
+            $query->bindValue(':id_cad_usuario', $this->getIdCadUsuario(), PDO::PARAM_INT);
+            $query->bindValue(':nome_usuario', $this->getNomeUsuario(), PDO::PARAM_STR);
+            $query->bindValue(':email', $this->getEmail(), PDO::PARAM_STR);
+            $query->bindValue(':senha', $this->getSenha(), PDO::PARAM_STR);
+            //excutar a query
+            $query->execute();
+            //retorna o resultado
+            //print "Alterado";
+            return true;
+
+        } catch (PDOException $e) {
+            //print "Erro ao alterar usuario";
+            return false;
+        }
+    }
+
+    //método excluir usuário
+    public function excluirUsuario($id_cad_usuario)
+    {
+        //setar os atributos
+        $this->setIdCadUsuario($id_cad_usuario);
+
+        //montar query
+        $sql = "DELETE FROM tb_cad_usuario WHERE id_cad_usuario = :id_cad_usuario";
+
+        //executa a query
+        try {
+            //conectar com o banco
+            $bd = $this->conectar();
+            //preparar o sql
+            $query = $bd->prepare($sql);
+            //blindagem dos dados
+            $query->bindValue(':id_cad_usuario', $this->getIdCadUsuario(), PDO::PARAM_INT);
+            //excutar a query
+            $query->execute();
+            //retorna o resultado
+            print "Excluido";
+            return true;
+
+        } catch (PDOException $e) {
+            // print "Erro ao excluir usuario: " . $e->getMessage();
             return false;
         }
     }

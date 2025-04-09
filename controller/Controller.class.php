@@ -813,6 +813,60 @@ class Controller
         }
     }
 
+    //alterar usuario
+    public function alterar_usuario($id_cad_usuario, $nome_usuario, $email, $senha)
+    {
+        //instanciar a classe usuario
+        $objUsuario = new Usuario();
+        //invocar o método
+        if ($objUsuario->alterarUsuario($id_cad_usuario, $nome_usuario, $email, $senha) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_usuario.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Usuario alterado com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_usuariophp';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao alterar Usuario!");
+        }
+    }
+
+    //excluir usuario
+    public function excluir_usuario($id_cad_usuario)
+    {
+        //instanciar a classe Plano
+        $objUsuario = new Usuario();
+        //invocar o método
+        if ($objUsuario->excluirUsuario($id_cad_usuario) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_usuario.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Usuário excluído com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_usuario.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao excluir usuário!");
+        }
+    }
+
 
     #livro
     //inserir livro
@@ -1284,6 +1338,61 @@ class Controller
         echo '    <input type="hidden" name="id_cad_banco" value="' . $id_cad_banco . '">';
         echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
         echo '    <button type="submit" name="excluir_banco" class="btn btn-danger">Excluir</button>';
+        echo ' </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function modal_alterar_usuario($id_cad_usuario, $nome_usuario, $email, $senha)
+    {
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="alterar_usuario' . $id_cad_usuario . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Usuário</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '<form method="post" action="index.php">';
+        echo '  <div class="modal-body">';
+        echo '     <label for="nome_usuario" class="form-label">Usuário:</label>';
+        echo '     <input type="text" class="form-control" name="nome_usuario" value="' . $nome_usuario . '">';
+        echo '     <label for="email" class="form-label">E-mail:</label>';
+        echo '     <input type="email" class="form-control" name="email" value="' . $email . '">';
+        echo '     <label for="senha" class="form-label">Senha:</label>';
+        echo '     <input type="password" class="form-control" name="password" value="' . $senha . '">';
+        echo '  </div>';
+        echo '  <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_cad_usuario" value="' . $id_cad_usuario . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_usuario" class="btn btn-primary">Alterar</button>';
+        echo '  </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function modal_excluir_usuario($id_cad_usuario, $nome_usuario)
+    {
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="excluir_usuario' . $id_cad_usuario . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Usuario</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '  <div class="modal-body">';
+        echo $nome_usuario;
+        echo '  </div>';
+        echo '<form method="post" action="index.php">';
+        echo ' <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_cad_usuario" value="' . $id_cad_usuario . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_usuario" class="btn btn-danger">Excluir</button>';
         echo ' </div>';
         echo '</form>';
         echo '</div>';

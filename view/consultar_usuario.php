@@ -69,7 +69,7 @@
                 //criar os Modais de excluir e alterar
                 foreach ($resultado as $key => $valor) {
                     $this->modal_excluir_usuario($valor->id_cad_usuario, $valor->nome_usuario);
-                    $this->modal_alterar_usuario($valor->id_cad_usuario, $valor->nome_usuario, $valor->email);
+                    $this->modal_alterar_usuario($valor->id_cad_usuario, $valor->nome_usuario, $valor->email, $valor->senha);
                 }
             ?>
         </main>
