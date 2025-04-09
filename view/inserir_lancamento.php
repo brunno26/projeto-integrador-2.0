@@ -19,7 +19,7 @@
             <!-- place navbar here -->
         </header>
         <main>
-            <div class="container d-flex justify-content-center mt-5">
+            <div class="container d-flex justify-content-center mt-3">
                 <form class="row p-3 border shadow-lg" method="post" action="index.php">
                     <div class="container text-center pb-2">
                         <h6>LANÇAMENTOS DE RECEBIMENTOS E PAGAMENTOS</h6>
