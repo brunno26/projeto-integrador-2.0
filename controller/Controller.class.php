@@ -730,7 +730,7 @@ class Controller
         }
     }
 
-    //excluir plano
+    //excluir banco
     public function excluir_banco($id_cad_banco)
     {
         //instanciar a classe Plano
@@ -756,6 +756,63 @@ class Controller
             $this->mostrarMensagem("Erro ao excluir Banco!");
         }
     }
+
+    #Usuário
+    //inserir usuário
+    public function inserir_usuario($nome_usuario, $email, $senha)
+    {
+        //instanciar a classe Autor
+        $objUsuario = new Usuario();
+        //invocar o método
+        if ($objUsuario->inserirUsuario($nome_usuario, $email, $senha) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            // $resultado = $objBanco->consultarBanco(null);
+            //incluir a view
+            include_once 'view/consultar_usuario.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Usuário inserido com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_usuario.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao inserir Usuário!");
+        }
+    }
+
+    //consultar usuario
+    public function consultar_usuario($nome_usuario)
+    {
+        //instanciar a classe Usuario
+        $objUsuario = new Usuario();
+        //invocar o método
+        if ($objUsuario->consultarUsuario($nome_usuario) == false) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_usuario.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao consultar banco!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //resultado da consulta
+            $resultado = $objUsuario->consultarUsuario($nome_usuario);
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_usuario.php';
+        }
+    }
+
 
     #livro
     //inserir livro

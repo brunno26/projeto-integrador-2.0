@@ -249,6 +249,28 @@ if (isset($_POST['excluir_banco'])) {
     $objController->excluir_banco($id_cad_banco);
 }
 
+#banco
+//inserir usuario
+if (isset($_POST['inserir_usuario'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
+    $email = htmlspecialchars($_POST['email']);
+    $senha= htmlspecialchars($_POST['senha']);
+    //invocar o método de inserir usuario
+    $objController->inserir_usuario($nome_usuario, $email, $senha);
+}
+
+//consultar usuario
+if (isset($_POST['consultar_usuario'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
+    //invocar o método de consultar usuario
+    $objController->consultar_usuario($nome_usuario);
+}
 
 #TIPO
 //consultar tipo

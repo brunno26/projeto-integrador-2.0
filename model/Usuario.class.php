@@ -1,0 +1,130 @@
+<?php 
+// incluir classe conexão
+include_once 'Conexao.class.php';
+
+// class Usuário
+class Usuario extends Conexao
+{
+    // atributos
+    private $id_cad_usuario;
+    private $nome_usuario;
+    private $email;
+    private $senha;
+
+    // getters & setters
+    public function getIdCadUsuario()
+    {
+        return $this->id_cad_usuario;
+    }
+
+    public function setIdCadUsuario($id_cad_usuario)
+    {
+        $this->id_cad_usuario = $id_cad_usuario;
+    }
+
+    public function getNomeUsuario()
+    {
+        return $this->nome_usuario;
+    }
+
+    public function setNomeUsuario($nome_usuario)
+    {
+        $this->nome_usuario = $nome_usuario;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function getSenha()
+    {
+        return $this->senha;
+    }
+
+    public function setSenha($senha)
+    {
+        $this->senha = $senha;
+    }
+
+    // Método Inserir Usuário
+    public function inserirUsuario($nome_usuario, $email, $senha)
+     {
+         //setar os atributos
+         $this->setNomeUsuario($nome_usuario);
+         $this->setEmail($email);
+         $this->setSenha($senha);
+ 
+         //montar query
+         $sql = "INSERT INTO tb_cad_usuario (id_cad_usuario, nome_usuario, email, senha) 
+        VALUES (NULL, :nome_usuario, :email, :senha)";
+ 
+         //executa a query
+         try {
+             //conectar com o banco
+             $bd = $this->conectar();
+             //preparar o sql
+             $query = $bd->prepare($sql);
+             //blidagem dos dados
+             $query->bindValue(':nome_usuario', $this->getNomeUsuario(), PDO::PARAM_STR);
+             $query->bindValue(':email', $this->getEmail(), PDO::PARAM_STR);
+             $query->bindValue(':senha', $this->getSenha(), PDO::PARAM_STR);
+             
+             //excutar a query
+             $query->execute();
+             //retorna o resultado
+             //print "Inserido";
+             return true;
+ 
+         } catch (PDOException $e) {
+             //print "Erro ao inserir usuário";
+             return false;
+         }
+     }
+
+      //metodo consultar banco
+    public function consultarUsuario($nome_usuario)
+    {
+        //setar os atributos
+        $this->setNomeUsuario($nome_usuario);
+
+        //montar query
+        $sql = "SELECT * FROM tb_cad_usuario where true ";
+
+        //vericar se o nome é nulo
+        if ($this->getNomeUsuario() != null) {
+            $sql .= " and nome_usuario like :nome_usuario";
+        }
+
+        //ordenar a tabela
+        $sql .= " order by nome_usuario ";
+
+        //executa a query
+        try {
+            //conectar com o banco
+            $bd = $this->conectar();
+            //preparar o sql
+            $query = $bd->prepare($sql);
+            //blidagem dos dados
+            if ($this->getNomeUsuario() != null) {
+                $this->setNomeUsuario("%" . $nome_usuario . "%");
+                $query->bindValue(':nome_usuario', $this->getNomeUsuario(), PDO::PARAM_STR);
+            }
+            //excutar a query
+            $query->execute();
+            //retorna o resultado
+            $resultado = $query->fetchAll(PDO::FETCH_OBJ);
+            return $resultado;
+
+        } catch (PDOException $e) {
+            //print "Erro ao consultar usuário";
+            return false;
+        }
+    }
+}
+?>
