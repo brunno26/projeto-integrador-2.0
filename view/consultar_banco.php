@@ -58,8 +58,8 @@
                                 echo '  <td class="text-start">' . $valor->num_agencia . '</td>';
                                 echo '  <td>' . $valor->num_conta . '</td>';
                                 echo '  <td>
-                                            <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_cartao' . $valor->id_cad_banco . '"><i class="bi bi-pencil"></i></button>
-                                            <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_cartao' . $valor->id_cad_banco . '"><i class="bi bi-trash"></i></button>
+                                            <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_banco' . $valor->id_cad_banco . '"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_banco' . $valor->id_cad_banco . '"><i class="bi bi-trash"></i></button>
                                         </td>';
                                 echo '</tr>';
                             }
@@ -71,7 +71,7 @@
                 //criar os Modais de excluir e alterar
                 foreach ($resultado as $key => $valor) {
                     $this->modal_excluir_banco($valor->id_cad_banco, $valor->nome_banco);
-                    $this->modal_alterar_banco($valor->id_cad_banco, $valor->nome_banco);
+                    $this->modal_alterar_banco($valor->id_cad_banco, $valor->nome_banco, $valor->num_agencia, $valor->num_conta);
                 }
             ?>
         </main>

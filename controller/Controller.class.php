@@ -703,6 +703,60 @@ class Controller
         }
     }
 
+    //alterar banco
+    public function alterar_banco($id_cad_banco, $nome_banco, $num_agencia, $num_conta)
+    {
+        //instanciar a classe plano
+        $objBanco = new Banco();
+        //invocar o método
+        if ($objBanco->alterarBanco($id_cad_banco, $nome_banco, $num_agencia, $num_conta) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_banco.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Banco alterado com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_banco.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao alterar Banco!");
+        }
+    }
+
+    //excluir plano
+    public function excluir_banco($id_cad_banco)
+    {
+        //instanciar a classe Plano
+        $objBanco = new Banco();
+        //invocar o método
+        if ($objBanco->excluirBanco($id_cad_banco) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_banco.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Banco excluído com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_banco.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao excluir Banco!");
+        }
+    }
+
     #livro
     //inserir livro
     public function inserir_livro($preco, $id_editora, $id_genero, $titulo, $autor, $imagem)
@@ -1118,6 +1172,61 @@ class Controller
         echo '    <input type="hidden" name="id_cad_plano" value="' . $id_cad_plano . '">';
         echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
         echo '    <button type="submit" name="excluir_plano" class="btn btn-danger">Excluir</button>';
+        echo ' </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function modal_alterar_banco($id_cad_banco, $nome_banco, $num_agencia, $num_conta)
+    {
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="alterar_banco' . $id_cad_banco . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar Banco</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '<form method="post" action="index.php">';
+        echo '  <div class="modal-body">';
+        echo '     <label for="nome_banco" class="form-label">Banco:</label>';
+        echo '     <input type="text" class="form-control" name="nome_banco" value="' . $nome_banco . '">';
+        echo '     <label for="num_agencia" class="form-label">Agência:</label>';
+        echo '     <input type="text" class="form-control" name="num_agencia" value="' . $num_agencia . '">';
+        echo '     <label for="num_conta" class="form-label">Conta:</label>';
+        echo '     <input type="text" class="form-control" name="num_conta" value="' . $num_conta . '">';
+        echo '  </div>';
+        echo '  <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_cad_banco" value="' . $id_cad_banco . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_banco" class="btn btn-primary">Alterar</button>';
+        echo '  </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function modal_excluir_banco($id_cad_banco, $nome_banco)
+    {
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="excluir_banco' . $id_cad_banco . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir Banco</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '  <div class="modal-body">';
+        echo $nome_banco;
+        echo '  </div>';
+        echo '<form method="post" action="index.php">';
+        echo ' <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_cad_banco" value="' . $id_cad_banco . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_banco" class="btn btn-danger">Excluir</button>';
         echo ' </div>';
         echo '</form>';
         echo '</div>';

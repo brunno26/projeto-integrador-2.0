@@ -132,13 +132,13 @@ class Banco extends Conexao
     public function alterarBanco($id_cad_banco, $nome_banco, $num_agencia, $num_conta)
     {
         //setar os atributos
-        $this->setIdBanco($id_cad_banco);
+        $this->setIdCadBanco($id_cad_banco);
         $this->setNomeBanco($nome_banco);
         $this->setNumAgencia($num_agencia);
-        $this->setNomeBanco($num_conta);
+        $this->setNumConta($num_conta);
 
         //montar query
-        $sql = "UPDATE tb_cad_banco SET nome_banco = :nome_banco WHERE id_cad_band = :id_cad_band";
+        $sql = "UPDATE tb_cad_banco SET nome_banco = :nome_banco, num_agencia = :num_agencia, num_conta = :num_conta WHERE id_cad_banco = :id_cad_banco";
 
         //executa a query
         try {
@@ -147,8 +147,10 @@ class Banco extends Conexao
             //preparar o sql
             $query = $bd->prepare($sql);
             //blidagem dos dados
-            $query->bindValue(':id_cad_band', $this->getIdBandeira(), PDO::PARAM_INT);
-            $query->bindValue(':nome_bandeira', $this->getNomeBandeira(), PDO::PARAM_STR);
+            $query->bindValue(':id_cad_banco', $this->getIdCadBanco(), PDO::PARAM_INT);
+            $query->bindValue(':nome_banco', $this->getNomeBanco(), PDO::PARAM_STR);
+            $query->bindValue(':num_agencia', $this->getNumAgencia(), PDO::PARAM_STR);
+            $query->bindValue(':num_conta', $this->getNumConta(), PDO::PARAM_STR);
             //excutar a query
             $query->execute();
             //retorna o resultado
@@ -161,14 +163,14 @@ class Banco extends Conexao
         }
     }
 
-    //método excluir bandeira
-    public function excluirBandeira($id_cad_band)
+    //método excluir banco
+    public function excluirBanco($id_cad_banco)
     {
         //setar os atributos
-        $this->setIdBandeira($id_cad_band);
+        $this->setIdCadBanco($id_cad_banco);
 
         //montar query
-        $sql = "DELETE FROM tb_cad_bandeira WHERE id_cad_band = :id_cad_band";
+        $sql = "DELETE FROM tb_cad_banco WHERE id_cad_banco = :id_cad_banco";
 
         //executa a query
         try {
@@ -177,7 +179,7 @@ class Banco extends Conexao
             //preparar o sql
             $query = $bd->prepare($sql);
             //blindagem dos dados
-            $query->bindValue(':id_cad_band', $this->getIdBandeira(), PDO::PARAM_INT);
+            $query->bindValue(':id_cad_banco', $this->getIdCadBanco(), PDO::PARAM_INT);
             //excutar a query
             $query->execute();
             //retorna o resultado
@@ -185,7 +187,7 @@ class Banco extends Conexao
             return true;
 
         } catch (PDOException $e) {
-            // print "Erro ao excluir: " . $e->getMessage();
+            // print "Erro ao excluir banco: " . $e->getMessage();
             return false;
         }
     }

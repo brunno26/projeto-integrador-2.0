@@ -203,8 +203,8 @@ if (isset($_POST['excluir_plano'])) {
     $objController->excluir_plano($id_cad_plano);
 }
 
-#Plano
-//inserir plano
+#banco
+//inserir banco
 if (isset($_POST['inserir_banco'])) {
     //instanciar controller
     $objController = new Controller();
@@ -225,6 +225,30 @@ if (isset($_POST['consultar_banco'])) {
     //invocar o método de consultar bandeira
     $objController->consultar_banco($nome_banco);
 }
+
+//alterar banco
+if (isset($_POST['alterar_banco'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
+    $nome_banco = htmlspecialchars($_POST['nome_banco']);
+    $num_agencia = htmlspecialchars($_POST['num_agencia']);
+    $num_conta = htmlspecialchars($_POST['num_conta']);
+    //invocar o método de alterar plano
+    $objController->alterar_banco($id_cad_banco, $nome_banco, $num_agencia, $num_conta);
+}
+
+//excluir banco
+if (isset($_POST['excluir_banco'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
+    //invocar o método de excluir plano
+    $objController->excluir_banco($id_cad_banco);
+}
+
 
 #TIPO
 //consultar tipo
