@@ -190,5 +190,82 @@ class Usuario extends Conexao
             return false;
         }
     }
+
+    //método validar login
+    public function validarLogin($email, $senha) 
+    {
+        // setar os dados
+        $this->setEmail($email);
+        $this->setSenha($senha);
+
+        // sql
+        $sql = "SELECT COUNT(*) AS quantidade FROM tb_usuario where email= :email and senha= :senha";
+
+        try{
+            // conectar com o banco
+            $bd = $this->conectar();
+            // preparar o sql
+            $query = $bd->prepare($sql);
+            // blindagem dos dados
+            $query->bindvalue(':email', $this->getEmail(), PDO::PARAM_STR);
+            $query->bindvalue(':senha', $this->getSenha(), PDO::PARAM_STR);
+            // executar a query
+            $query->execute();
+            // retorna o resultado
+            $resultado = $query->fetchAll(PDO::FETCH_OBJ);
+            // verificar resultado
+            foreach ($resultado as $key => $valor) {
+               print $quantidade = $valor->quantidade;
+            }
+            die();
+            //testar quantidade
+            if ($quantidade == 1) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (PDOException $e) {
+            //print "Erro ao consultar";
+            return false;
+        }
+    }
+
+    //metodo validarEmail
+    public function validarEmail($email)
+    {
+        //setar os dados
+        $this->setEmail($email);
+
+        //sql
+        $sql = "SELECT count(*) as quantidade FROM tb_usuario WHERE email= :email";
+
+        try {
+            //conectar com o banco
+            $bd = $this->conectar();
+            //preparar o sql
+            $query = $bd->prepare($sql);
+            //blidagem dos dados
+            $query->bindValue(':email', $this->getEmail(), PDO::PARAM_STR);
+            //excutar a query
+            $query->execute();
+            //retorna o resultado
+            $resultado = $query->fetchAll(PDO::FETCH_OBJ);
+            //verificar o resultado
+            foreach ($resultado as $key => $valor) {
+                $quantidade = $valor->quantidade;
+            }
+            //testar quantidade
+            if ($quantidade == 1) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (PDOException $e) {
+            //print "Erro ao consultar";
+            return false;
+        }
+    }
 }
 ?>

@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
     $email = htmlspecialchars($_POST['email']);
     $senha = htmlspecialchars($_POST['senha']);
     //invocar o método de validar
-    $objController->validar($email, $senha);
+    $objController->validar_login($email, $senha);
 }
 
 //recuperar_senha

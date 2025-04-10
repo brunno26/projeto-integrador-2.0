@@ -14,7 +14,7 @@ class Controller
     }
 
     //validar login
-    public function validar($email, $senha)
+    public function validar_login($email, $senha)
     {
         //instanciar a classe Usuário
         $objUsuario = new Usuario();
@@ -24,7 +24,7 @@ class Controller
             session_start();
             //iniciar variaves de sessao
             $_SESSION['email']  = $email;
-            $_SESSION['perfil'] = $objUsuario->perfilUsuario($email);
+            // $_SESSION['perfil'] = $objUsuario->perfilUsuario($email);
             //menu
             $menu = $this->menu();
             //incluir a view
