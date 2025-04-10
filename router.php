@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
     $email = htmlspecialchars($_POST['email']);
     $senha = htmlspecialchars($_POST['senha']);
     //invocar o método de validar
-    $objController->validar($email, $senha);
+    $objController->validar_login($email, $senha);
 }
 
 //recuperar_senha
@@ -249,6 +249,51 @@ if (isset($_POST['excluir_banco'])) {
     $objController->excluir_banco($id_cad_banco);
 }
 
+#usuario
+//inserir usuario
+if (isset($_POST['inserir_usuario'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
+    $email = htmlspecialchars($_POST['email']);
+    $senha= htmlspecialchars($_POST['senha']);
+    //invocar o método de inserir usuario
+    $objController->inserir_usuario($nome_usuario, $email, $senha);
+}
+
+//consultar usuario
+if (isset($_POST['consultar_usuario'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
+    //invocar o método de consultar usuario
+    $objController->consultar_usuario($nome_usuario);
+}
+
+//alterar banco
+if (isset($_POST['alterar_usuario'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_usuario = htmlspecialchars($_POST['id_cad_usuario']);
+    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
+    $email = htmlspecialchars($_POST['email']);
+    $senha = htmlspecialchars($_POST['senha']);
+    //invocar o método de alterar plano
+    $objController->alterar_usuario($id_cad_usuario, $nome_usuario, $email, $senha);
+}
+
+//excluir usuario
+if (isset($_POST['excluir_usuario'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_usuario = htmlspecialchars($_POST['id_cad_usuario']);
+    //invocar o método de excluir usuario
+    $objController->excluir_usuario($id_cad_usuario);
+}
 
 #TIPO
 //consultar tipo

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-br">
     <head>
-        <title>Consulta de bancos</title>
+        <title>Consulta de usuarios</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -22,18 +22,18 @@
             <div class="container d-flex justify-content-center mt-1">
                 <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
                     <div class="container text-center pb-2">
-                        <h6>CONSULTA DE BANCOS</h6>
+                        <h6>CONSULTA DE USUARIOS</h6>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="nome_banco" class="form-label">Nome banco</label>
-                                <input type="text" name="nome_banco" class="form-control" id="nome_banco" placeholder="Digite o nome do banco...">
+                                <label for="nome_usuario" class="form-label">Nome</label>
+                                <input type="text" name="nome_usuario" class="form-control" id="nome_usuario" placeholder="Digite o nome do usuário...">
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button button type="submit" name="consultar_banco" class="btn btn-primary"><i class="bi bi-search"></i> Consultar</button>
+                        <button button type="submit" name="consultar_usuario" class="btn btn-primary"><i class="bi bi-search"></i> Consultar</button>
                     </div>
                 </form>
             </div>
@@ -42,9 +42,8 @@
                     <thead class="table-secondary">
                         <tr class="text-center">
                             <th>CÓDIGO</th>
-                            <th>NOME DO BANCO</th>
-                            <th>NÚMERO DA AGÊNCIA</th>
-                            <th>NÚMERO DA CONTA</th>
+                            <th>NOME DO USUÁRIO</th>
+                            <th>E-MAIL</th>
                             <th>AÇÃO</th>
                         </tr>
                     </thead>
@@ -53,10 +52,9 @@
                             //mostrar os resultados
                             foreach ($resultado as $key => $valor) {
                                 echo '<tr class="text-center">';
-                                echo '  <th scope="row">' . $valor->id_cad_banco . '</th>';
-                                echo '  <td>' . $valor->nome_banco . '</td>';
-                                echo '  <td class="text-start">' . $valor->num_agencia . '</td>';
-                                echo '  <td>' . $valor->num_conta . '</td>';
+                                echo '  <th scope="row">' . $valor->id_cad_usuario . '</th>';
+                                echo '  <td>' . $valor->nome_usuario . '</td>';
+                                echo '  <td class="text-start">' . $valor->email . '</td>';
                                 echo '  <td>
                                             <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_usuario' . $valor->id_cad_usuario . '"><i class="bi bi-pencil"></i></button>
                                             <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_usuario' . $valor->id_cad_usuario . '"><i class="bi bi-trash"></i></button>
@@ -70,8 +68,8 @@
             <?php
                 //criar os Modais de excluir e alterar
                 foreach ($resultado as $key => $valor) {
-                    $this->modal_excluir_banco($valor->id_cad_usuario, $valor->nome_usuario);
-                    $this->modal_alterar_banco($valor->id_cad_usuario, $valor->nome_usuario, $valor->email, $valor->senha);
+                    $this->modal_excluir_usuario($valor->id_cad_usuario, $valor->nome_usuario);
+                    $this->modal_alterar_usuario($valor->id_cad_usuario, $valor->nome_usuario, $valor->email, $valor->senha);
                 }
             ?>
         </main>
