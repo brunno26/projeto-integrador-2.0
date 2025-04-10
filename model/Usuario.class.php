@@ -1,4 +1,4 @@
-<?php 
+<?php
 // incluir classe conexão
 include_once 'Conexao.class.php';
 
@@ -54,40 +54,40 @@ class Usuario extends Conexao
 
     // Método Inserir Usuário
     public function inserirUsuario($nome_usuario, $email, $senha)
-     {
-         //setar os atributos
-         $this->setNomeUsuario($nome_usuario);
-         $this->setEmail($email);
-         $this->setSenha($senha);
- 
-         //montar query
-         $sql = "INSERT INTO tb_cad_usuario (id_cad_usuario, nome_usuario, email, senha) 
-        VALUES (NULL, :nome_usuario, :email, :senha)";
- 
-         //executa a query
-         try {
-             //conectar com o banco
-             $bd = $this->conectar();
-             //preparar o sql
-             $query = $bd->prepare($sql);
-             //blidagem dos dados
-             $query->bindValue(':nome_usuario', $this->getNomeUsuario(), PDO::PARAM_STR);
-             $query->bindValue(':email', $this->getEmail(), PDO::PARAM_STR);
-             $query->bindValue(':senha', $this->getSenha(), PDO::PARAM_STR);
-             
-             //excutar a query
-             $query->execute();
-             //retorna o resultado
-             //print "Inserido";
-             return true;
- 
-         } catch (PDOException $e) {
-             //print "Erro ao inserir usuário";
-             return false;
-         }
-     }
+    {
+        //setar os atributos
+        $this->setNomeUsuario($nome_usuario);
+        $this->setEmail($email);
+        $this->setSenha($senha);
 
-      //metodo consultar usuário
+        //montar query
+        $sql = "INSERT INTO tb_cad_usuario (id_cad_usuario, nome_usuario, email, senha)
+        VALUES (NULL, :nome_usuario, :email, :senha)";
+
+        //executa a query
+        try {
+            //conectar com o banco
+            $bd = $this->conectar();
+            //preparar o sql
+            $query = $bd->prepare($sql);
+            //blidagem dos dados
+            $query->bindValue(':nome_usuario', $this->getNomeUsuario(), PDO::PARAM_STR);
+            $query->bindValue(':email', $this->getEmail(), PDO::PARAM_STR);
+            $query->bindValue(':senha', $this->getSenha(), PDO::PARAM_STR);
+
+            //excutar a query
+            $query->execute();
+            //retorna o resultado
+            //print "Inserido";
+            return true;
+
+        } catch (PDOException $e) {
+            //print "Erro ao inserir usuário";
+            return false;
+        }
+    }
+
+    //metodo consultar usuário
     public function consultarUsuario($nome_usuario)
     {
         //setar os atributos
@@ -192,7 +192,7 @@ class Usuario extends Conexao
     }
 
     //método validar login
-    public function validarLogin($email, $senha) 
+    public function validarLogin($email, $senha)
     {
         // setar os dados
         $this->setEmail($email);
@@ -201,7 +201,7 @@ class Usuario extends Conexao
         // sql
         $sql = "SELECT COUNT(*) AS quantidade FROM tb_usuario where email= :email and senha= :senha";
 
-        try{
+        try {
             // conectar com o banco
             $bd = $this->conectar();
             // preparar o sql
@@ -215,7 +215,7 @@ class Usuario extends Conexao
             $resultado = $query->fetchAll(PDO::FETCH_OBJ);
             // verificar resultado
             foreach ($resultado as $key => $valor) {
-               print $quantidade = $valor->quantidade;
+                print $quantidade = $valor->quantidade;
             }
             die();
             //testar quantidade
@@ -268,4 +268,3 @@ class Usuario extends Conexao
         }
     }
 }
-?>

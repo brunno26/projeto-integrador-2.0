@@ -125,7 +125,6 @@ class Banco extends Conexao
             //print "Erro ao consultar banco";
             return false;
         }
-
     }
 
     //método alterar banco

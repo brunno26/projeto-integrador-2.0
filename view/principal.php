@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="static/style.css">
     </head>
 
-    <body>
+    <body class="vh-100" style="background: url('images/finanças_pessoais.jpeg') no-repeat center center; background-size: cover;">
         <header>
             <!-- place navbar here -->
             <?php echo $menu ?>
