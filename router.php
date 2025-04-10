@@ -341,17 +341,18 @@ if (isset($_POST['alterar_lancamento'])) {
     $objController = new Controller();
     //dados
     $id_lanc = htmlspecialchars($_POST['id_lanc']);
-    $id_cad_tipo = htmlspecialchars($_POST['id_cad_tipo']);
-    $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
+    // $id_cad_tipo = htmlspecialchars($_POST['id_cad_tipo']);
+    // $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
     $desc_lanc = htmlspecialchars($_POST['desc_lanc']);
-    $data_venc = htmlspecialchars($_POST['data_venc']);
-    $valor_lanc = htmlspecialchars($_POST['valor_lanc']);
-    $id_cad_forma = htmlspecialchars($_POST['id_cad_forma']);
-    $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
-    $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
-    $data_rec_pag = htmlspecialchars($_POST['data_rec_pag']);
+    // $data_venc = htmlspecialchars($_POST['data_venc']);
+    // $valor_lanc = htmlspecialchars($_POST['valor_lanc']);
+    // $id_cad_forma = htmlspecialchars($_POST['id_cad_forma']);
+    // $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
+    // $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
+    // $data_rec_pag = htmlspecialchars($_POST['data_rec_pag']);
     //invocar o método de alterar lançamento
-    $objController->alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag);
+    // $objController->alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag);
+    $objController->alterar_lancamento($id_lanc, $desc_lanc);
 }
 
 //excluir lancamento

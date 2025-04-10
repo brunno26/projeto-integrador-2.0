@@ -143,7 +143,6 @@ class Lancamento extends Conexao
             //preparar o sql
             $query = $bd->prepare($sql);
             //blindagem dos dados
-            $query->bindValue(':id_lanc', $this->getId_lanc(), PDO::PARAM_INT);
             $query->bindValue(':id_cad_tipo', $this->getId_cad_tipo(), PDO::PARAM_INT);
             $query->bindValue(':id_cad_plano', $this->getId_cad_plano(), PDO::PARAM_INT);
             $query->bindValue(':desc_lanc', $this->getDesc_lanc(), PDO::PARAM_STR);
@@ -195,7 +194,7 @@ class Lancamento extends Conexao
         // }
 
         //ordenar a tabela
-        $sql .= " order by desc_plano ";
+        $sql .= " order by id_lanc desc";
 
         //executa a query
         try {
@@ -223,33 +222,35 @@ class Lancamento extends Conexao
     }
 
     //método alterar lançamento
-    public function alterarLancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
+    // public function alterarLancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
+    // {
+    public function alterarLancamento($id_lanc, $desc_lanc)
     {
         //setar os atributos
         $this->setId_lanc($id_lanc);
-        $this->setId_cad_tipo($id_cad_tipo);
-        $this->setId_cad_plano($id_cad_plano);
+        // $this->setId_cad_tipo($id_cad_tipo);
+        // $this->setId_cad_plano($id_cad_plano);
         $this->setDesc_lanc($desc_lanc);
-        $this->setData_venc($data_venc);
-        $this->setValor_lanc($valor_lanc);
-        $this->setId_cad_forma($id_cad_forma);
-        $this->setId_cad_banco($id_cad_banco);
-        $this->setId_cad_cartao($id_cad_cartao);
-        $this->setData_rec_pag($data_rec_pag);
+        // $this->setData_venc($data_venc);
+        // $this->setValor_lanc($valor_lanc);
+        // $this->setId_cad_forma($id_cad_forma);
+        // $this->setId_cad_banco($id_cad_banco);
+        // $this->setId_cad_cartao($id_cad_cartao);
+        // $this->setData_rec_pag($data_rec_pag);
 
         //montar query
         $sql = 
         "   UPDATE 
             tb_lancamento 
             SET 
-            id_cad_tipo = :id_cad_tipo 
-            id_cad_plano = :id_cad_plano
-            desc_lanc = :desc_lanc
-            data_venc = :data_venc
-            valor_lanc = :valor_lanc
-            id_cad_forma = :id_cad_forma
-            id_cad_banco = :id_cad_banco
-            id_cad_cartao = :id_cad_cartao
+            id_cad_tipo = :id_cad_tipo,
+            id_cad_plano = :id_cad_plano,
+            desc_lanc = :desc_lanc,
+            data_venc = :data_venc,
+            valor_lanc = :valor_lanc,
+            id_cad_forma = :id_cad_forma,
+            id_cad_banco = :id_cad_banco,
+            id_cad_cartao = :id_cad_cartao,
             data_rec_pag = :data_rec_pag
             WHERE 
             id_lanc = :id_lanc
@@ -265,7 +266,7 @@ class Lancamento extends Conexao
             $query->bindValue(':id_lanc', $this->getId_lanc(), PDO::PARAM_INT);
             $query->bindValue(':id_cad_tipo', $this->getId_cad_tipo(), PDO::PARAM_INT);
             $query->bindValue(':id_cad_plano', $this->getId_cad_plano(), PDO::PARAM_INT);
-            $query->bindValue(':desc_lan', $this->getDesc_lanc(), PDO::PARAM_STR);
+            $query->bindValue(':desc_lanc', $this->getDesc_lanc(), PDO::PARAM_STR);
             $query->bindValue(':data_venc', $this->getData_venc(), PDO::PARAM_STR);
             $query->bindValue(':valor_lanc', $this->getValor_lanc(), PDO::PARAM_STR);
             $query->bindValue(':id_cad_forma', $this->getId_cad_forma(), PDO::PARAM_INT);

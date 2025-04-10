@@ -267,12 +267,15 @@ class Controller
     }
 
     //alterar lançamento
-    public function alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
+    // public function alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
+    // {
+    public function alterar_lancamento($id_lanc, $desc_lanc)
     {
         //instanciar a classe lançamento
         $objLancamento = new Lancamento();
         //invocar o método
-        if ($objLancamento->alterarLancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag) == true) {
+        // if ($objLancamento->alterarLancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag) == true) {
+        if ($objLancamento->alterarLancamento($id_lanc, $desc_lanc) == true) {
             //iniciar sessao
             session_start();
             //inserir menu
