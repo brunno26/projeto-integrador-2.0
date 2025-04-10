@@ -118,7 +118,7 @@ class Controller
         echo '  <div class="container-fluid">';
         echo '      <a class="navbar-brand mx-auto fs-4" href="#">SFP-GZ</a>';
         echo '      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">';
-        echo '       <span class="navbar-toggler-icon"></span>';
+        echo '      <span class="navbar-toggler-icon"></span>';
         echo '      </button>';
         echo '      <div class="collapse navbar-collapse" id="navbarResponsive">';
         echo '          <ul class="navbar-nav mx-auto fs-5">';
@@ -130,20 +130,23 @@ class Controller
         echo '              <li class="nav-item">';
         echo '                  <a class="nav-link" href="index.php?inserir_lancamento">Lançamentos</a>';
         echo '              </li>';
-        //Ação
+        //Cadastros
         echo '              <li class="nav-item dropdown">';
         echo '                  <a class="nav-link dropdown-toggle" data-bs-auto-close="outside" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>';
         echo '                  <ul class="dropdown-menu">';
         echo '                      <li><a href="index.php?inserir_banco" class="dropdown-item">Bancos</a></li>';
-        echo '                          <li><a href="index.php?inserir_bandeira" class="dropdown-item">Bandeiras de cartões</a></li>';
-        echo '                          <li><a href="index.php?inserir_cartao" class="dropdown-item">Cartões</a></li>';
-        echo '                          <li><a href="index.php?inserir_forma" class="dropdown-item">Formas de rec/pag</a></li>';
-        echo '                          <li><a href="index.php?inserir_plano" class="dropdown-item">Plano de contas</a></li>';
+        echo '                      <li><a href="index.php?inserir_bandeira" class="dropdown-item">Bandeiras de cartões</a></li>';
+        echo '                      <li><a href="index.php?inserir_cartao" class="dropdown-item">Cartões</a></li>';
+        echo '                      <li><a href="index.php?inserir_forma" class="dropdown-item">Formas de rec/pag</a></li>';
+        echo '                      <li><a href="index.php?inserir_plano" class="dropdown-item">Plano de contas</a></li>';
         echo '                  </ul>';
         echo '              </li>';
+        //Consultas
         echo '              <li class="nav-item dropdown">';
         echo '                  <a class="nav-link dropdown-toggle" data-bs-auto-close="outside" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultas</a>';
         echo '                  <ul class="dropdown-menu">';
+        echo '                      <li><a href="index.php?consultar_lancamento" class="dropdown-item">Lançamentos</a></li>';
+        echo '                      <hr>';
         echo '                      <li><a href="index.php?consultar_banco" class="dropdown-item">Bancos</a></li>';
         echo '                      <li><a href="index.php?consultar_bandeira" class="dropdown-item">Bandeiras de cartões</a></li>';
         echo '                      <li><a href="index.php?consultar_cartao" class="dropdown-item">Cartões</a></li>';
@@ -205,6 +208,116 @@ class Controller
         echo '    var myModal = new bootstrap.Modal(document.getElementById("mensagem"));';
         echo '    myModal.show();});';
         echo '</script>';
+    }
+
+    #Lançamento
+    //inserir lançamento
+    public function inserir_lancamento($id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
+    {
+        //instanciar a classe Cartão
+        $objLancamento = new Lancamento();
+        //invocar o método
+        if ($objLancamento->inserirLancamento($id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu      = $this->menu();
+            $resultado = $objLancamento->consultarLancamento(null);
+            //incluir a view
+            include_once 'view/consultar_lancamento.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Lançamento inserido com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_lancamento.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao inserir lançamento!");
+        }
+    }
+
+    //consultar lançamento
+    public function consultar_lancamento($desc_lanc)
+    {
+        //instanciar a classe Cartão
+        $objLancamento = new Lancamento();
+        //invocar o método
+        if ($objLancamento->consultarLancamento($desc_lanc) == false) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_lancamento.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao consultar!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //resultado da consulta
+            $resultado = $objLancamento->consultarLancamento($desc_lanc);
+            //incluir a view
+            include_once 'view/consultar_lancamento.php';
+        }
+    }
+
+    //alterar lançamento
+    public function alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
+    {
+        //instanciar a classe lançamento
+        $objLancamento = new Lancamento();
+        //invocar o método
+        if ($objLancamento->alterarLancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_lancamento.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Lançamento alterado com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_lancamento.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao alterar lançamento!");
+        }
+    }
+
+    //excluir lancamento
+    public function excluir_lancamento($id_lanc)
+    {
+        //instanciar a classe lançamento
+        $objLancamento = new Lancamento();
+        //invocar o método
+        if ($objLancamento->excluirLancamento($id_lanc) == true) {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_lancamento.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Lançamento excluído com sucesso!");
+        } else {
+            //iniciar sessao
+            session_start();
+            //inserir menu
+            $menu = $this->menu();
+            //incluir a view
+            include_once 'view/consultar_lancamento.php';
+            //mostrar mensagem
+            $this->mostrarMensagem("Erro ao excluir lançamento!");
+        }
     }
 
     #Cartão
@@ -593,7 +706,7 @@ class Controller
         }
     }
 
-    //alterar forma
+    //alterar plano
     public function alterar_plano($id_cad_plano, $desc_plano)
     {
         //instanciar a classe plano
@@ -651,7 +764,7 @@ class Controller
     //inserir Banco
     public function inserir_banco($nome_banco, $num_agencia, $num_conta)
     {
-        //instanciar a classe Autor
+        //instanciar a classe Banco
         $objBanco = new Banco();
         //invocar o método
         if ($objBanco->inserirBanco($nome_banco, $num_agencia, $num_conta) == true) {
@@ -875,6 +988,58 @@ class Controller
             //mostrar mensagem
             $this->mostrarMensagem("Erro ao alterar Livro!");
         }
+    }
+
+    public function modal_alterar_lancamento($id_lanc, $desc_lanc)
+    {
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="alterar_lancamento' . $id_lanc . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Alterar lançamento</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '<form method="post" action="index.php">';
+        echo '  <div class="modal-body">';
+
+        echo '      <label for="desc_lanc" class="form-label">Descrição do lançamento:</label>';
+        echo '      <input type="text" class="form-control" name="desc_lanc" value="' . $desc_lanc . '">';
+        echo '  </div>';
+        echo '  <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_lanc" value="' . $id_lanc . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_lancamento" class="btn btn-primary">Alterar</button>';
+        echo '  </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function modal_excluir_lancamento($id_lanc, $desc_lanc)
+    {
+        echo '<!-- Modal -->';
+        echo '<div class="modal fade" id="excluir_lancamento' . $id_lanc . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+        echo ' <div class="modal-dialog">';
+        echo '     <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '         <h5 class="modal-title" id="exampleModalLabel">Excluir lançamento</h5>';
+        echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+        echo '      </div>';
+        echo '  <div class="modal-body">';
+        echo $desc_lanc;
+        echo '  </div>';
+        echo '<form method="post" action="index.php">';
+        echo ' <div class="modal-footer">';
+        echo '    <input type="hidden" name="id_lanc" value="' . $id_lanc . '">';
+        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_lancamento" class="btn btn-danger">Excluir</button>';
+        echo ' </div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
 
     public function modal_excluir_cartao($id_cad_cartao, $nome_cartao)

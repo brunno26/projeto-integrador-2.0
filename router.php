@@ -261,6 +261,64 @@ if (isset($_POST['consultar_tipo'])) {
     $objController->consultar_tipo($desc_tipo);
 }
 
+#LANÇAMENTO
+//inserir lancamento
+if (isset($_POST['inserir_lancamento'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_tipo = htmlspecialchars($_POST['id_cad_tipo']);
+    $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
+    $desc_lanc = htmlspecialchars($_POST['desc_lanc']);
+    $data_venc = htmlspecialchars($_POST['data_venc']);
+    $valor_lanc = htmlspecialchars($_POST['valor_lanc']);
+    $id_cad_forma = htmlspecialchars($_POST['id_cad_forma']);
+    $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
+    $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
+    $data_rec_pag = htmlspecialchars($_POST['data_rec_pag']);
+    //invocar o método de inserir cartão
+    $objController->inserir_lancamento($id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag);
+}
+
+//consultar lançamento
+if (isset($_POST['consultar_lancamento'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $desc_lanc = htmlspecialchars($_POST['desc_lanc']);
+    //invocar o método de consultar lançamento
+    $objController->consultar_lancamento($desc_lanc);
+}
+
+//alterar lançamento
+if (isset($_POST['alterar_lancamento'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_lanc = htmlspecialchars($_POST['id_lanc']);
+    $id_cad_tipo = htmlspecialchars($_POST['id_cad_tipo']);
+    $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
+    $desc_lanc = htmlspecialchars($_POST['desc_lanc']);
+    $data_venc = htmlspecialchars($_POST['data_venc']);
+    $valor_lanc = htmlspecialchars($_POST['valor_lanc']);
+    $id_cad_forma = htmlspecialchars($_POST['id_cad_forma']);
+    $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
+    $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
+    $data_rec_pag = htmlspecialchars($_POST['data_rec_pag']);
+    //invocar o método de alterar lançamento
+    $objController->alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag);
+}
+
+//excluir lancamento
+if (isset($_POST['excluir_lancamento'])) {
+    //instanciar controller
+    $objController = new Controller();
+    //dados
+    $id_lanc = htmlspecialchars($_POST['id_lanc']);
+    //invocar o método de excluir lançamento
+    $objController->excluir_lancamento($id_lanc);
+}
+
 #LIVRO
 //inserir_livro
 if (isset($_POST['inserir_livro'])) {

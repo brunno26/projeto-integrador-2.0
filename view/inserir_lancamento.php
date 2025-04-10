@@ -52,6 +52,10 @@
                         <div class="mb-3">
                             <?php $this->selectCartao(); ?>
                         </div>
+                        <div class="mb-3">
+                            <label for="data_rec_pag" class="form-label">Data de Rec/Pag:</label>
+                            <input type="date" name="data_rec_pag" class="form-control" id="data_rec_pag" placeholder="Digite a data do rec/pag...">
+                        </div>
                     </div>
                     <div>
                         <button type="reset" class="btn btn-danger"><i class="bi bi-x-circle"></i> Apagar</button>

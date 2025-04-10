@@ -1,4 +1,4 @@
-<?php 
+<?php
 // incluir classe conexão
 include_once 'Conexao.class.php';
 
@@ -52,42 +52,42 @@ class Banco extends Conexao
         $this->num_conta = $num_conta;
     }
 
-     //método inserir Banco
-     public function inserirBanco($nome_banco, $num_agencia, $num_conta)
-     {
-         //setar os atributos
-         $this->setNomeBanco($nome_banco);
-         $this->setNumAgencia($num_agencia);
-         $this->setNumConta($num_conta);
- 
-         //montar query
-         $sql = "INSERT INTO tb_cad_banco (id_cad_banco, nome_banco, num_agencia, num_conta) 
-        VALUES (NULL, :nome_banco, :num_agencia, :num_conta)";
- 
-         //executa a query
-         try {
-             //conectar com o banco
-             $bd = $this->conectar();
-             //preparar o sql
-             $query = $bd->prepare($sql);
-             //blidagem dos dados
-             $query->bindValue(':nome_banco', $this->getNomeBanco(), PDO::PARAM_STR);
-             $query->bindValue(':num_agencia', $this->getNumAgencia(), PDO::PARAM_STR);
-             $query->bindValue(':num_conta', $this->getNumConta(), PDO::PARAM_STR);
-             
-             //excutar a query
-             $query->execute();
-             //retorna o resultado
-             //print "Inserido";
-             return true;
- 
-         } catch (PDOException $e) {
-             //print "Erro ao inserir";
-             return false;
-         }
-     }
+    //método inserir Banco
+    public function inserirBanco($nome_banco, $num_agencia, $num_conta)
+    {
+        //setar os atributos
+        $this->setNomeBanco($nome_banco);
+        $this->setNumAgencia($num_agencia);
+        $this->setNumConta($num_conta);
 
-     //metodo consultar banco
+        //montar query
+        $sql = "INSERT INTO tb_cad_banco (id_cad_banco, nome_banco, num_agencia, num_conta)
+        VALUES (NULL, :nome_banco, :num_agencia, :num_conta)";
+
+        //executa a query
+        try {
+            //conectar com o banco
+            $bd = $this->conectar();
+            //preparar o sql
+            $query = $bd->prepare($sql);
+            //blidagem dos dados
+            $query->bindValue(':nome_banco', $this->getNomeBanco(), PDO::PARAM_STR);
+            $query->bindValue(':num_agencia', $this->getNumAgencia(), PDO::PARAM_STR);
+            $query->bindValue(':num_conta', $this->getNumConta(), PDO::PARAM_STR);
+
+            //excutar a query
+            $query->execute();
+            //retorna o resultado
+            //print "Inserido";
+            return true;
+
+        } catch (PDOException $e) {
+            //print "Erro ao inserir";
+            return false;
+        }
+    }
+
+    //metodo consultar banco
     public function consultarBanco($nome_banco)
     {
         //setar os atributos
@@ -192,4 +192,3 @@ class Banco extends Conexao
         }
     }
 }
-?>

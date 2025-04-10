@@ -70,7 +70,7 @@ class Cartao extends Conexao
             $bd = $this->conectar();
             //preparar o sql
             $query = $bd->prepare($sql);
-            //blidagem dos dados
+            //blindagem dos dados
             $query->bindValue(':id_cad_band', $this->getId_bandeira(), PDO::PARAM_INT);
             $query->bindValue(':nome_cartao', $this->getNome_cartao(), PDO::PARAM_STR);
             $query->bindValue(':num_cartao', $this->getNum_cartao(), PDO::PARAM_STR);
@@ -91,7 +91,7 @@ class Cartao extends Conexao
     {
         //setar os atributos
         $this->setNome_cartao($nome_cartao);
-        $this->setId_bandeira($id_bandeira);
+        // $this->setId_bandeira($id_bandeira);
 
         //montar query
         $sql = "select id_cad_cartao, tb.nome_band, nome_cartao, num_cartao
@@ -103,10 +103,10 @@ class Cartao extends Conexao
         if ($this->getNome_cartao() != null) {
             $sql .= " and nome_cartao like :nome_cartao";
         }
-        //vericar se o nome é nulo
-        if ($this->getId_bandeira() != null) {
-            $sql .= " and id_bandeira like :id_cad_band";
-        }
+        // //vericar se o nome é nulo
+        // if ($this->getId_bandeira() != null) {
+        //     $sql .= " and id_bandeira like :id_cad_band";
+        // }
 
         //ordenar a tabela
         $sql .= " order by nome_cartao ";
