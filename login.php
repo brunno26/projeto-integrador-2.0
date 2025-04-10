@@ -10,24 +10,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
 </head>
 
 <body>
-    <section class="vh-100" style="background-color: #508bfc;">
+    <section class="vh-100" style="background: url('images/finanças_pessoais.jpeg') no-repeat center center; background-size: cover;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card shadow-2-strong" style="border-radius: 1rem; background-color: rgba(255, 255, 255, 0.1)">
                         <div class="card-body p-5 text-center">
-                            <h3 class="mb-5">Acesso</h3>
-                            <form action="index.php" method="post">
+                            <h3 class="mb-5 text-white">ACESSO</h3>
+                            <form action="index.php" method="post" class="login-container">
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="email">E-mail</label>
+                                    <label class="form-label text-white" for="email">E-mail</label>
                                     <input type="email" id="typeEmailX-2" class="form-control form-control-lg" name="email" required />
                                 </div>
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="typePasswordX-2">Senha</label>
+                                    <label class="form-label text-white" for="typePasswordX-2">Senha</label>
                                     <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="senha" required />
                                 </div>
                                     <button name="login" class="btn btn-primary btn-lg" type="submit"><i class="bi bi-box-arrow-right"></i> Acessar</button>

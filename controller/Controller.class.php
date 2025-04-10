@@ -114,7 +114,7 @@ class Controller
     //mostrar menu
     public function menu()
     {
-        echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
+        echo '<nav class="navbar navbar-expand-lg custom-navbar">';
         echo '  <div class="container-fluid">';
         echo '      <a class="navbar-brand mx-auto fs-4" href="#">SFP-GZ</a>';
         echo '      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">';

@@ -1,0 +1,32 @@
+/* Fundo roxo da navbar */
+.custom-navbar {
+    background-color: #6f42c1 !important;
+}
+
+/* Texto branco no título, links e dropdowns */
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link,
+.custom-navbar .dropdown-toggle,
+.custom-navbar .dropdown-item {
+    color: white !important;
+}
+
+/* Hover amarelo nos links e dropdowns */
+.custom-navbar .nav-link:hover,
+.custom-navbar .dropdown-toggle:hover,
+.custom-navbar .dropdown-item:hover {
+    color: #ffd700 !important;
+    background-color: transparent !important; /* sem fundo escuro ao passar o mouse */
+}
+
+/* Fundo dos dropdowns */
+.custom-navbar .dropdown-menu {
+    background-color: #5a32a3 !important;
+    border: none;
+}
+
+/* Remove o fundo ao passar o mouse sobre dropdown item */
+.custom-navbar .dropdown-item:hover {
+    background-color: #512da8 !important;
+}
+
