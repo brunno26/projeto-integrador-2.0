@@ -199,7 +199,7 @@ class Usuario extends Conexao
         $this->setSenha($senha);
 
         // sql
-        $sql = "SELECT COUNT(*) AS quantidade FROM tb_usuario where email= :email and senha= :senha";
+        $sql = "SELECT COUNT(*) AS quantidade FROM tb_cad_usuario where email= :email and senha= :senha";
 
         try {
             // conectar com o banco
@@ -217,7 +217,6 @@ class Usuario extends Conexao
             foreach ($resultado as $key => $valor) {
                 print $quantidade = $valor->quantidade;
             }
-            die();
             //testar quantidade
             if ($quantidade == 1) {
                 return true;
@@ -232,39 +231,39 @@ class Usuario extends Conexao
     }
 
     //metodo validarEmail
-    public function validarEmail($email)
-    {
-        //setar os dados
-        $this->setEmail($email);
+    // public function validarEmail($email)
+    // {
+    //     //setar os dados
+    //     $this->setEmail($email);
 
-        //sql
-        $sql = "SELECT count(*) as quantidade FROM tb_usuario WHERE email= :email";
+    //     //sql
+    //     $sql = "SELECT count(*) as quantidade FROM tb_usuario WHERE email= :email";
 
-        try {
-            //conectar com o banco
-            $bd = $this->conectar();
-            //preparar o sql
-            $query = $bd->prepare($sql);
-            //blidagem dos dados
-            $query->bindValue(':email', $this->getEmail(), PDO::PARAM_STR);
-            //excutar a query
-            $query->execute();
-            //retorna o resultado
-            $resultado = $query->fetchAll(PDO::FETCH_OBJ);
-            //verificar o resultado
-            foreach ($resultado as $key => $valor) {
-                $quantidade = $valor->quantidade;
-            }
-            //testar quantidade
-            if ($quantidade == 1) {
-                return true;
-            } else {
-                return false;
-            }
+    //     try {
+    //         //conectar com o banco
+    //         $bd = $this->conectar();
+    //         //preparar o sql
+    //         $query = $bd->prepare($sql);
+    //         //blidagem dos dados
+    //         $query->bindValue(':email', $this->getEmail(), PDO::PARAM_STR);
+    //         //excutar a query
+    //         $query->execute();
+    //         //retorna o resultado
+    //         $resultado = $query->fetchAll(PDO::FETCH_OBJ);
+    //         //verificar o resultado
+    //         foreach ($resultado as $key => $valor) {
+    //             $quantidade = $valor->quantidade;
+    //         }
+    //         //testar quantidade
+    //         if ($quantidade == 1) {
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
 
-        } catch (PDOException $e) {
-            //print "Erro ao consultar";
-            return false;
-        }
-    }
+    //     } catch (PDOException $e) {
+    //         //print "Erro ao consultar";
+    //         return false;
+    //     }
+    // }
 }
