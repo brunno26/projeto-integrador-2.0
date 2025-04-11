@@ -22,7 +22,7 @@
         </header>
         <main>
             <div class="container d-flex justify-content-center mt-3">
-                <form class="row p-3 border shadow-lg" method="post" action="index.php">
+                <form class="row p-3 border border-info rounded shadow-lg" method="post" action="index.php">
                     <div class="container text-center pb-2">
                         <h6>LANÇAMENTOS DE RECEBIMENTOS E PAGAMENTOS</h6>
                     </div>
@@ -60,8 +60,8 @@
                         </div>
                     </div>
                     <div>
-                        <button type="reset" class="btn btn-danger"><i class="bi bi-x-circle"></i> Apagar</button>
-                        <button type="submit" name="inserir_lancamento" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
+                        <button type="reset" class="btn btn-outline-info"><i class="bi bi-x-circle"></i> Apagar</button>
+                        <button type="submit" name="inserir_lancamento" class="btn btn-outline-info"><i class="bi bi-floppy"></i> Salvar</button>
                     </div>
                 </form>
             </div>

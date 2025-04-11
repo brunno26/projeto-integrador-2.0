@@ -57,12 +57,12 @@
                             foreach ($resultado as $key => $valor) {
                                 echo '<tr class="text-center">';
                                 echo '  <th scope="row">' . $valor->id_cad_banco . '</th>';
-                                echo '  <td>' . $valor->nome_banco . '</td>';
-                                echo '  <td class="text-start">' . $valor->num_agencia . '</td>';
+                                echo '  <td class="text-start">' . $valor->nome_banco . '</td>';
+                                echo '  <td>' . $valor->num_agencia . '</td>';
                                 echo '  <td>' . $valor->num_conta . '</td>';
                                 echo '  <td>
-                                            <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_usuario' . $valor->id_cad_usuario . '"><i class="bi bi-pencil"></i></button>
-                                            <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_usuario' . $valor->id_cad_usuario . '"><i class="bi bi-trash"></i></button>
+                                            <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_banco' . $valor->id_cad_banco . '"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_banco' . $valor->id_cad_banco . '"><i class="bi bi-trash"></i></button>
                                         </td>';
                                 echo '</tr>';
                             }
@@ -73,8 +73,8 @@
             <?php
                 //criar os Modais de excluir e alterar
                 foreach ($resultado as $key => $valor) {
-                    $this->modal_excluir_banco($valor->id_cad_usuario, $valor->nome_usuario);
-                    $this->modal_alterar_banco($valor->id_cad_usuario, $valor->nome_usuario, $valor->email, $valor->senha);
+                    $this->modal_excluir_banco($valor->id_cad_banco, $valor->nome_banco);
+                    $this->modal_alterar_banco($valor->id_cad_banco, $valor->nome_banco, $valor->num_agencia, $valor->num_conta);
                 }
             ?>
         </main>

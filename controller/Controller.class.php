@@ -146,7 +146,7 @@ class Controller
 
     public function menu()
     {
-        echo '<nav class="navbar navbar-expand-lg custom-navbar">';
+        echo '<nav class="navbar navbar-expand-lg custom-navbar">';//fixar o menu ao topo => fixed-top
         echo '  <div class="container-fluid">';
         echo '      <a class="navbar-brand mx-auto fs-4" href="#">SFP-GZ</a>';
         echo '      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">';
@@ -356,7 +356,7 @@ class Controller
     }
 
     //select de banco
-    public function selectBanco()
+    public function selectBanco($id_cad_banco=null)
     {
         //instanciar a classe Banco
         $objBanco = new Banco();
@@ -367,7 +367,11 @@ class Controller
         echo '<select name="id_cad_banco" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione o banco</option>';
         foreach ($resultado as $key => $valor) {
-            echo '<option value="' . $valor->id_cad_banco . '">' . $valor->nome_banco . '</option>';
+            if ($valor->id_cad_banco == $id_cad_banco) {
+                echo '<option selected value="' . $valor->id_cad_banco . '">' . $valor->nome_banco . '</option>';
+            } else {
+                echo '<option value="' . $valor->id_cad_banco . '">' . $valor->nome_banco . '</option>';
+            }
         }
         echo '</select>';
     }
@@ -717,9 +721,9 @@ class Controller
     }
 
     //select de cartão
-    public function selectCartao()
+    public function selectCartao($id_cad_cartao=null)
     {
-        //instanciar a classe Cartao
+        //instanciar a classe Cartão
         $objCartao = new Cartao();
         //invocar o método
         $resultado = $objCartao->consultarCartao(null);
@@ -729,6 +733,11 @@ class Controller
         echo '    <option value="" selected>Selecione o cartão</option>';
         foreach ($resultado as $key => $valor) {
             echo '<option value="' . $valor->id_cad_cartao . '">' . $valor->nome_cartao . '</option>';
+            if ($valor->id_cad_cartao == $id_cad_cartao) {
+                echo '<option selected value="' . $valor->id_cad_cartao . '">' . $valor->nome_cartao . '</option>';
+            } else {
+                echo '<option value="' . $valor->id_cad_cartao . '">' . $valor->nome_cartao . '</option>';
+            }
         }
         echo '</select>';
     }
@@ -895,7 +904,7 @@ class Controller
     }
 
     //select de forma
-    public function selectForma()
+    public function selectForma($id_cad_forma=null)
     {
         //instanciar a classe Forma
         $objForma = new Forma();
@@ -906,7 +915,11 @@ class Controller
         echo '<select name="id_cad_forma" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione a forma de rec/pag</option>';
         foreach ($resultado as $key => $valor) {
-            echo '<option value="' . $valor->id_cad_forma . '">' . $valor->desc_forma . '</option>';
+            if ($valor->id_cad_forma == $id_cad_forma) {
+                echo '<option selected value="' . $valor->id_cad_forma . '">' . $valor->desc_forma . '</option>';
+            } else {
+                echo '<option value="' . $valor->id_cad_forma . '">' . $valor->desc_forma . '</option>';
+            }
         }
         echo '</select>';
     }
@@ -1089,14 +1102,14 @@ class Controller
         echo '      <label for="desc_lanc" class="form-label">Descrição do lançamento:</label>';
         echo '      <input type="text" class="form-control" name="desc_lanc" value="' . $desc_lanc . '">';
         echo '      <label for="data_venc" class="form-label">Data de vencimento:</label>';
-        echo '      <input type="text" class="form-control" name="data_venc" value="' . $data_venc . '">';
+        echo '      <input type="date" class="form-control" name="data_venc" value="' . $data_venc . '">';
         echo '      <label for="valor_lanc" class="form-label">Valor:</label>';
-        echo '      <input type="text" class="form-control" name="valor_lanc" value="' . $valor_lanc . '">';
+        echo '      <input type="number" class="form-control" name="valor_lanc" value="' . $valor_lanc . '">';
         $this->selectForma($id_cad_forma);
         $this->selectBanco($id_cad_banco);
         $this->selectCartao($id_cad_cartao);
         echo '      <label for="data_rec_pag" class="form-label">Data rec/pag:</label>';
-        echo '      <input type="text" class="form-control" name="data_rec_pag" value="' . $data_rec_pag . '">';
+        echo '      <input type="date" class="form-control" name="data_rec_pag" value="' . $data_rec_pag . '">';
         echo '  </div>';
         echo '  <div class="modal-footer">';
         echo '    <input type="hidden" name="id_lanc" value="' . $id_lanc . '">';
@@ -1262,7 +1275,6 @@ class Controller
             } else {
                 echo '<option value="' . $valor->id_cad_plano . '">' . $valor->desc_plano . '</option>';
             }
-
         }
         echo '</select>';
     }

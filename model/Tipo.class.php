@@ -45,7 +45,7 @@ class Tipo extends Conexao
         }
 
         //ordenar a tabela
-        $sql .= " order by desc_tipo";
+        $sql .= " order by desc_tipo DESC";
 
         //executa a query
         try {

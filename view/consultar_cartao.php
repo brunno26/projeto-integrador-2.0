@@ -57,7 +57,7 @@
                             foreach ($resultado as $key => $valor) {
                                 echo '<tr class="text-center">';
                                 echo '  <th scope="row">' . $valor->id_cad_cartao . '</th>';
-                                echo '  <td>' . $valor->nome_band . '</td>';
+                                echo '  <td class="text-start">' . $valor->nome_band . '</td>';
                                 echo '  <td class="text-start">' . $valor->nome_cartao . '</td>';
                                 echo '  <td>' . $valor->num_cartao . '</td>';
                                 echo '  <td>
