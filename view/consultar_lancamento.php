@@ -85,7 +85,8 @@
             <?php
                 //criar os Modais de excluir e alterar
                 foreach ($resultado as $key => $valor) {
-                    $this->modal_alterar_lancamento($valor->id_lanc, $valor->desc_lanc);
+                    $this->modal_alterar_lancamento($valor->id_lanc, $valor->id_cad_tipo, $valor->id_cad_plano, $valor->desc_lanc, $valor->data_venc, $valor->valor_lanc, $valor->id_cad_forma, $valor->id_cad_banco, $valor->id_cad_cartao, $valor->data_rec_pag);
+                    
                     $this->modal_excluir_lancamento($valor->id_lanc, $valor->desc_lanc);
                     
                 }

@@ -1075,7 +1075,7 @@ class Controller
         }
     }
 
-    public function modal_alterar_lancamento($id_lanc, $desc_lanc)
+    public function modal_alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
     {
         echo '<!-- Modal -->';
         echo '<div class="modal fade" id="alterar_lancamento' . $id_lanc . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
@@ -1087,9 +1087,19 @@ class Controller
         echo '      </div>';
         echo '<form method="post" action="index.php">';
         echo '  <div class="modal-body">';
-
+        $this->selectTipo($id_cad_tipo);
+        $this->selectPlano($id_cad_plano);
         echo '      <label for="desc_lanc" class="form-label">Descrição do lançamento:</label>';
         echo '      <input type="text" class="form-control" name="desc_lanc" value="' . $desc_lanc . '">';
+        echo '      <label for="data_venc" class="form-label">Data de vencimento:</label>';
+        echo '      <input type="text" class="form-control" name="data_venc" value="' . $data_venc . '">';
+        echo '      <label for="valor_lanc" class="form-label">Valor:</label>';
+        echo '      <input type="text" class="form-control" name="valor_lanc" value="' . $valor_lanc . '">';
+        $this->selectForma();
+        $this->selectBanco();
+        $this->selectCartao();
+        echo '      <label for="data_rec_pag" class="form-label">Data rec/pag:</label>';
+        echo '      <input type="text" class="form-control" name="data_rec_pag" value="' . $data_rec_pag . '">';
         echo '  </div>';
         echo '  <div class="modal-footer">';
         echo '    <input type="hidden" name="id_lanc" value="' . $id_lanc . '">';
@@ -1100,6 +1110,7 @@ class Controller
         echo '</div>';
         echo '</div>';
         echo '</div>';
+
     }
 
     public function modal_excluir_lancamento($id_lanc, $desc_lanc)
@@ -1239,7 +1250,7 @@ class Controller
     }
 
     //select de plano
-    public function selectPlano()
+    public function selectPlano($id_cad_plano=null)
     {
         //instanciar a classe Plano
         $objPlano = new Plano();
@@ -1250,7 +1261,12 @@ class Controller
         echo '<select name="id_cad_plano" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione o plano de contas</option>';
         foreach ($resultado as $key => $valor) {
-            echo '<option value="' . $valor->id_cad_plano . '">' . $valor->desc_plano . '</option>';
+            if ($valor->id_cad_plano == $id_cad_plano) {
+                echo '<option selected value="' . $valor->id_cad_plano . '">' . $valor->desc_plano . '</option>';
+            } else {
+                echo '<option value="' . $valor->id_cad_plano . '">' . $valor->desc_plano . '</option>';
+            }
+
         }
         echo '</select>';
     }
@@ -1308,18 +1324,22 @@ class Controller
     //==============================TIPO==============================
 
     //select de tipo
-    public function selectTipo()
+    public function selectTipo($id_cad_tipo = null)
     {
         //instanciar a classe Tipo
         $objTipo = new Tipo();
         //invocar o método
         $resultado = $objTipo->consultarTipo(null);
         //montar o select dinamicamente
-        echo '<label for="id_cad_tipo" class="form-label">Tipo:</label>';
+        echo '<label for="id_cad_tipo" class="form-label">Tipo: </label>';
         echo '<select name="id_cad_tipo" class="form-select" aria-label="Default select example" required>';
-        echo '    <option value="" selected>Selecione o tipo</option>';
+        echo '<option value="" selected >Selecione o tipo</option>';
         foreach ($resultado as $key => $valor) {
-            echo '<option value="' . $valor->id_cad_tipo . '">' . $valor->desc_tipo . '</option>';
+            if ($valor->id_cad_tipo == $id_cad_tipo) {
+                echo '<option selected value="' . $valor->id_cad_tipo . '">' . $valor->desc_tipo . '</option>';
+            } else {
+                echo '<option value="' . $valor->id_cad_tipo . '">' . $valor->desc_tipo . '</option>';
+            }
         }
         echo '</select>';
     }

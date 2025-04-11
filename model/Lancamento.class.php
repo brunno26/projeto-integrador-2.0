@@ -173,7 +173,7 @@ class Lancamento extends Conexao
         //montar query
         $sql = 
         "   SELECT 
-            id_lanc, tt.desc_tipo, tp.desc_plano, desc_lanc, data_venc, valor_lanc, tf.desc_forma, tb.nome_banco, tc.nome_cartao, data_rec_pag
+            id_lanc, tt.desc_tipo, tp.desc_plano, desc_lanc, data_venc, valor_lanc, tf.desc_forma, tb.nome_banco, tc.nome_cartao, data_rec_pag, tt.id_cad_tipo, tp.id_cad_plano
             FROM 
             tb_lancamento as tl
             left join tb_cad_tipo as tt on tt.id_cad_tipo = tl.id_cad_tipo
@@ -253,9 +253,7 @@ class Lancamento extends Conexao
             id_cad_cartao = :id_cad_cartao,
             data_rec_pag = :data_rec_pag
             WHERE 
-            id_lanc = :id_lanc
-        ";
-
+            id_lanc = :id_lanc ";
         //executa a query
         try {
             //conectar com o banco

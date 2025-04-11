@@ -37,15 +37,15 @@ class Tipo extends Conexao
         $this->setDescTipo($desc_tipo);
 
         //montar query
-        $sql = "SELECT * FROM tb_cad_tipo where true ";
+        $sql = "SELECT * FROM tb_cad_tipo where true";
 
         //vericar se o nome é nulo
         if ($this->getDescTipo() != null) {
-            $sql .= " and desc_tipo like :desc_tipo";
+            $sql .= " AND desc_tipo LIKE :desc_tipo";
         }
 
         //ordenar a tabela
-        $sql .= " order by desc_tipo ";
+        $sql .= " order by desc_tipo";
 
         //executa a query
         try {
