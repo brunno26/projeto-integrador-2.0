@@ -1019,15 +1019,12 @@ class Controller
     }
 
     //alterar lançamento
-    // public function alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
-    // {
-    public function alterar_lancamento($id_lanc, $desc_lanc)
+    public function alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
     {
         //instanciar a classe lançamento
         $objLancamento = new Lancamento();
         //invocar o método
-        // if ($objLancamento->alterarLancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag) == true) {
-        if ($objLancamento->alterarLancamento($id_lanc, $desc_lanc) == true) {
+        if ($objLancamento->alterarLancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag) == true) {
             //iniciar sessao
             session_start();
             //inserir menu
@@ -1095,9 +1092,9 @@ class Controller
         echo '      <input type="text" class="form-control" name="data_venc" value="' . $data_venc . '">';
         echo '      <label for="valor_lanc" class="form-label">Valor:</label>';
         echo '      <input type="text" class="form-control" name="valor_lanc" value="' . $valor_lanc . '">';
-        $this->selectForma();
-        $this->selectBanco();
-        $this->selectCartao();
+        $this->selectForma($id_cad_forma);
+        $this->selectBanco($id_cad_banco);
+        $this->selectCartao($id_cad_cartao);
         echo '      <label for="data_rec_pag" class="form-label">Data rec/pag:</label>';
         echo '      <input type="text" class="form-control" name="data_rec_pag" value="' . $data_rec_pag . '">';
         echo '  </div>';
@@ -1110,7 +1107,6 @@ class Controller
         echo '</div>';
         echo '</div>';
         echo '</div>';
-
     }
 
     public function modal_excluir_lancamento($id_lanc, $desc_lanc)

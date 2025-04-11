@@ -173,7 +173,7 @@ class Lancamento extends Conexao
         //montar query
         $sql = 
         "   SELECT 
-            id_lanc, tt.desc_tipo, tp.desc_plano, desc_lanc, data_venc, valor_lanc, tf.desc_forma, tb.nome_banco, tc.nome_cartao, data_rec_pag, tt.id_cad_tipo, tp.id_cad_plano
+            id_lanc, tt.id_cad_tipo, tt.desc_tipo, tp.id_cad_plano, tp.desc_plano, desc_lanc, data_venc, valor_lanc, tf.id_cad_forma, tf.desc_forma, tb.id_cad_banco, tb.nome_banco, tc.id_cad_cartao, tc.nome_cartao, data_rec_pag
             FROM 
             tb_lancamento as tl
             left join tb_cad_tipo as tt on tt.id_cad_tipo = tl.id_cad_tipo
@@ -186,15 +186,11 @@ class Lancamento extends Conexao
 
         //verificar se a descrição do lançamento é nula
         if ($this->getDesc_lanc() != null) {
-            $sql .= " and desc_lanc like :desc_lanc";
+            $sql .= " AND desc_lanc LIKE :desc_lanc";
         }
-        //vericar se o nome é nulo
-        // if ($this->getId_bandeira() != null) {
-        //     $sql .= " and id_bandeira like :id_cad_band";
-        // }
 
         //ordenar a tabela
-        $sql .= " order by id_lanc desc";
+        $sql .= " ORDER BY id_lanc DESC";
 
         //executa a query
         try {
@@ -218,25 +214,22 @@ class Lancamento extends Conexao
             //print "Erro ao consultar";
             return false;
         }
-
     }
 
     //método alterar lançamento
-    // public function alterarLancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
-    // {
-    public function alterarLancamento($id_lanc, $desc_lanc)
+    public function alterarLancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag)
     {
         //setar os atributos
         $this->setId_lanc($id_lanc);
-        // $this->setId_cad_tipo($id_cad_tipo);
-        // $this->setId_cad_plano($id_cad_plano);
+        $this->setId_cad_tipo($id_cad_tipo);
+        $this->setId_cad_plano($id_cad_plano);
         $this->setDesc_lanc($desc_lanc);
-        // $this->setData_venc($data_venc);
-        // $this->setValor_lanc($valor_lanc);
-        // $this->setId_cad_forma($id_cad_forma);
-        // $this->setId_cad_banco($id_cad_banco);
-        // $this->setId_cad_cartao($id_cad_cartao);
-        // $this->setData_rec_pag($data_rec_pag);
+        $this->setData_venc($data_venc);
+        $this->setValor_lanc($valor_lanc);
+        $this->setId_cad_forma($id_cad_forma);
+        $this->setId_cad_banco($id_cad_banco);
+        $this->setId_cad_cartao($id_cad_cartao);
+        $this->setData_rec_pag($data_rec_pag);
 
         //montar query
         $sql = 
@@ -253,7 +246,8 @@ class Lancamento extends Conexao
             id_cad_cartao = :id_cad_cartao,
             data_rec_pag = :data_rec_pag
             WHERE 
-            id_lanc = :id_lanc ";
+            id_lanc = :id_lanc 
+        ";
         //executa a query
         try {
             //conectar com o banco

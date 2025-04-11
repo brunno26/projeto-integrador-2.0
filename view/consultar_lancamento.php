@@ -40,7 +40,7 @@
                     </div>
                 </form>
             </div>
-            <div class="container table-responsive">
+            <div class="container-fluid table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="table-secondary">
                         <tr class="text-center">

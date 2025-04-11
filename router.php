@@ -1,31 +1,35 @@
 <?php
-//pegar a url
+
+//==============================PEGAR A URL==============================
+
 $url = explode('?', $_SERVER['REQUEST_URI']);
 //escolher na variável $url do link desejado
 $pagina = $url[1];
 
-#ROTAS DE REDIRECIONAMENTO
-//redirecionar para pagina informada
+//==============================ROTAS DE DIRECIONAMENTO==============================
+
+//redirecionar para a página informada
 if (isset($pagina)) {
     $objController = new Controller();
     $objController->redirecionar($pagina);
 }
 
-#ROTAS DE ACAO
-//verificar o botao login foi acionado
+//==============================ROTAS DE AÇÃO==============================
+
+//verificar se o botão login foi acionado
 if (isset($_POST['login'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $email = htmlspecialchars($_POST['email']);
     $senha = htmlspecialchars($_POST['senha']);
-    //invocar o método de validar
+    //invocar o método de validar login
     $objController->validar_login($email, $senha);
 }
 
-//recuperar_senha
+//recuperar senha
 if (isset($_POST['recuperar_senha'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $email = htmlspecialchars($_POST['email']);
@@ -33,10 +37,119 @@ if (isset($_POST['recuperar_senha'])) {
     $objController->recuperarSenha($email);
 }
 
-#CARTÃO
+//consultar geral
+if (isset($_POST['consultar_geral'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $palavra = htmlspecialchars($_POST['palavra']);
+    //invocar o método consultar geral
+    $objController->consultar_geral($palavra);
+}
+
+//gerar pdf
+if (isset($_POST['gerar_pdf'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //invocar o método gerar pdf
+    $objController->gerar_pdf();
+}
+
+//==============================BANCO==============================
+
+//inserir banco
+if (isset($_POST['inserir_banco'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $nome_banco = htmlspecialchars($_POST['nome_banco']);
+    $num_agencia = htmlspecialchars($_POST['num_agencia']);
+    $num_conta= htmlspecialchars($_POST['num_conta']);
+    //invocar o método de inserir banco
+    $objController->inserir_banco($nome_banco, $num_agencia, $num_conta);
+}
+
+//consultar banco
+if (isset($_POST['consultar_banco'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $nome_banco = htmlspecialchars($_POST['nome_banco']);
+    //invocar o método de consultar banco
+    $objController->consultar_banco($nome_banco);
+}
+
+//alterar banco
+if (isset($_POST['alterar_banco'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
+    $nome_banco = htmlspecialchars($_POST['nome_banco']);
+    $num_agencia = htmlspecialchars($_POST['num_agencia']);
+    $num_conta = htmlspecialchars($_POST['num_conta']);
+    //invocar o método de alterar banco
+    $objController->alterar_banco($id_cad_banco, $nome_banco, $num_agencia, $num_conta);
+}
+
+//excluir banco
+if (isset($_POST['excluir_banco'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
+    //invocar o método de excluir banco
+    $objController->excluir_banco($id_cad_banco);
+}
+
+//==============================BANDEIRA==============================
+
+//inserir bandeira
+if (isset($_POST['inserir_bandeira'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $nome_bandeira = htmlspecialchars($_POST['nome_bandeira']);
+    //invocar o método de inserir bandeira
+    $objController->inserir_bandeira($nome_bandeira);
+}
+
+//consultar bandeira
+if (isset($_POST['consultar_bandeira'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $nome_bandeira = htmlspecialchars($_POST['nome_bandeira']);
+    //invocar o método de consultar bandeira
+    $objController->consultar_bandeira($nome_bandeira);
+}
+
+//alterar bandeira
+if (isset($_POST['alterar_bandeira'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
+    $nome_band = htmlspecialchars($_POST['nome_band']);
+    //invocar o método de alterar bandeira
+    $objController->alterar_bandeira($id_cad_band, $nome_band);
+}
+
+//excluir bandeira
+if (isset($_POST['excluir_bandeira'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
+    //invocar o método de excluir bandeira
+    $objController->excluir_bandeira($id_cad_band);
+}
+
+//==============================CARTÃO==============================
+
 //inserir cartão
 if (isset($_POST['inserir_cartao'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
@@ -48,17 +161,17 @@ if (isset($_POST['inserir_cartao'])) {
 
 //consultar cartão
 if (isset($_POST['consultar_cartao'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $nome_cartao = htmlspecialchars($_POST['nome_cartao']);
-    //invocar o método de consultar cartao
+    //invocar o método de consultar cartão
     $objController->consultar_cartao($nome_cartao);
 }
 
 //alterar cartão
 if (isset($_POST['alterar_cartao'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
@@ -69,7 +182,7 @@ if (isset($_POST['alterar_cartao'])) {
 
 //excluir cartão
 if (isset($_POST['excluir_cartao'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
@@ -77,72 +190,31 @@ if (isset($_POST['excluir_cartao'])) {
     $objController->excluir_cartao($id_cad_cartao);
 }
 
-#Bandeira
-//inserir bandeira
-if (isset($_POST['inserir_bandeira'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $nome_bandeira = htmlspecialchars($_POST['nome_bandeira']);
-    //invocar o método de inserir bandeira
-    $objController->inserir_bandeira($nome_bandeira);
-}
+//==============================FORMA==============================
 
-//consultar bandeira
-if (isset($_POST['consultar_bandeira'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $nome_bandeira = htmlspecialchars($_POST['nome_bandeira']);
-    //invocar o método de consultar bandeira
-    $objController->consultar_bandeira($nome_bandeira);
-}
-
-//alterar bandeira
-if (isset($_POST['alterar_bandeira'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
-    $nome_band = htmlspecialchars($_POST['nome_band']);
-    //invocar o método de alterar bandeira
-    $objController->alterar_bandeira($id_cad_band, $nome_band);
-}
-
-//excluir bandeira
-if (isset($_POST['excluir_bandeira'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
-    //invocar o método de excluir bandeira
-    $objController->excluir_bandeira($id_cad_band);
-}
-
-#Forma
 //inserir forma
 if (isset($_POST['inserir_forma'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $desc_forma = htmlspecialchars($_POST['desc_forma']);
-    //invocar o método de inserir bandeira
+    //invocar o método de inserir forma
     $objController->inserir_forma($desc_forma);
 }
 
 //consultar forma
 if (isset($_POST['consultar_forma'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $desc_forma = htmlspecialchars($_POST['desc_forma']);
-    //invocar o método de consultar bandeira
+    //invocar o método de consultar forma
     $objController->consultar_forma($desc_forma);
 }
 
 //alterar forma
 if (isset($_POST['alterar_forma'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $id_cad_forma = htmlspecialchars($_POST['id_cad_forma']);
@@ -153,163 +225,19 @@ if (isset($_POST['alterar_forma'])) {
 
 //excluir forma
 if (isset($_POST['excluir_forma'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $id_cad_forma = htmlspecialchars($_POST['id_cad_forma']);
-    //invocar o método de excluir bandeira
+    //invocar o método de excluir forma
     $objController->excluir_forma($id_cad_forma);
 }
 
-#Plano
-//inserir plano
-if (isset($_POST['inserir_plano'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $desc_plano = htmlspecialchars($_POST['desc_plano']);
-    //invocar o método de inserir plano
-    $objController->inserir_plano($desc_plano);
-}
+//==============================LANÇAMENTO==============================
 
-//consultar plano
-if (isset($_POST['consultar_plano'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $desc_plano = htmlspecialchars($_POST['desc_plano']);
-    //invocar o método de consultar plano
-    $objController->consultar_plano($desc_plano);
-}
-
-//alterar plano
-if (isset($_POST['alterar_plano'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
-    $desc_plano = htmlspecialchars($_POST['desc_plano']);
-    //invocar o método de alterar plano
-    $objController->alterar_plano($id_cad_plano, $desc_plano);
-}
-
-//excluir plano
-if (isset($_POST['excluir_plano'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
-    //invocar o método de excluir plano
-    $objController->excluir_plano($id_cad_plano);
-}
-
-#banco
-//inserir banco
-if (isset($_POST['inserir_banco'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $nome_banco = htmlspecialchars($_POST['nome_banco']);
-    $num_agencia = htmlspecialchars($_POST['num_agencia']);
-    $num_conta= htmlspecialchars($_POST['num_conta']);
-    //invocar o método de inserir plano
-    $objController->inserir_banco($nome_banco, $num_agencia, $num_conta);
-}
-
-//consultar banco
-if (isset($_POST['consultar_banco'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $nome_banco = htmlspecialchars($_POST['nome_banco']);
-    //invocar o método de consultar bandeira
-    $objController->consultar_banco($nome_banco);
-}
-
-//alterar banco
-if (isset($_POST['alterar_banco'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
-    $nome_banco = htmlspecialchars($_POST['nome_banco']);
-    $num_agencia = htmlspecialchars($_POST['num_agencia']);
-    $num_conta = htmlspecialchars($_POST['num_conta']);
-    //invocar o método de alterar plano
-    $objController->alterar_banco($id_cad_banco, $nome_banco, $num_agencia, $num_conta);
-}
-
-//excluir banco
-if (isset($_POST['excluir_banco'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
-    //invocar o método de excluir plano
-    $objController->excluir_banco($id_cad_banco);
-}
-
-#usuario
-//inserir usuario
-if (isset($_POST['inserir_usuario'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
-    $email = htmlspecialchars($_POST['email']);
-    $senha= htmlspecialchars($_POST['senha']);
-    //invocar o método de inserir usuario
-    $objController->inserir_usuario($nome_usuario, $email, $senha);
-}
-
-//consultar usuario
-if (isset($_POST['consultar_usuario'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
-    //invocar o método de consultar usuario
-    $objController->consultar_usuario($nome_usuario);
-}
-
-//alterar banco
-if (isset($_POST['alterar_usuario'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $id_cad_usuario = htmlspecialchars($_POST['id_cad_usuario']);
-    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
-    $email = htmlspecialchars($_POST['email']);
-    $senha = htmlspecialchars($_POST['senha']);
-    //invocar o método de alterar plano
-    $objController->alterar_usuario($id_cad_usuario, $nome_usuario, $email, $senha);
-}
-
-//excluir usuario
-if (isset($_POST['excluir_usuario'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $id_cad_usuario = htmlspecialchars($_POST['id_cad_usuario']);
-    //invocar o método de excluir usuario
-    $objController->excluir_usuario($id_cad_usuario);
-}
-
-#TIPO
-//consultar tipo
-if (isset($_POST['consultar_tipo'])) {
-    //instanciar controller
-    $objController = new Controller();
-    //dados
-    $desc_tipo = htmlspecialchars($_POST['desc_tipo']);
-    //invocar o método de consultar plano
-    $objController->consultar_tipo($desc_tipo);
-}
-
-#LANÇAMENTO
-//inserir lancamento
+//inserir lançamento
 if (isset($_POST['inserir_lancamento'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $id_cad_tipo = htmlspecialchars($_POST['id_cad_tipo']);
@@ -321,13 +249,13 @@ if (isset($_POST['inserir_lancamento'])) {
     $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
     $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
     $data_rec_pag = htmlspecialchars($_POST['data_rec_pag']);
-    //invocar o método de inserir cartão
+    //invocar o método de inserir lançamento
     $objController->inserir_lancamento($id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag);
 }
 
 //consultar lançamento
 if (isset($_POST['consultar_lancamento'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $desc_lanc = htmlspecialchars($_POST['desc_lanc']);
@@ -337,27 +265,26 @@ if (isset($_POST['consultar_lancamento'])) {
 
 //alterar lançamento
 if (isset($_POST['alterar_lancamento'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $id_lanc = htmlspecialchars($_POST['id_lanc']);
-    // $id_cad_tipo = htmlspecialchars($_POST['id_cad_tipo']);
-    // $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
+    $id_cad_tipo = htmlspecialchars($_POST['id_cad_tipo']);
+    $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
     $desc_lanc = htmlspecialchars($_POST['desc_lanc']);
-    // $data_venc = htmlspecialchars($_POST['data_venc']);
-    // $valor_lanc = htmlspecialchars($_POST['valor_lanc']);
-    // $id_cad_forma = htmlspecialchars($_POST['id_cad_forma']);
-    // $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
-    // $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
-    // $data_rec_pag = htmlspecialchars($_POST['data_rec_pag']);
+    $data_venc = htmlspecialchars($_POST['data_venc']);
+    $valor_lanc = htmlspecialchars($_POST['valor_lanc']);
+    $id_cad_forma = htmlspecialchars($_POST['id_cad_forma']);
+    $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
+    $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
+    $data_rec_pag = htmlspecialchars($_POST['data_rec_pag']);
     //invocar o método de alterar lançamento
-    // $objController->alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag);
-    $objController->alterar_lancamento($id_lanc, $desc_lanc);
+    $objController->alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag);
 }
 
-//excluir lancamento
+//excluir lançamento
 if (isset($_POST['excluir_lancamento'])) {
-    //instanciar controller
+    //instânciar controller
     $objController = new Controller();
     //dados
     $id_lanc = htmlspecialchars($_POST['id_lanc']);
@@ -365,70 +292,104 @@ if (isset($_POST['excluir_lancamento'])) {
     $objController->excluir_lancamento($id_lanc);
 }
 
-#LIVRO
-//inserir_livro
-if (isset($_POST['inserir_livro'])) {
-    //instanciar controller
+//==============================PLANO==============================
+
+//inserir plano
+if (isset($_POST['inserir_plano'])) {
+    //instânciar controller
     $objController = new Controller();
     //dados
-    $titulo = htmlspecialchars($_POST['titulo']);
-    $id_editora = htmlspecialchars($_POST['id_editora']);
-    $id_genero = htmlspecialchars($_POST['id_genero']);
-    $preco = htmlspecialchars($_POST['preco']);
-    //aautores do livro
-    $autor = $_POST['autor'];
-    //imagem do livro
-    $imagem = $_FILES['imagem'];
-    //invocar o método de inserir_livro
-    $objController->inserir_livro($preco, $id_editora, $id_genero, $titulo, $autor, $imagem);
+    $desc_plano = htmlspecialchars($_POST['desc_plano']);
+    //invocar o método de inserir plano
+    $objController->inserir_plano($desc_plano);
 }
 
-//consultar_livro
-if (isset($_POST['consultar_livro'])) {
-    //instanciar controller
+//consultar plano
+if (isset($_POST['consultar_plano'])) {
+    //instânciar controller
     $objController = new Controller();
     //dados
-    $titulo = htmlspecialchars($_POST['titulo']);
-    $id_genero = htmlspecialchars($_POST['id_genero']);
-    //invocar o método de consultar_livro
-    $objController->consultar_livro($titulo, $id_genero);
+    $desc_plano = htmlspecialchars($_POST['desc_plano']);
+    //invocar o método de consultar plano
+    $objController->consultar_plano($desc_plano);
 }
 
-//excluir_livro
-if (isset($_POST['excluir_livro'])) {
-    //instanciar controller
+//alterar plano
+if (isset($_POST['alterar_plano'])) {
+    //instânciar controller
     $objController = new Controller();
     //dados
-    $id_livro = htmlspecialchars($_POST['id_livro']);
-    //invocar o método de excluir_livro
-    $objController->excluir_livro($id_livro);
+    $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
+    $desc_plano = htmlspecialchars($_POST['desc_plano']);
+    //invocar o método de alterar plano
+    $objController->alterar_plano($id_cad_plano, $desc_plano);
 }
 
-//alterar_livro
-if (isset($_POST['alterar_livro'])) {
-    //instanciar controller
+//excluir plano
+if (isset($_POST['excluir_plano'])) {
+    //instânciar controller
     $objController = new Controller();
     //dados
-    $id_livro = htmlspecialchars($_POST['id_livro']);
-    $titulo = htmlspecialchars($_POST['titulo']);
-    //invocar o método alterar_livro
-    $objController->alterar_livro($id_livro, $titulo);
+    $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
+    //invocar o método de excluir plano
+    $objController->excluir_plano($id_cad_plano);
 }
 
-//consultar_geral
-if (isset($_POST['consultar_geral'])) {
-    //instanciar controller
+//==============================TIPO==============================
+
+//consultar tipo
+if (isset($_POST['consultar_tipo'])) {
+    //instânciar controller
     $objController = new Controller();
     //dados
-    $palavra = htmlspecialchars($_POST['palavra']);
-    //invocar o método alterar_livro
-    $objController->consultar_geral($palavra);
+    $desc_tipo = htmlspecialchars($_POST['desc_tipo']);
+    //invocar o método de consultar tipo
+    $objController->consultar_tipo($desc_tipo);
 }
 
-//gerar_pdf
-if (isset($_POST['gerar_pdf'])) {
-    //instanciar controller
+//==============================USUÁRIO==============================
+
+//inserir usuário
+if (isset($_POST['inserir_usuario'])) {
+    //instânciar controller
     $objController = new Controller();
-    //invocar o método gerar pdf
-    $objController->gerar_pdf();
+    //dados
+    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
+    $email = htmlspecialchars($_POST['email']);
+    $senha= htmlspecialchars($_POST['senha']);
+    //invocar o método de inserir usuário
+    $objController->inserir_usuario($nome_usuario, $email, $senha);
+}
+
+//consultar usuário
+if (isset($_POST['consultar_usuario'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
+    //invocar o método de consultar usuário
+    $objController->consultar_usuario($nome_usuario);
+}
+
+//alterar usuário
+if (isset($_POST['alterar_usuario'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_usuario = htmlspecialchars($_POST['id_cad_usuario']);
+    $nome_usuario = htmlspecialchars($_POST['nome_usuario']);
+    $email = htmlspecialchars($_POST['email']);
+    $senha = htmlspecialchars($_POST['senha']);
+    //invocar o método de alterar usuário
+    $objController->alterar_usuario($id_cad_usuario, $nome_usuario, $email, $senha);
+}
+
+//excluir usuário
+if (isset($_POST['excluir_usuario'])) {
+    //instânciar controller
+    $objController = new Controller();
+    //dados
+    $id_cad_usuario = htmlspecialchars($_POST['id_cad_usuario']);
+    //invocar o método de excluir usuário
+    $objController->excluir_usuario($id_cad_usuario);
 }
