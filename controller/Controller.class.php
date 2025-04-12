@@ -142,11 +142,31 @@ class Controller
         $pdf->Output();
     }
 
+    //==============================CONVERTER DATA==============================
+
+    public function dataBrasileiro($data)
+    {
+        if ($data == null) {
+            return null;
+        } else {
+            $data_nova = str_replace("/", "-", $data);
+            return date('d/m/Y', strtotime($data_nova));
+        }
+    }
+
+    //==============================CONVERTER MOEDA==============================
+
+    public function moedaBrasileiro($preco)
+    {
+        $preco_novo = 'R$ ' . number_format($preco, 2, ',', '.');
+        return $preco_novo;
+    }
+
     //==============================MOSTRAR MENU==============================
 
     public function menu()
     {
-        echo '<nav class="navbar navbar-expand-lg custom-navbar">';//fixar o menu ao topo => fixed-top
+        echo '<nav class="navbar navbar-expand-lg custom-navbar">'; //fixar o menu ao topo => fixed-top
         echo '  <div class="container-fluid">';
         echo '      <a class="navbar-brand mx-auto fs-4" href="#">SFP-GZ</a>';
         echo '      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">';
@@ -356,7 +376,7 @@ class Controller
     }
 
     //select de banco
-    public function selectBanco($id_cad_banco=null)
+    public function selectBanco($id_cad_banco = null)
     {
         //instanciar a classe Banco
         $objBanco = new Banco();
@@ -721,7 +741,7 @@ class Controller
     }
 
     //select de cartão
-    public function selectCartao($id_cad_cartao=null)
+    public function selectCartao($id_cad_cartao = null)
     {
         //instanciar a classe Cartão
         $objCartao = new Cartao();
@@ -904,7 +924,7 @@ class Controller
     }
 
     //select de forma
-    public function selectForma($id_cad_forma=null)
+    public function selectForma($id_cad_forma = null)
     {
         //instanciar a classe Forma
         $objForma = new Forma();
@@ -1104,7 +1124,7 @@ class Controller
         echo '      <label for="data_venc" class="form-label">Data de vencimento:</label>';
         echo '      <input type="date" class="form-control" name="data_venc" value="' . $data_venc . '">';
         echo '      <label for="valor_lanc" class="form-label">Valor:</label>';
-        echo '      <input type="number" class="form-control" name="valor_lanc" value="' . $valor_lanc . '">';
+        echo '      <input type="text" step="any" class="form-control" name="valor_lanc" value="' . $this->moedaBrasileiro($valor_lanc) . '">';
         $this->selectForma($id_cad_forma);
         $this->selectBanco($id_cad_banco);
         $this->selectCartao($id_cad_cartao);
@@ -1259,7 +1279,7 @@ class Controller
     }
 
     //select de plano
-    public function selectPlano($id_cad_plano=null)
+    public function selectPlano($id_cad_plano = null)
     {
         //instanciar a classe Plano
         $objPlano = new Plano();

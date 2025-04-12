@@ -43,7 +43,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="valor_lanc" class="form-label">Valor do lançamento:</label>
-                            <input type="number" name="valor_lanc" class="form-control" id="valor_lanc" placeholder="Digite o valor do lançamento...">
+                            <input type="text" step=any name="valor_lanc" class="form-control" id="valor_lanc" placeholder="Digite o valor do lançamento...">
                         </div>
                         <div class="mb-3">
                             <?php $this->selectForma(); ?>

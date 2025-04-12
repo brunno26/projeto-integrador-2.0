@@ -133,6 +133,11 @@ class Lancamento extends Conexao
         $this->setId_cad_cartao($id_cad_cartao);
         $this->setData_rec_pag($data_rec_pag);
 
+        //Enviar data nula para o banco
+        if ($this->getData_rec_pag() == null) {
+            $this->setData_rec_pag(null);
+        }
+
         //montar query
         $sql = "INSERT INTO tb_lancamento (id_lanc, id_cad_tipo, id_cad_plano, desc_lanc, data_venc, valor_lanc, id_cad_forma, id_cad_banco, id_cad_cartao, data_rec_pag) VALUES (NULL, :id_cad_tipo, :id_cad_plano, :desc_lanc, :data_venc, :valor_lanc, :id_cad_forma, :id_cad_banco, :id_cad_cartao, :data_rec_pag)";
 
@@ -171,10 +176,10 @@ class Lancamento extends Conexao
         $this->setDesc_lanc($desc_lanc);
 
         //montar query
-        $sql = 
-        "   SELECT 
+        $sql =
+            "   SELECT
             id_lanc, tt.id_cad_tipo, tt.desc_tipo, tp.id_cad_plano, tp.desc_plano, desc_lanc, data_venc, valor_lanc, tf.id_cad_forma, tf.desc_forma, tb.id_cad_banco, tb.nome_banco, tc.id_cad_cartao, tc.nome_cartao, data_rec_pag
-            FROM 
+            FROM
             tb_lancamento as tl
             left join tb_cad_tipo as tt on tt.id_cad_tipo = tl.id_cad_tipo
             left join tb_cad_plano as tp on tp.id_cad_plano = tl.id_cad_plano
@@ -231,11 +236,16 @@ class Lancamento extends Conexao
         $this->setId_cad_cartao($id_cad_cartao);
         $this->setData_rec_pag($data_rec_pag);
 
+        //Enviar data nula para o banco
+        if ($this->getData_rec_pag() == null) {
+            $this->setData_rec_pag(null);
+        }
+
         //montar query
-        $sql = 
-        "   UPDATE 
-            tb_lancamento 
-            SET 
+        $sql =
+            "   UPDATE
+            tb_lancamento
+            SET
             id_cad_tipo = :id_cad_tipo,
             id_cad_plano = :id_cad_plano,
             desc_lanc = :desc_lanc,
@@ -245,8 +255,8 @@ class Lancamento extends Conexao
             id_cad_banco = :id_cad_banco,
             id_cad_cartao = :id_cad_cartao,
             data_rec_pag = :data_rec_pag
-            WHERE 
-            id_lanc = :id_lanc 
+            WHERE
+            id_lanc = :id_lanc
         ";
         //executa a query
         try {
