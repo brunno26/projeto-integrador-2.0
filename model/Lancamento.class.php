@@ -133,7 +133,7 @@ class Lancamento extends Conexao
         $this->setId_cad_cartao($id_cad_cartao);
         $this->setData_rec_pag($data_rec_pag);
 
-        //Enviar data nula para o banco
+        //Enviar data nula para o banco se não informada
         if ($this->getData_rec_pag() == null) {
             $this->setData_rec_pag(null);
         }

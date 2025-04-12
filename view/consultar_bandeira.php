@@ -23,26 +23,26 @@
         </header>
         <main>
             <div class="container d-flex justify-content-center mt-1">
-                <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
+                <form class="row p-3 m-3 border border-info rounded shadow-lg" method="post" action="index.php">
                     <div class="container text-center pb-2">
                         <h6>CONSULTA DE BANDEIRAS DE CARTÕES</h6>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="nome_bandeira" class="form-label">Bandeira do cartão</label>
+                                <label for="nome_bandeira" class="form-label">Bandeira do cartão:</label>
                                 <input type="text" name="nome_bandeira" class="form-control" id="nome_bandeira" placeholder="Digite o nome da bandeira de cartão...">
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button button type="submit" name="consultar_bandeira" class="btn btn-primary"><i class="bi bi-search"></i> Consultar</button>
+                    <div class="d-flex justify-content-center">
+                        <button button type="submit" name="consultar_bandeira" class="btn btn-outline-info"><i class="bi bi-search"></i> Consultar</button>
                     </div>
                 </form>
             </div>
             <div class="container table-responsive">
                 <table class="table table-striped table-hover">
-                    <thead class="table-secondary">
+                    <thead class="table-info">
                         <tr class="text-center">
                             <th>CÓDIGO</th>
                             <th>NOME DA BANDEIRA</th>
@@ -57,8 +57,8 @@
                                 echo '  <th scope="row">' . $valor->id_cad_band . '</th>';
                                 echo '  <td class="text-start">' . $valor->nome_band . '</td>';
                                 echo '  <td>
-                                            <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_bandeira' . $valor->id_cad_band . '"><i class="bi bi-pencil"></i></button>
-                                            <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_bandeira' . $valor->id_cad_band . '"><i class="bi bi-trash"></i></button>
+                                            <button type="button" class="btn btn-outline-info" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_bandeira' . $valor->id_cad_band . '"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-outline-info" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_bandeira' . $valor->id_cad_band . '"><i class="bi bi-trash"></i></button>
                                         </td>';
                                 echo '</tr>';
                             }

@@ -23,26 +23,26 @@
         </header>
         <main>
             <div class="container d-flex justify-content-center mt-1">
-                <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
+                <form class="row p-3 m-3 border border-info rounded shadow-lg" method="post" action="index.php">
                     <div class="container text-center pb-2">
                         <h6>CONSULTA DE FORMAS DE PAGAMENTOS E RECEBIMENTOS</h6>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="desc_forma" class="form-label">Formas de Rec/Pag</label>
+                                <label for="desc_forma" class="form-label">Formas de Rec/Pag:</label>
                                 <input type="text" name="desc_forma" class="form-control" id="desc_forma" placeholder="Digite a forma de recebimento...">
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button button type="submit" name="consultar_forma" class="btn btn-primary"><i class="bi bi-search"></i> Consultar</button>
+                    <div class="d-flex justify-content-center">
+                        <button button type="submit" name="consultar_forma" class="btn btn-outline-info"><i class="bi bi-search"></i> Consultar</button>
                     </div>
                 </form>
             </div>
             <div class="container table-responsive">
                 <table class="table table-striped table-hover">
-                    <thead class="table-secondary">
+                    <thead class="table-info">
                         <tr class="text-center">
                             <th>CÓDIGO</th>
                             <th>FORMA REC/PAG</th>
@@ -57,8 +57,8 @@
                                 echo '  <th scope="row">' . $valor->id_cad_forma . '</th>';
                                 echo '  <td class="text-start">' . $valor->desc_forma . '</td>';
                                 echo '  <td>
-                                            <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_forma' . $valor->id_cad_forma . '"><i class="bi bi-pencil"></i></button>
-                                            <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_forma' . $valor->id_cad_forma . '"><i class="bi bi-trash"></i></button>
+                                            <button type="button" class="btn btn-outline-info" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_forma' . $valor->id_cad_forma . '"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-outline-info" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_forma' . $valor->id_cad_forma . '"><i class="bi bi-trash"></i></button>
                                         </td>';
                                 echo '</tr>';
                             }

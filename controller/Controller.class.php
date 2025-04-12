@@ -277,7 +277,7 @@ class Controller
             session_start();
             //inserir menu
             $menu = $this->menu();
-            // $resultado = $objBanco->consultarBanco(null);
+            $resultado = $objBanco->consultarBanco(null);
             //incluir a view
             include_once 'view/consultar_banco.php';
             //mostrar mensagem
@@ -332,6 +332,7 @@ class Controller
             session_start();
             //inserir menu
             $menu = $this->menu();
+            $resultado = $objBanco->consultarBanco(null);
             //incluir a view
             include_once 'view/consultar_banco.php';
             //mostrar mensagem
@@ -519,6 +520,7 @@ class Controller
             session_start();
             //inserir menu
             $menu = $this->menu();
+            $resultado = $objBandeira->consultarBandeira(null);
             //incluir a view
             include_once 'view/consultar_bandeira.php';
             //mostrar mensagem
@@ -574,7 +576,11 @@ class Controller
         echo '<select name="id_cad_band" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione a bandeira do cartão</option>';
         foreach ($resultado as $key => $valor) {
-            echo '<option value="' . $valor->id_cad_band . '">' . $valor->nome_band . '</option>';
+            if ($valor->id_cad_band == $id_cad_band) {
+                echo '<option selected value="' . $valor->id_cad_band . '">' . $valor->nome_band . '</option>';
+            } else {
+                echo '<option value="' . $valor->id_cad_band . '">' . $valor->nome_band . '</option>';
+            }
         }
         echo '</select>';
     }
@@ -697,6 +703,7 @@ class Controller
             session_start();
             //inserir menu
             $menu = $this->menu();
+            $resultado = $objCartao->consultarCartao(null);
             //incluir a view
             include_once 'view/consultar_cartao.php';
             //mostrar mensagem
@@ -752,7 +759,6 @@ class Controller
         echo '<select name="id_cad_cartao" class="form-select" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione o cartão</option>';
         foreach ($resultado as $key => $valor) {
-            echo '<option value="' . $valor->id_cad_cartao . '">' . $valor->nome_cartao . '</option>';
             if ($valor->id_cad_cartao == $id_cad_cartao) {
                 echo '<option selected value="' . $valor->id_cad_cartao . '">' . $valor->nome_cartao . '</option>';
             } else {
@@ -880,6 +886,7 @@ class Controller
             session_start();
             //inserir menu
             $menu = $this->menu();
+            $resultado = $objForma->consultarForma(null);
             //incluir a view
             include_once 'view/consultar_forma.php';
             //mostrar mensagem
@@ -1006,7 +1013,7 @@ class Controller
             //iniciar sessao
             session_start();
             //inserir menu
-            $menu      = $this->menu();
+            $menu = $this->menu();
             $resultado = $objLancamento->consultarLancamento(null);
             //incluir a view
             include_once 'view/consultar_lancamento.php';
@@ -1062,6 +1069,7 @@ class Controller
             session_start();
             //inserir menu
             $menu = $this->menu();
+            $resultado = $objLancamento->consultarLancamento(null);
             //incluir a view
             include_once 'view/consultar_lancamento.php';
             //mostrar mensagem
@@ -1235,6 +1243,7 @@ class Controller
             session_start();
             //inserir menu
             $menu = $this->menu();
+            $resultado = $objPlano->consultarPlano(null);
             //incluir a view
             include_once 'view/consultar_plano.php';
             //mostrar mensagem
@@ -1385,7 +1394,7 @@ class Controller
             session_start();
             //inserir menu
             $menu = $this->menu();
-            // $resultado = $objBanco->consultarBanco(null);
+            $resultado = $objUsuario->consultarUsuario(null);
             //incluir a view
             include_once 'view/consultar_usuario.php';
             //mostrar mensagem
@@ -1440,6 +1449,7 @@ class Controller
             session_start();
             //inserir menu
             $menu = $this->menu();
+            $resultado = $objUsuario->consultarUsuario(null);
             //incluir a view
             include_once 'view/consultar_usuario.php';
             //mostrar mensagem

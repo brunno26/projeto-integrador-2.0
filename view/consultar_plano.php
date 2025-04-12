@@ -23,7 +23,7 @@
         </header>
         <main>
             <div class="container d-flex justify-content-center mt-1">
-                <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
+                <form class="row p-3 m-3 border border-info rounded shadow-lg" method="post" action="index.php">
                     <div class="container text-center pb-2">
                         <h6>CONSULTA DE PLANOS DE CONTAS</h6>
                     </div>
@@ -35,14 +35,14 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button button type="submit" name="consultar_plano" class="btn btn-primary"><i class="bi bi-search"></i> Consultar</button>
+                    <div class="d-flex justify-content-center">
+                        <button button type="submit" name="consultar_plano" class="btn btn-outline-info"><i class="bi bi-search"></i> Consultar</button>
                     </div>
                 </form>
             </div>
             <div class="container table-responsive">
                 <table class="table table-striped table-hover">
-                    <thead class="table-secondary">
+                    <thead class="table-info">
                         <tr class="text-center">
                             <th>CÓDIGO</th>
                             <th>PLANO DE CONTAS</th>
@@ -57,8 +57,8 @@
                                 echo '  <th scope="row">' . $valor->id_cad_plano . '</th>';
                                 echo '  <td class="text-start">' . $valor->desc_plano . '</td>';
                                 echo '  <td>
-                                            <button type="button" class="btn btn-secondary" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_plano' . $valor->id_cad_plano . '"><i class="bi bi-pencil"></i></button>
-                                            <button type="button" class="btn btn-secondary" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_plano' . $valor->id_cad_plano . '"><i class="bi bi-trash"></i></button>
+                                            <button type="button" class="btn btn-outline-info" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_plano' . $valor->id_cad_plano . '"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-outline-info" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_plano' . $valor->id_cad_plano . '"><i class="bi bi-trash"></i></button>
                                         </td>';
                                 echo '</tr>';
                             }

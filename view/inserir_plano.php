@@ -22,7 +22,7 @@
         </header>
         <main>
             <div class="container d-flex justify-content-center mt-5">
-                <form class="row p-3 m-3 border shadow-lg" method="post" action="index.php">
+                <form class="row p-3 m-3 border border-info rounded shadow-lg" method="post" action="index.php">
                     <div class="container text-center pb-2">
                         <h6>CADASTRO DE PLANOS DE CONTAS</h6>
                     </div>
@@ -32,9 +32,9 @@
                             <input type="text" required name="desc_plano" class="form-control" id="desc_plano" placeholder="Cadastre os planos de contas...">
                         </div>
                     </div>
-                    <div>
-                        <button type="reset" class="btn btn-danger"><i class="bi bi-x-circle"></i> Apagar</button>
-                        <button type="submit" name="inserir_plano" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="reset" class="btn btn-outline-info"><i class="bi bi-eraser"></i> Apagar</button>
+                        <button type="submit" name="inserir_plano" class="btn btn-outline-info"><i class="bi bi-check-lg"></i> Salvar</button>
                     </div>
                 </form>
             </div>

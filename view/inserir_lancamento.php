@@ -39,11 +39,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="data_venc" class="form-label">Data de vencimento:</label>
-                            <input type="date" name="data_venc" class="form-control" id="data_venc" placeholder="Digite a data do vencimento...">
+                            <input type="date" required name="data_venc" class="form-control" id="data_venc" placeholder="Digite a data do vencimento...">
                         </div>
                         <div class="mb-3">
                             <label for="valor_lanc" class="form-label">Valor do lançamento:</label>
-                            <input type="text" step=any name="valor_lanc" class="form-control" id="valor_lanc" placeholder="Digite o valor do lançamento...">
+                            <input type="text" required name="valor_lanc" class="form-control" id="valor_lanc" placeholder="Digite o valor do lançamento...">
                         </div>
                         <div class="mb-3">
                             <?php $this->selectForma(); ?>
@@ -59,9 +59,9 @@
                             <input type="date" name="data_rec_pag" class="form-control" id="data_rec_pag" placeholder="Digite a data do rec/pag...">
                         </div>
                     </div>
-                    <div>
-                        <button type="reset" class="btn btn-outline-info"><i class="bi bi-x-circle"></i> Apagar</button>
-                        <button type="submit" name="inserir_lancamento" class="btn btn-outline-info"><i class="bi bi-floppy"></i> Salvar</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="reset" class="btn btn-outline-info"><i class="bi bi-eraser"></i> Apagar</button>
+                        <button type="submit" name="inserir_lancamento" class="btn btn-outline-info"><i class="bi bi-check-lg"></i> Salvar</button>
                     </div>
                 </form>
             </div>
