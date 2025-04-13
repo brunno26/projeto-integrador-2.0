@@ -125,7 +125,7 @@ class Lancamento extends Conexao
         //setar os atributos
         $this->setId_cad_tipo($id_cad_tipo);
         $this->setId_cad_plano($id_cad_plano);
-        $this->setDesc_lanc($desc_lanc);
+        $this->setDesc_lanc(strtoupper($desc_lanc));
         $this->setData_venc($data_venc);
         $this->setValor_lanc($valor_lanc);
         $this->setId_cad_forma($id_cad_forma);
@@ -228,7 +228,7 @@ class Lancamento extends Conexao
         $this->setId_lanc($id_lanc);
         $this->setId_cad_tipo($id_cad_tipo);
         $this->setId_cad_plano($id_cad_plano);
-        $this->setDesc_lanc($desc_lanc);
+        $this->setDesc_lanc(strtoupper($desc_lanc));
         $this->setData_venc($data_venc);
         $this->setValor_lanc($valor_lanc);
         $this->setId_cad_forma($id_cad_forma);
@@ -243,7 +243,7 @@ class Lancamento extends Conexao
 
         //montar query
         $sql =
-            "   UPDATE
+        "   UPDATE
             tb_lancamento
             SET
             id_cad_tipo = :id_cad_tipo,

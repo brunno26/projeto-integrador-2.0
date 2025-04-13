@@ -169,7 +169,7 @@ class Controller
         echo '<nav class="navbar navbar-expand-lg custom-navbar">'; //fixar o menu ao topo => fixed-top
         echo '  <div class="container-fluid">';
         echo '      <a class="navbar-brand mx-auto fs-4" href="#">SFP-GZ</a>';
-        echo '      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">';
+        echo '      <button class="navbar-toggler text-white" style="background-color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">';
         echo '      <span class="navbar-toggler-icon"></span>';
         echo '      </button>';
         echo '      <div class="collapse navbar-collapse" id="navbarResponsive">';
@@ -246,11 +246,11 @@ class Controller
         echo '      </div>';
         echo '      <div class="modal-body">';
         echo '        <div class="alert alert-warning" role="alert">';
-        echo $mensagem;
+        echo            $mensagem;
         echo '        </div>';
         echo '      </div>';
         echo '      <div class="modal-footer">';
-        echo '        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">X</button>';
+        echo '        <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
         echo '      </div>';
         echo '    </div>';
         echo '  </div>';
@@ -385,7 +385,7 @@ class Controller
         $resultado = $objBanco->consultarBanco(null);
         //montar o select dinamicamente
         echo '<label for="id_cad_banco" class="form-label">Banco:</label>';
-        echo '<select name="id_cad_banco" class="form-select" aria-label="Default select example" required>';
+        echo '<select name="id_cad_banco" class="form-select mb-3" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione o banco</option>';
         foreach ($resultado as $key => $valor) {
             if ($valor->id_cad_banco == $id_cad_banco) {
@@ -410,16 +410,16 @@ class Controller
         echo '<form method="post" action="index.php">';
         echo '  <div class="modal-body">';
         echo '     <label for="nome_banco" class="form-label">Banco:</label>';
-        echo '     <input type="text" class="form-control" name="nome_banco" value="' . $nome_banco . '">';
+        echo '     <input type="text" class="form-control mb-3" name="nome_banco" value="' . $nome_banco . '">';
         echo '     <label for="num_agencia" class="form-label">Agência:</label>';
-        echo '     <input type="text" class="form-control" name="num_agencia" value="' . $num_agencia . '">';
+        echo '     <input type="text" class="form-control mb-3" name="num_agencia" value="' . $num_agencia . '">';
         echo '     <label for="num_conta" class="form-label">Conta:</label>';
         echo '     <input type="text" class="form-control" name="num_conta" value="' . $num_conta . '">';
         echo '  </div>';
         echo '  <div class="modal-footer">';
         echo '    <input type="hidden" name="id_cad_banco" value="' . $id_cad_banco . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="alterar_banco" class="btn btn-primary">Alterar</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_banco" class="btn btn-outline-info">Alterar</button>';
         echo '  </div>';
         echo '</form>';
         echo '</div>';
@@ -438,13 +438,13 @@ class Controller
         echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
         echo '      </div>';
         echo '  <div class="modal-body">';
-        echo $nome_banco;
+        echo 'Deseja realmente excluir: ' . $nome_banco . ' ?';
         echo '  </div>';
         echo '<form method="post" action="index.php">';
         echo ' <div class="modal-footer">';
         echo '    <input type="hidden" name="id_cad_banco" value="' . $id_cad_banco . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="excluir_banco" class="btn btn-danger">Excluir</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_banco" class="btn btn-outline-info">Excluir</button>';
         echo ' </div>';
         echo '</form>';
         echo '</div>';
@@ -565,7 +565,7 @@ class Controller
     }
 
     //select de bandeira
-    public function selectBandeira()
+    public function selectBandeira($id_cad_band = null)
     {
         //instanciar a classe Bandeira
         $objBandeira = new Bandeira();
@@ -597,12 +597,13 @@ class Controller
         echo '      </div>';
         echo '<form method="post" action="index.php">';
         echo '  <div class="modal-body">';
-        echo '     <input type="text" class="form-control" name="nome_band" value="' . $nome_band . '">';
+        echo'       <label for="nome_band" class="form-label">Bandeira do cartão:</label>';
+        echo '      <input type="text" class="form-control" name="nome_band" value="' . $nome_band . '">';
         echo '  </div>';
         echo '  <div class="modal-footer">';
         echo '    <input type="hidden" name="id_cad_band" value="' . $id_cad_band . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="alterar_bandeira" class="btn btn-primary">Alterar</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_bandeira" class="btn btn-outline-info">Alterar</button>';
         echo '  </div>';
         echo '</form>';
         echo '</div>';
@@ -621,13 +622,13 @@ class Controller
         echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
         echo '      </div>';
         echo '  <div class="modal-body">';
-        echo $nome_band;
+        echo 'Deseja realmente excluir: ' . $nome_band . ' ?';
         echo '  </div>';
         echo '<form method="post" action="index.php">';
         echo ' <div class="modal-footer">';
         echo '    <input type="hidden" name="id_cad_band" value="' . $id_cad_band . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="excluir_bandeira" class="btn btn-danger">Excluir</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_bandeira" class="btn btn-outline-info">Excluir</button>';
         echo ' </div>';
         echo '</form>';
         echo '</div>';
@@ -647,7 +648,7 @@ class Controller
             //iniciar sessao
             session_start();
             //inserir menu
-            $menu      = $this->menu();
+            $menu = $this->menu();
             $resultado = $objCartao->consultarCartao(null);
             //incluir a view
             include_once 'view/consultar_cartao.php';
@@ -693,12 +694,12 @@ class Controller
     }
 
     //alterar cartão
-    public function alterar_cartao($id_cad_cartao, $nome_cartao)
+    public function alterar_cartao($id_cad_cartao, $id_cad_band, $nome_cartao, $num_cartao)
     {
         //instanciar a classe Cartão
         $objCartao = new Cartao();
         //invocar o método
-        if ($objCartao->alterarCartao($id_cad_cartao, $nome_cartao) == true) {
+        if ($objCartao->alterarCartao($id_cad_cartao, $id_cad_band, $nome_cartao, $num_cartao) == true) {
             //iniciar sessao
             session_start();
             //inserir menu
@@ -756,7 +757,7 @@ class Controller
         $resultado = $objCartao->consultarCartao(null);
         //montar o select dinamicamente
         echo '<label for="id_cad_cartao" class="form-label">Cartão:</label>';
-        echo '<select name="id_cad_cartao" class="form-select" aria-label="Default select example" required>';
+        echo '<select name="id_cad_cartao" class="form-select mb-3" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione o cartão</option>';
         foreach ($resultado as $key => $valor) {
             if ($valor->id_cad_cartao == $id_cad_cartao) {
@@ -768,7 +769,7 @@ class Controller
         echo '</select>';
     }
 
-    public function modal_alterar_cartao($id_cad_cartao, $nome_cartao)
+    public function modal_alterar_cartao($id_cad_cartao, $id_cad_band, $nome_cartao, $num_cartao)
     {
         echo '<!-- Modal -->';
         echo '<div class="modal fade" id="alterar_cartao' . $id_cad_cartao . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">';
@@ -780,12 +781,16 @@ class Controller
         echo '      </div>';
         echo '<form method="post" action="index.php">';
         echo '  <div class="modal-body">';
-        echo '     <input type="text" class="form-control" name="nome_cartao" value="' . $nome_cartao . '">';
+        $this->selectBandeira($id_cad_band);
+        echo '     <label for="nome_cartao" class="form-label mt-3">Nome do cartão:</label>';
+        echo '     <input type="text" class="form-control mb-3" name="nome_cartao" value="' . $nome_cartao . '">';
+        echo '     <label for="num_cartao" class="form-label">Número do cartão:</label>';
+        echo '     <input type="text" class="form-control mb-3" name="num_cartao" value="' . $num_cartao . '">';
         echo '  </div>';
         echo '  <div class="modal-footer">';
         echo '    <input type="hidden" name="id_cad_cartao" value="' . $id_cad_cartao . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="alterar_cartao" class="btn btn-primary">Alterar</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_cartao" class="btn btn-outline-info">Alterar</button>';
         echo '  </div>';
         echo '</form>';
         echo '</div>';
@@ -804,13 +809,13 @@ class Controller
         echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
         echo '      </div>';
         echo '  <div class="modal-body">';
-        echo $nome_cartao;
+        echo 'Deseja realmente excluir: ' . $nome_cartao . ' ?';
         echo '  </div>';
         echo '<form method="post" action="index.php">';
         echo ' <div class="modal-footer">';
         echo '    <input type="hidden" name="id_cad_cartao" value="' . $id_cad_cartao . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="excluir_cartao" class="btn btn-danger">Excluir</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_cartao" class="btn btn-outline-info">Excluir</button>';
         echo ' </div>';
         echo '</form>';
         echo '</div>';
@@ -939,7 +944,7 @@ class Controller
         $resultado = $objForma->consultarForma(null);
         //montar o select dinamicamente
         echo '<label for="id_cad_forma" class="form-label">Forma de Rec/Pag:</label>';
-        echo '<select name="id_cad_forma" class="form-select" aria-label="Default select example" required>';
+        echo '<select name="id_cad_forma" class="form-select mb-3" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione a forma de rec/pag</option>';
         foreach ($resultado as $key => $valor) {
             if ($valor->id_cad_forma == $id_cad_forma) {
@@ -963,12 +968,13 @@ class Controller
         echo '      </div>';
         echo '<form method="post" action="index.php">';
         echo '  <div class="modal-body">';
+        echo '     <label for="desc_forma" class="form-label mt-3">Forma de Rec/Pag:</label>';
         echo '     <input type="text" class="form-control" name="desc_forma" value="' . $desc_forma . '">';
         echo '  </div>';
         echo '  <div class="modal-footer">';
         echo '    <input type="hidden" name="id_cad_forma" value="' . $id_cad_forma . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="alterar_forma" class="btn btn-primary">Alterar</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_forma" class="btn btn-outline-info">Alterar</button>';
         echo '  </div>';
         echo '</form>';
         echo '</div>';
@@ -987,13 +993,13 @@ class Controller
         echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
         echo '      </div>';
         echo '  <div class="modal-body">';
-        echo $desc_forma;
+        echo 'Deseja realmente excluir: ' . $desc_forma . ' ?';
         echo '  </div>';
         echo '<form method="post" action="index.php">';
         echo ' <div class="modal-footer">';
         echo '    <input type="hidden" name="id_cad_forma" value="' . $id_cad_forma . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="excluir_forma" class="btn btn-danger">Excluir</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_forma" class="btn btn-outline-info">Excluir</button>';
         echo ' </div>';
         echo '</form>';
         echo '</div>';
@@ -1128,11 +1134,11 @@ class Controller
         $this->selectTipo($id_cad_tipo);
         $this->selectPlano($id_cad_plano);
         echo '      <label for="desc_lanc" class="form-label">Descrição do lançamento:</label>';
-        echo '      <input type="text" class="form-control" name="desc_lanc" value="' . $desc_lanc . '">';
+        echo '      <input type="text" class="form-control mb-3" name="desc_lanc" value="' . $desc_lanc . '">';
         echo '      <label for="data_venc" class="form-label">Data de vencimento:</label>';
-        echo '      <input type="date" class="form-control" name="data_venc" value="' . $data_venc . '">';
+        echo '      <input type="date" class="form-control mb-3" name="data_venc" value="' . $data_venc . '">';
         echo '      <label for="valor_lanc" class="form-label">Valor:</label>';
-        echo '      <input type="text" step="any" class="form-control" name="valor_lanc" value="' . $this->moedaBrasileiro($valor_lanc) . '">';
+        echo '      <input type="text" step="any" class="form-control mb-3" name="valor_lanc" value="' . $this->moedaBrasileiro($valor_lanc) . '">';
         $this->selectForma($id_cad_forma);
         $this->selectBanco($id_cad_banco);
         $this->selectCartao($id_cad_cartao);
@@ -1141,8 +1147,8 @@ class Controller
         echo '  </div>';
         echo '  <div class="modal-footer">';
         echo '    <input type="hidden" name="id_lanc" value="' . $id_lanc . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="alterar_lancamento" class="btn btn-primary">Alterar</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_lancamento" class="btn btn-outline-info">Alterar</button>';
         echo '  </div>';
         echo '</form>';
         echo '</div>';
@@ -1161,13 +1167,13 @@ class Controller
         echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
         echo '      </div>';
         echo '  <div class="modal-body">';
-        echo $desc_lanc;
+        echo 'Deseja realmente excluir: ' . $desc_lanc . ' ?';
         echo '  </div>';
         echo '<form method="post" action="index.php">';
         echo ' <div class="modal-footer">';
         echo '    <input type="hidden" name="id_lanc" value="' . $id_lanc . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="excluir_lancamento" class="btn btn-danger">Excluir</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_lancamento" class="btn btn-outline-info">Excluir</button>';
         echo ' </div>';
         echo '</form>';
         echo '</div>';
@@ -1296,7 +1302,7 @@ class Controller
         $resultado = $objPlano->consultarPlano(null);
         //montar o select dinamicamente
         echo '<label for="id_cad_plano" class="form-label">Plano de contas:</label>';
-        echo '<select name="id_cad_plano" class="form-select" aria-label="Default select example" required>';
+        echo '<select name="id_cad_plano" class="form-select mb-3" aria-label="Default select example" required>';
         echo '    <option value="" selected>Selecione o plano de contas</option>';
         foreach ($resultado as $key => $valor) {
             if ($valor->id_cad_plano == $id_cad_plano) {
@@ -1320,12 +1326,13 @@ class Controller
         echo '      </div>';
         echo '<form method="post" action="index.php">';
         echo '  <div class="modal-body">';
+        echo '     <label for="desc_plano" class="form-label mt-3">Plano de contas:</label>';
         echo '     <input type="text" class="form-control" name="desc_plano" value="' . $desc_plano . '">';
         echo '  </div>';
         echo '  <div class="modal-footer">';
         echo '    <input type="hidden" name="id_cad_plano" value="' . $id_cad_plano . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="alterar_plano" class="btn btn-primary">Alterar</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="alterar_plano" class="btn btn-outline-info">Alterar</button>';
         echo '  </div>';
         echo '</form>';
         echo '</div>';
@@ -1344,13 +1351,13 @@ class Controller
         echo '         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
         echo '      </div>';
         echo '  <div class="modal-body">';
-        echo $desc_plano;
+        echo 'Deseja realmente excluir: ' . $desc_plano . ' ?';
         echo '  </div>';
         echo '<form method="post" action="index.php">';
         echo ' <div class="modal-footer">';
         echo '    <input type="hidden" name="id_cad_plano" value="' . $id_cad_plano . '">';
-        echo '    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
-        echo '    <button type="submit" name="excluir_plano" class="btn btn-danger">Excluir</button>';
+        echo '    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fechar</button>';
+        echo '    <button type="submit" name="excluir_plano" class="btn btn-outline-info">Excluir</button>';
         echo ' </div>';
         echo '</form>';
         echo '</div>';
@@ -1369,7 +1376,7 @@ class Controller
         $resultado = $objTipo->consultarTipo(null);
         //montar o select dinamicamente
         echo '<label for="id_cad_tipo" class="form-label">Tipo: </label>';
-        echo '<select name="id_cad_tipo" class="form-select" aria-label="Default select example" required>';
+        echo '<select name="id_cad_tipo" class="form-select mb-3" aria-label="Default select example" required>';
         echo '<option value="" selected >Selecione o tipo</option>';
         foreach ($resultado as $key => $valor) {
             if ($valor->id_cad_tipo == $id_cad_tipo) {

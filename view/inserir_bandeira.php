@@ -29,8 +29,8 @@
                     </div>
                     <div class="col">
                         <div class="mb-3">
-                            <label for="nome_bandeira" class="form-label">Bandeira do cartão:</label>
-                            <input type="text" required name="nome_bandeira" class="form-control" id="nome_bandeira" placeholder="Cadastre o nome da bandeira do cartão...">
+                            <label for="nome_band" class="form-label">Bandeira do cartão:</label>
+                            <input type="text" required name="nome_band" class="form-control" id="nome_band" placeholder="Cadastre o nome da bandeira do cartão...">
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">

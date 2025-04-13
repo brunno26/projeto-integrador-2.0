@@ -30,8 +30,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="nome_bandeira" class="form-label">Bandeira do cartão:</label>
-                                <input type="text" name="nome_bandeira" class="form-control" id="nome_bandeira" placeholder="Digite o nome da bandeira de cartão...">
+                                <label for="nome_band" class="form-label">Bandeira do cartão:</label>
+                                <input type="text" name="nome_band" class="form-control" id="nome_band" placeholder="Digite o nome da bandeira de cartão...">
                             </div>
                         </div>
                     </div>

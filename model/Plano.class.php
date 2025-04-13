@@ -34,7 +34,7 @@ class Plano extends Conexao
     public function inserirPlano($desc_plano)
     {
         //setar os atributos
-        $this->setDescPlano($desc_plano);
+        $this->setDescPlano(strtoupper($desc_plano));
 
         //montar query
         $sql = "INSERT INTO tb_cad_plano (id_cad_plano, desc_plano) VALUES (NULL, :desc_plano)";
@@ -105,7 +105,7 @@ class Plano extends Conexao
     {
         //setar os atributos
         $this->setIdCadPlano($id_cad_plano);
-        $this->setDescPlano($desc_plano);
+        $this->setDescPlano(strtoupper($desc_plano));
 
         //montar query
         $sql = "UPDATE tb_cad_plano SET desc_plano = :desc_plano WHERE id_cad_plano = :id_cad_plano";

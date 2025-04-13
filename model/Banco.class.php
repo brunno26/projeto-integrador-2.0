@@ -56,9 +56,9 @@ class Banco extends Conexao
     public function inserirBanco($nome_banco, $num_agencia, $num_conta)
     {
         //setar os atributos
-        $this->setNomeBanco($nome_banco);
-        $this->setNumAgencia($num_agencia);
-        $this->setNumConta($num_conta);
+        $this->setNomeBanco(strtoupper($nome_banco));
+        $this->setNumAgencia(strtoupper($num_agencia));
+        $this->setNumConta(strtoupper($num_conta));
 
         //montar query
         $sql = "INSERT INTO tb_cad_banco (id_cad_banco, nome_banco, num_agencia, num_conta)
@@ -132,9 +132,9 @@ class Banco extends Conexao
     {
         //setar os atributos
         $this->setIdCadBanco($id_cad_banco);
-        $this->setNomeBanco($nome_banco);
-        $this->setNumAgencia($num_agencia);
-        $this->setNumConta($num_conta);
+        $this->setNomeBanco(strtoupper($nome_banco));
+        $this->setNumAgencia(strtoupper($num_agencia));
+        $this->setNumConta(strtoupper($num_conta));
 
         //montar query
         $sql = "UPDATE tb_cad_banco SET nome_banco = :nome_banco, num_agencia = :num_agencia, num_conta = :num_conta WHERE id_cad_banco = :id_cad_banco";

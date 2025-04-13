@@ -74,7 +74,7 @@
                 //criar os Modais de excluir e alterar
                 foreach ($resultado as $key => $valor) {
                     $this->modal_excluir_cartao($valor->id_cad_cartao, $valor->nome_cartao);
-                    $this->modal_alterar_cartao($valor->id_cad_cartao, $valor->nome_cartao);
+                    $this->modal_alterar_cartao($valor->id_cad_cartao, $valor->id_cad_band, $valor->nome_cartao, $valor->num_cartao);
                 }
             ?>
         </main>

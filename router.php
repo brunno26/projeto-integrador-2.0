@@ -109,9 +109,9 @@ if (isset($_POST['inserir_bandeira'])) {
     //instânciar controller
     $objController = new Controller();
     //dados
-    $nome_bandeira = htmlspecialchars($_POST['nome_bandeira']);
+    $nome_band = htmlspecialchars($_POST['nome_band']);
     //invocar o método de inserir bandeira
-    $objController->inserir_bandeira($nome_bandeira);
+    $objController->inserir_bandeira($nome_band);
 }
 
 //consultar bandeira
@@ -119,9 +119,9 @@ if (isset($_POST['consultar_bandeira'])) {
     //instânciar controller
     $objController = new Controller();
     //dados
-    $nome_bandeira = htmlspecialchars($_POST['nome_bandeira']);
+    $nome_band = htmlspecialchars($_POST['nome_band']);
     //invocar o método de consultar bandeira
-    $objController->consultar_bandeira($nome_bandeira);
+    $objController->consultar_bandeira($nome_band);
 }
 
 //alterar bandeira
@@ -175,9 +175,11 @@ if (isset($_POST['alterar_cartao'])) {
     $objController = new Controller();
     //dados
     $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
+    $id_cad_band = htmlspecialchars($_POST['id_cad_band']);
     $nome_cartao = htmlspecialchars($_POST['nome_cartao']);
+    $num_cartao = htmlspecialchars($_POST['num_cartao']);
     //invocar o método de alterar cartão
-    $objController->alterar_cartao($id_cad_cartao, $nome_cartao);
+    $objController->alterar_cartao($id_cad_cartao, $id_cad_band, $nome_cartao, $num_cartao);
 }
 
 //excluir cartão

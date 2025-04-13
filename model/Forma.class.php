@@ -39,7 +39,7 @@ class Forma extends Conexao{
     public function inserirForma($desc_forma)
     {
         //setar os atributos
-        $this->setDescForma($desc_forma);
+        $this->setDescForma(strtoupper($desc_forma));
 
         //montar query
         $sql = "INSERT INTO tb_cad_forma (id_cad_forma, desc_forma) VALUES (NULL, :desc_forma)";
@@ -109,7 +109,7 @@ class Forma extends Conexao{
     {
         //setar os atributos
         $this->setIdCadForma($id_cad_forma);
-        $this->setDescForma($desc_forma);
+        $this->setDescForma(strtoupper($desc_forma));
 
         //montar query
         $sql = "UPDATE tb_cad_forma SET desc_forma = :desc_forma WHERE id_cad_forma = :id_cad_forma";

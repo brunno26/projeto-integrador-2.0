@@ -7,7 +7,7 @@ class Cartao extends Conexao
 {
     //atributos
     private $id_cartao;
-    private $id_bandeira;
+    private $id_cad_band;
     private $nome_cartao;
     private $num_cartao;
 
@@ -22,14 +22,14 @@ class Cartao extends Conexao
         $this->id_cartao = $value;
     }
 
-    public function getId_bandeira()
+    public function getIdCadBand()
     {
-        return $this->id_bandeira;
+        return $this->id_cad_band;
     }
 
-    public function setId_bandeira($value)
+    public function setIdCadBand($value)
     {
-        $this->id_bandeira = $value;
+        $this->id_cad_band = $value;
     }
 
     public function getNome_cartao()
@@ -53,13 +53,13 @@ class Cartao extends Conexao
     }
 
     //método inserir cartao
-    public function inserirCartao($id_bandeira, $nome_cartao, $num_cartao)
+    public function inserirCartao($id_cad_band, $nome_cartao, $num_cartao)
     {
         //setar os atributos
         $this->setId_cartao($id_cartao);
-        $this->setId_bandeira($id_bandeira);
-        $this->setNome_cartao($nome_cartao);
-        $this->setNum_cartao($num_cartao);
+        $this->setIdCadBand($id_cad_band);
+        $this->setNome_cartao(strtoupper($nome_cartao));
+        $this->setNum_cartao(strtoupper($num_cartao));
 
         //montar query
         $sql = "INSERT INTO tb_cad_cartao (id_cad_cartao, id_cad_band, nome_cartao, num_cartao) VALUES (NULL, :id_cad_band, :nome_cartao, :num_cartao)";
@@ -71,7 +71,7 @@ class Cartao extends Conexao
             //preparar o sql
             $query = $bd->prepare($sql);
             //blindagem dos dados
-            $query->bindValue(':id_cad_band', $this->getId_bandeira(), PDO::PARAM_INT);
+            $query->bindValue(':id_cad_band', $this->getIdCadBand(), PDO::PARAM_INT);
             $query->bindValue(':nome_cartao', $this->getNome_cartao(), PDO::PARAM_STR);
             $query->bindValue(':num_cartao', $this->getNum_cartao(), PDO::PARAM_STR);
             //excutar a query
@@ -91,10 +91,9 @@ class Cartao extends Conexao
     {
         //setar os atributos
         $this->setNome_cartao($nome_cartao);
-        // $this->setId_bandeira($id_bandeira);
 
         //montar query
-        $sql = "select id_cad_cartao, tb.nome_band, nome_cartao, num_cartao
+        $sql = "select id_cad_cartao, tb.id_cad_band, tb.nome_band, nome_cartao, num_cartao
                 from tb_cad_cartao as tc
                 left join tb_cad_bandeira as tb on tc.id_cad_band = tb.id_cad_band
                 where true";
@@ -103,10 +102,6 @@ class Cartao extends Conexao
         if ($this->getNome_cartao() != null) {
             $sql .= " and nome_cartao like :nome_cartao";
         }
-        // //vericar se o nome é nulo
-        // if ($this->getId_bandeira() != null) {
-        //     $sql .= " and id_bandeira like :id_cad_band";
-        // }
 
         //ordenar a tabela
         $sql .= " order by nome_cartao ";
@@ -122,9 +117,9 @@ class Cartao extends Conexao
                 $this->setNome_cartao("%" . $nome_cartao . "%");
                 $query->bindValue(':nome_cartao', $this->getNome_cartao(), PDO::PARAM_STR);
             }
-            if ($this->getId_bandeira() != null) {
-                $query->bindValue(':id_cad_band', $this->getId_bandeira(), PDO::PARAM_INT);
-            }
+            // if ($this->getId_bandeira() != null) {
+            //     $query->bindValue(':id_cad_band', $this->getId_bandeira(), PDO::PARAM_INT);
+            // }
 
             //excutar a query
             $query->execute();
@@ -140,14 +135,16 @@ class Cartao extends Conexao
     }
 
     //método alterar cartao
-    public function alterarCartao($id_cad_cartao, $nome_cartao)
+    public function alterarCartao($id_cad_cartao, $id_cad_band, $nome_cartao, $num_cartao)
     {
         //setar os atributos
         $this->setId_cartao($id_cad_cartao);
-        $this->setNome_cartao($nome_cartao);
+        $this->setIdCadBand($id_cad_band);
+        $this->setNome_cartao(strtoupper($nome_cartao));
+        $this->setNum_cartao($num_cartao);
 
         //montar query
-        $sql = "UPDATE tb_cad_cartao SET nome_cartao = :nome_cartao WHERE id_cad_cartao = :id_cad_cartao";
+        $sql = "UPDATE tb_cad_cartao SET id_cad_cartao = :id_cad_cartao, id_cad_band = :id_cad_band, nome_cartao = :nome_cartao, num_cartao = :num_cartao WHERE id_cad_cartao = :id_cad_cartao";
 
         //executa a query
         try {
@@ -157,7 +154,9 @@ class Cartao extends Conexao
             $query = $bd->prepare($sql);
             //blidagem dos dados
             $query->bindValue(':id_cad_cartao', $this->getId_cartao(), PDO::PARAM_INT);
+            $query->bindValue(':id_cad_band', $this->getIdCadBand(), PDO::PARAM_INT);
             $query->bindValue(':nome_cartao', $this->getNome_cartao(), PDO::PARAM_STR);
+            $query->bindValue(':num_cartao', $this->getNum_cartao(), PDO::PARAM_STR);
             //excutar a query
             $query->execute();
             //retorna o resultado
