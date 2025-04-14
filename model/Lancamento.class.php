@@ -287,7 +287,7 @@ class Lancamento extends Conexao
         }
     }
 
-    //método excluir cartao
+    //método excluir lançamento
     public function excluirLancamento($id_lanc)
     {
         //setar os atributos

@@ -144,7 +144,7 @@ class Controller
 
     //==============================CONVERTER DATA==============================
 
-    public function dataBrasileiro($data)
+    public function dataBrasil($data)
     {
         if ($data == null) {
             return null;
@@ -156,7 +156,7 @@ class Controller
 
     //==============================CONVERTER MOEDA==============================
 
-    public function moedaBrasileiro($preco)
+    public function moedaBrasil($preco)
     {
         $preco_novo = 'R$ ' . number_format($preco, 2, ',', '.');
         return $preco_novo;
@@ -1138,7 +1138,7 @@ class Controller
         echo '      <label for="data_venc" class="form-label">Data de vencimento:</label>';
         echo '      <input type="date" class="form-control mb-3" name="data_venc" value="' . $data_venc . '">';
         echo '      <label for="valor_lanc" class="form-label">Valor:</label>';
-        echo '      <input type="text" step="any" class="form-control mb-3" name="valor_lanc" value="' . $this->moedaBrasileiro($valor_lanc) . '">';
+        echo '      <input type="text" step="any" class="form-control mb-3" name="valor_lanc" value="' . $valor_lanc . '">';
         $this->selectForma($id_cad_forma);
         $this->selectBanco($id_cad_banco);
         $this->selectCartao($id_cad_cartao);

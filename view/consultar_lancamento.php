@@ -66,12 +66,12 @@
                                 echo '  <td>' . $valor->desc_tipo . '</td>';
                                 echo '  <td class="text-start">' . $valor->desc_plano . '</td>';
                                 echo '  <td class="text-start"> ' . $valor->desc_lanc . '</td>';
-                                echo '  <td>' . $this->dataBrasileiro($valor->data_venc) . '</td>';
-                                echo '  <td class="text-end">' . $this->moedaBrasileiro($valor->valor_lanc) . '</td>';
+                                echo '  <td>' . $this->dataBrasil($valor->data_venc) . '</td>';
+                                echo '  <td class="text-end">' . $this->moedaBrasil($valor->valor_lanc) . '</td>';
                                 echo '  <td class="text-start"> ' . $valor->desc_forma . '</td>';
                                 echo '  <td class="text-start"> ' . $valor->nome_banco . '</td>';
                                 echo '  <td class="text-start"> ' . $valor->nome_cartao . '</td>';
-                                echo '  <td>' . $this->dataBrasileiro($valor->data_rec_pag) . '</td>';
+                                echo '  <td>' . $this->dataBrasil($valor->data_rec_pag) . '</td>';
                                 echo '  <td>
                                             <button type="button" class="btn btn-outline-info" title = "Alterar" data-bs-toggle="modal" data-bs-target="#alterar_lancamento' . $valor->id_lanc . '"><i class="bi bi-pencil"></i></button>
                                             <button type="button" class="btn btn-outline-info" title = "Excluir" data-bs-toggle="modal" data-bs-target="#excluir_lancamento' . $valor->id_lanc . '"><i class="bi bi-trash"></i></button>
