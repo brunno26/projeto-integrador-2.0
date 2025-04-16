@@ -3,10 +3,10 @@
 class Conexao
 {
     //atributos
-    private $host = "localhost";
-    private $db_name = "db_financas";
-    private $user = "root";
-    private $pwd = "";
+    private $host = "db_financaspi.mysql.dbaas.com.br";
+    private $db_name = "db_financaspi";
+    private $user = "db_financaspi";
+    private $pwd = "Gzfinanceiro1@";
     private $link = null;
 
     //métodos
