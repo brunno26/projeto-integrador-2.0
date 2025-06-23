@@ -32,7 +32,7 @@
                                     <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="senha" required />
                                 </div>
                                     <button name="login" class="btn btn-primary btn-lg" type="submit"><i class="bi bi-box-arrow-right"></i> Acessar</button>
-                                    <br><br><a href="recuperar.php" class="link-info">Recuperar Senha</a>
+                                    <br><br><a href="recuperar.php" class="link-info">Esqueceu a senha?</a>
                             </form>
                         </div>
                     </div>

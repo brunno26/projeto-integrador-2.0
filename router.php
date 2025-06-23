@@ -339,14 +339,14 @@ if (isset($_POST['excluir_plano'])) {
 
 //==============================TIPO==============================
 
-//consultar tipo
-if (isset($_POST['consultar_tipo'])) {
+//consultar plano
+if (isset($_POST['consultar_plano'])) {
     //instânciar controller
     $objController = new Controller();
     //dados
-    $desc_tipo = htmlspecialchars($_POST['desc_tipo']);
+    $desc_plano = htmlspecialchars($_POST['desc_plano']);
     //invocar o método de consultar tipo
-    $objController->consultar_tipo($desc_tipo);
+    $objController->consultar_plano($desc_tipo);
 }
 
 //==============================USUÁRIO==============================

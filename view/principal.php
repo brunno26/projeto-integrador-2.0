@@ -44,7 +44,7 @@
             <!-- Div 1 -->
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                 <div class="p-4 border border-primary border-2 rounded shadow glass-effect">
-                    <h3>Valor dos recebimentos do mês e ano atual</h3>
+                    <h3>Valor dos recebimentos do mês e ano atual1</h3>
                 </div>
             </div>
             <!-- Div 2 -->
