@@ -99,7 +99,6 @@ class Controller
                 include_once 'login.php';
                 $this->mostrarMensagem("A nova senha foi enviada para o e-mail informado!");
             }
-
         } else {
             include_once 'recuperar.php';
             $this->mostrarMensagem("E-mail não cadastrado!");
@@ -166,70 +165,68 @@ class Controller
 
     public function menu()
     {
-        echo '<nav class="navbar navbar-expand-lg custom-navbar">'; //fixar o menu ao topo => fixed-top
-        echo '  <div class="container-fluid">';
-        echo '      <a class="navbar-brand mx-auto fs-4" href="#">SFP-GZ</a>';
-        echo '      <button class="navbar-toggler text-white" style="background-color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">';
-        echo '      <span class="navbar-toggler-icon"></span>';
-        echo '      </button>';
-        echo '      <div class="collapse navbar-collapse" id="navbarResponsive">';
-        echo '          <ul class="navbar-nav mx-auto fs-5">';
-        //Principal
-        echo '              <li class="nav-item">';
-        echo '                  <a class="nav-link" href="index.php?principal">Dashboard</a>';
-        echo '              </li>';
-        //Lançamentos
-        echo '              <li class="nav-item">';
-        echo '                  <a class="nav-link" href="index.php?inserir_lancamento">Lançamentos</a>';
-        echo '              </li>';
-        //Cadastros
-        echo '              <li class="nav-item dropdown">';
-        echo '                  <a class="nav-link dropdown-toggle" data-bs-auto-close="outside" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>';
-        echo '                  <ul class="dropdown-menu">';
-        echo '                      <li><a href="index.php?inserir_banco" class="dropdown-item">Bancos</a></li>';
-        echo '                      <li><a href="index.php?inserir_bandeira" class="dropdown-item">Bandeiras de cartões</a></li>';
-        echo '                      <li><a href="index.php?inserir_cartao" class="dropdown-item">Cartões</a></li>';
-        echo '                      <li><a href="index.php?inserir_forma" class="dropdown-item">Formas de rec/pag</a></li>';
-        echo '                      <li><a href="index.php?inserir_plano" class="dropdown-item">Plano de contas</a></li>';
-        echo '                  </ul>';
-        echo '              </li>';
-        //Consultas
-        echo '              <li class="nav-item dropdown">';
-        echo '                  <a class="nav-link dropdown-toggle" data-bs-auto-close="outside" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultas</a>';
-        echo '                  <ul class="dropdown-menu">';
-        echo '                      <li><a href="index.php?consultar_lancamento" class="dropdown-item">Lançamentos</a></li>';
-        echo '                      <hr class="text-white border border-2">';
-        echo '                      <li><a href="index.php?consultar_banco" class="dropdown-item">Bancos</a></li>';
-        echo '                      <li><a href="index.php?consultar_bandeira" class="dropdown-item">Bandeiras de cartões</a></li>';
-        echo '                      <li><a href="index.php?consultar_cartao" class="dropdown-item">Cartões</a></li>';
-        echo '                      <li><a href="index.php?consultar_forma" class="dropdown-item">Formas de rec/pag</a></li>';
-        echo '                      <li><a href="index.php?consultar_plano" class="dropdown-item">Plano de contas</a></li>';
-        echo '                  </ul>';
-        echo '              </li>';
-        //Relatórios
-        echo '              <li class="nav-item dropdown">';
-        echo '                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Relatórios';
-        echo '                  </a>';
-        echo '                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-        echo '                      <li><a class="dropdown-item" href="index.php?consultar_editora">Receitas/mês</a></li>';
-        echo '                      <li><a class="dropdown-item" href="index.php?inserir_editora">Despesas/mês</a></li>';
-        echo '                      <li><a class="dropdown-item" href="index.php?inserir_editora">Saldo/mês</a></li>';
-        echo '                  </ul>';
-        echo '              </li>';
-        echo '          </ul>';
-        echo '          <ul class="navbar-nav fs-5">';
-        //Sair
-        echo '              <li class="nav-item dropdown">';
-        echo '                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i>' . $_SESSION['email'];
-        echo '                  </a>';
-        echo '                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">';
-        echo '                      <li><a class="dropdown-item" href="index.php?sair"><i class="bi bi-box-arrow-right"></i> Sair</a></li>';
-        echo '                  </ul>';
-        echo '              </li>';
-        echo '          </ul>';
-        echo '      </div>';
+
+        echo '<div class="offcanvas offcanvas-start custom-sidebar" tabindex="-1" id="sidebarResponsive" aria-labelledby="sidebarResponsiveLabel">';
+        echo '  <div class="offcanvas-header">';
+        echo '    <h5 class="offcanvas-title" id="sidebarResponsiveLabel">SFP-GZ</h5>';
+        echo '    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>';
         echo '  </div>';
-        echo '</nav>';
+        echo '  <div class="offcanvas-body d-flex flex-column">'; // Adiciona d-flex e flex-column para alinhar os itens verticalmente
+        echo '    <ul class="navbar-nav fs-5 flex-grow-1">'; // flex-grow-1 para ocupar espaço disponível
+        //Principal
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="index.php?principal">Dashboard</a>';
+        echo '      </li>';
+        //Lançamentos
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="index.php?inserir_lancamento">Lançamentos</a>';
+        echo '      </li>';
+        //Cadastros
+        echo '      <li class="nav-item dropdown">';
+        echo '        <a class="nav-link dropdown-toggle" data-bs-auto-close="outside" href="#" id="navbarDropdownCadastros" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>';
+        echo '        <ul class="dropdown-menu">';
+        echo '          <li><a href="index.php?inserir_banco" class="dropdown-item">Bancos</a></li>';
+        echo '          <li><a href="index.php?inserir_bandeira" class="dropdown-item">Bandeiras de cartões</a></li>';
+        echo '          <li><a href="index.php?inserir_cartao" class="dropdown-item">Cartões</a></li>';
+        echo '          <li><a href="index.php?inserir_forma" class="dropdown-item">Formas de rec/pag</a></li>';
+        echo '          <li><a href="index.php?inserir_plano" class="dropdown-item">Plano de contas</a></li>';
+        echo '        </ul>';
+        echo '      </li>';
+        //Consultas
+        echo '      <li class="nav-item dropdown">';
+        echo '        <a class="nav-link dropdown-toggle" data-bs-auto-close="outside" href="#" id="navbarDropdownConsultas" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultas</a>';
+        echo '        <ul class="dropdown-menu">';
+        echo '          <li><a href="index.php?consultar_lancamento" class="dropdown-item">Lançamentos</a></li>';
+        echo '          <li><hr class="dropdown-divider"></li>'; // AJUSTADO AQUI: Removidas classes conflitantes
+        echo '          <li><a href="index.php?consultar_banco" class="dropdown-item">Bancos</a></li>';
+        echo '          <li><a href="index.php?consultar_bandeira" class="dropdown-item">Bandeiras de cartões</a></li>';
+        echo '          <li><a href="index.php?consultar_cartao" class="dropdown-item">Cartões</a></li>';
+        echo '          <li><a href="index.php?consultar_forma" class="dropdown-item">Formas de rec/pag</a></li>';
+        echo '          <li><a href="index.php?consultar_plano" class="dropdown-item">Plano de contas</a></li>';
+        echo '        </ul>';
+        echo '      </li>';
+        //Relatórios
+        echo '      <li class="nav-item dropdown">';
+        echo '        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRelatorios" role="button" data-bs-toggle="dropdown" aria-expanded="false">Relatórios</a>';
+        echo '        <ul class="dropdown-menu" aria-labelledby="navbarDropdownRelatorios">';
+        echo '          <li><a class="dropdown-item" href="index.php?consultar_editora">Receitas/mês</a></li>';
+        echo '          <li><a class="dropdown-item" href="index.php?inserir_editora">Despesas/mês</a></li>';
+        echo '          <li><a class="dropdown-item" href="index.php?inserir_editora">Saldo/mês</a></li>';
+        echo '        </ul>';
+        echo '      </li>';
+        echo '    </ul>';
+        echo '    <ul class="navbar-nav fs-5 mt-auto">'; // mt-auto para alinhar ao final
+        //Sair
+        echo '      <li class="nav-item dropdown">';
+        echo '        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSair" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i>' . (isset($_SESSION['email']) ? $_SESSION['email'] : 'Usuário');
+        echo '        </a>';
+        echo '        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownSair">';
+        echo '          <li><a class="dropdown-item" href="index.php?sair"><i class="bi bi-box-arrow-right"></i> Sair</a></li>';
+        echo '        </ul>';
+        echo '      </li>';
+        echo '    </ul>';
+        echo '  </div>';
+        echo '</div>';
     }
 
     //==============================MOSTRAR MENSAGEM==============================
@@ -597,7 +594,7 @@ class Controller
         echo '      </div>';
         echo '<form method="post" action="index.php">';
         echo '  <div class="modal-body">';
-        echo'       <label for="nome_band" class="form-label">Bandeira do cartão:</label>';
+        echo '       <label for="nome_band" class="form-label">Bandeira do cartão:</label>';
         echo '      <input type="text" class="form-control" name="nome_band" value="' . $nome_band . '">';
         echo '  </div>';
         echo '  <div class="modal-footer">';
@@ -1368,25 +1365,20 @@ class Controller
     //==============================TIPO==============================
 
     //select de tipo
-    public function selectTipo($id_cad_tipo = null)
-    {
-        //instanciar a classe Tipo
-        $objTipo = new Tipo();
-        //invocar o método
-        $resultado = $objTipo->consultarTipo(null);
-        //montar o select dinamicamente
-        echo '<label for="id_cad_tipo" class="form-label">Tipo: </label>';
-        echo '<select name="id_cad_tipo" class="form-select mb-3" aria-label="Default select example" required>';
-        echo '<option value="" selected >Selecione o tipo</option>';
-        foreach ($resultado as $key => $valor) {
-            if ($valor->id_cad_tipo == $id_cad_tipo) {
-                echo '<option selected value="' . $valor->id_cad_tipo . '">' . $valor->desc_tipo . '</option>';
-            } else {
-                echo '<option value="' . $valor->id_cad_tipo . '">' . $valor->desc_tipo . '</option>';
-            }
-        }
-        echo '</select>';
+    public function selectTipo() {
+    // IMPORTANTE: Estes IDs (1 e 2) devem ser os IDs REAIS do seu banco de dados
+    // para "Recebimento" e "Pagamento" na sua tabela de tipos de lançamento.
+    $tipos = [
+        ['id' => 1, 'nome' => 'Recebimento', 'imagem' => 'receita.png'],
+        ['id' => 2, 'nome' => 'Pagamento', 'imagem' => 'despesa.png'],
+    ];
+
+    foreach ($tipos as $tipo) {
+        echo '<button type="button" class="btn btn-link btn-img-only btn-select-type" data-type="' . htmlspecialchars($tipo['id']) . '">';
+        echo '    <img src="images/' . htmlspecialchars($tipo['imagem']) . '" alt="' . htmlspecialchars($tipo['nome']) . '">';
+        echo '</button>';
     }
+}
 
     //==============================USUÁRIO==============================
 

@@ -266,12 +266,25 @@ if (isset($_POST['consultar_lancamento'])) {
 }
 
 //alterar lançamento
-if (isset($_POST['alterar_lancamento'])) {
+//inserir lançamento
+if (isset($_POST['inserir_lancamento'])) {
     //instânciar controller
     $objController = new Controller();
-    //dados
-    $id_lanc = htmlspecialchars($_POST['id_lanc']);
-    $id_cad_tipo = htmlspecialchars($_POST['id_cad_tipo']);
+
+    // DADOS DO FORMULÁRIO
+    // --------------------------------------------------------------------------------
+    // AGORA, O id_cad_tipo JÁ VEM COM O ID NUMÉRICO DIRETAMENTE DO FORMULÁRIO (VIA JS)
+    $id_cad_tipo = null; // Inicializa
+
+    if (isset($_POST['id_cad_tipo'])) {
+        // Pega o ID numérico. Use intval() para garantir que é um número inteiro.
+        $id_cad_tipo = intval($_POST['id_cad_tipo']);
+    } else {
+        error_log("Erro: 'id_cad_tipo' não recebido via POST ao inserir lançamento. (Alternativa).");
+    }
+    // --------------------------------------------------------------------------------
+
+    // Demais dados do formulário (sem alterações)
     $id_cad_plano = htmlspecialchars($_POST['id_cad_plano']);
     $desc_lanc = htmlspecialchars($_POST['desc_lanc']);
     $data_venc = htmlspecialchars($_POST['data_venc']);
@@ -280,8 +293,10 @@ if (isset($_POST['alterar_lancamento'])) {
     $id_cad_banco = htmlspecialchars($_POST['id_cad_banco']);
     $id_cad_cartao = htmlspecialchars($_POST['id_cad_cartao']);
     $data_rec_pag = htmlspecialchars($_POST['data_rec_pag']);
-    //invocar o método de alterar lançamento
-    $objController->alterar_lancamento($id_lanc, $id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag);
+
+    //invocar o método de inserir lançamento
+    // $id_cad_tipo já é o VALOR NUMÉRICO aqui!
+    $objController->inserir_lancamento($id_cad_tipo, $id_cad_plano, $desc_lanc, $data_venc, $valor_lanc, $id_cad_forma, $id_cad_banco, $id_cad_cartao, $data_rec_pag);
 }
 
 //excluir lançamento

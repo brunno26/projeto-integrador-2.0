@@ -1,32 +1,390 @@
-/* Fundo roxo da navbar */
-.custom-navbar {
-    background-color: #6f42c1 !important;
+/* --- ESTILOS GERAIS PARA A PÁGINA --- */
+body {
+    background-color: #f0f2f5; /* Um fundo claro padrão para a página */
+    color: #333; /* Cor de texto padrão para o corpo */
+    min-height: 100vh; /* Garante que o body ocupe a altura total da viewport */
+    display: flex;
+    flex-direction: column; /* Organiza header, main, footer em coluna */
+    overflow-x: hidden; /* Evita barras de rolagem horizontais indesejadas */
+    
+    /* NOVO AJUSTE: PADRAO INICIAL para padding-left (mobile) */
+    padding-left: 0; 
 }
 
-/* Texto branco no título, links e dropdowns */
-.custom-navbar .navbar-brand,
-.custom-navbar .nav-link,
-.custom-navbar .dropdown-toggle,
-.custom-navbar .dropdown-item {
-    color: white !important;
+main {
+    flex-grow: 1; /* Faz o main ocupar todo o espaço restante, empurrando o footer para baixo (se houver) */
+    padding-top: 50px; /* Ajusta o espaçamento do topo da página para o conteúdo principal */
+    
+    /* REMOVIDO: Não precisamos mais de margin-left no main, pois o padding-left do body vai lidar com isso */
+    /* margin-left: 200px; - REMOVER ESTA PROPRIEDADE SE EXISTIR AQUI */
+    /* margin-left: 0; - REMOVER ESTA PROPRIEDADE SE EXISTIR AQUI */
 }
 
-/* Hover amarelo nos links e dropdowns */
-.custom-navbar .nav-link:hover,
-.custom-navbar .dropdown-toggle:hover,
-.custom-navbar .dropdown-item:hover {
-    color: #ffd700 !important;
-    background-color: transparent !important; /* sem fundo escuro ao passar o mouse */
+/* --- ESTILOS PARA A SIDEBAR (SELETOR: .custom-sidebar NO HTML) --- */
+/* Certifique-se que sua sidebar HTML TEM a classe .custom-sidebar */
+.custom-sidebar {
+    width: 200px; /* Largura da sidebar */
+    background: linear-gradient(to bottom, #4b1c71, #7f4ca5); /* Gradiente roxo */
+    color: white; /* Cor de fallback, mas será sobrescrita pelos links */
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+    transform: translateX(-100%); /* Esconde a sidebar inicialmente para a esquerda */
+    transition: transform 0.3s ease-in-out;
+    visibility: hidden; /* Garante que ela esteja oculta */
+    position: fixed; /* Sidebar fixada na tela */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1045;
 }
 
-/* Fundo dos dropdowns */
-.custom-navbar .dropdown-menu {
-    background-color: #5a32a3 !important;
+/* Estilo para o cabeçalho da sidebar */
+.custom-sidebar .offcanvas-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Cor do título na sidebar - Amarelo Dourado */
+.custom-sidebar .offcanvas-title {
+    color: #FFD700; /* Amarelo Dourado */
+}
+
+/* Cor do botão de fechar (o "X") da sidebar */
+.custom-sidebar .btn-close {
+    filter: invert(100%); /* Isso torna o X branco */
+    opacity: 0.8;
+}
+
+/* Estilo para os LINKS de navegação da sidebar */
+.custom-sidebar .nav-link {
+    color: #FFD700; /* Cor do texto dos links - Amarelo Dourado */
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito de destaque ao passar o mouse sobre os links da sidebar */
+.custom-sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Branco transparente sutil no hover */
+    color: #FFD700; /* Mantém o texto amarelo dourado no hover */
+    transform: translateX(5px);
+    border-radius: 5px;
+}
+
+/* Remove o hover de slide para o dropdown-toggle na sidebar */
+.custom-sidebar .nav-item.dropdown .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(0);
+}
+
+/* Estilo para os MENUS DROPDOWN da sidebar (quando abrem) */
+.custom-sidebar .dropdown-menu {
+    background-color: rgba(255, 255, 255, 0.95); /* Fundo branco semi-transparente */
     border: none;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    border-radius: 8px;
 }
 
-/* Remove o fundo ao passar o mouse sobre dropdown item */
-.custom-navbar .dropdown-item:hover {
-    background-color: #512da8 !important;
+.custom-sidebar .dropdown-item {
+    color: #333; /* Cor do texto dos itens do dropdown (cinza escuro para contraste no fundo branco) */
+    padding: 8px 20px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+.custom-sidebar .dropdown-item:hover {
+    background-color: rgba(153, 51, 255, 0.1); /* Roxo claro e transparente no hover do item */
+    color: #333; /* Mantido como cinza escuro para contraste */
+}
+
+.custom-sidebar .dropdown-divider {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para os ícones (bi) dentro da sidebar - Amarelo Dourado */
+.custom-sidebar .bi {
+    margin-right: 8px;
+    color: #FFD700; /* Amarelo Dourado */
+}
+
+/* Regras para TORNAR A SIDEBAR FIXA E VISÍVEL EM TELAS GRANDES (DESKTOPS) */
+@media (min-width: 992px) {
+    .custom-sidebar {
+        transform: none !important;
+        visibility: visible !important;
+        position: fixed; /* CORREÇÃO: Usamos fixed para maior robustez na sidebar */
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background: linear-gradient(to bottom, #4b1c71, #7f4ca5); /* Reaplicar o gradiente */
+    }
+    .offcanvas-backdrop {
+        display: none !important;
+    }
+    .btn-toggle-sidebar {
+        display: none !important;
+    }
+    
+    /* NOVO AJUSTE: Empurra todo o conteúdo do BODY para a direita da sidebar */
+    body {
+        padding-left: 400px; /* <--- VALOR DA LARGURA DA SIDEBAR */
+    }
+}
+
+/* Faz a sidebar aparecer quando a classe 'show' é ativada (pelo JS do Bootstrap) */
+.offcanvas.show {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+
+/* --- ESTILOS PADRONIZADOS PARA FORMULÁRIOS (APLICADO VIA CLASSES BOOTSTRAP EXISTENTES) --- */
+
+/* Ajusta o contêiner principal do formulário para espaçamento e centralização */
+/* Este seletor visa a div que você disse que todos os seus formulários possuem no HTML */
+.container.d-flex.justify-content-center {
+    /* O 'mt-1' do HTML será anulado por esta regra mais específica */
+    margin-top: 0 !important; /* Remove qualquer margem superior direta para o container do formulário */
+    margin-bottom: 20px; /* Espaço abaixo do formulário antes da tabela */
+}
+
+/* ESTILIZA O PRÓPRIO ELEMENTO <FORM> visando suas classes Bootstrap existentes no HTML */
+/* Isso aplicará os estilos a todo <form> que tenha 'row p-3 m-3 border border-info rounded shadow-lg' */
+form.row.p-3.m-3.border.border-info.rounded.shadow-lg {
+    background: linear-gradient(to right, #4b1c71, #7f4ca5); /* Gradiente roxo */
+    border: 1px solid #FFD700 !important; /* Borda amarelo dourado */
+    border-radius: 10px !important; /* Bordas arredondadas */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4) !important; /* Sombra pronunciada */
+    color: #FFFFFF; /* Cor do texto padrão do formulário (labels) */
+    padding: 20px !important; /* Preenchimento interno do formulário */
+    margin: 0 auto !important; /* Centraliza o formulário e remove margens externas (m-3) */
+    width: 100%; /* Ocupa a largura total do container */
+    max-width: 600px; /* IMPORTANTE: Define a largura máxima para que o formulário possa ser centralizado */
+}
+
+/* Títulos dentro do formulário (h6) */
+form.row.p-3.m-3.border.border-info.rounded.shadow-lg h6 {
+    color: #FFD700; /* Amarelo Dourado para o título */
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    text-align: center; /* Centraliza o texto do título */
+}
+
+/* Labels do formulário */
+form.row.p-3.m-3.border.border-info.rounded.shadow-lg .form-label {
+    color: #FFD700; /* Amarelo Dourado para as labels */
+    font-weight: 500;
+}
+
+/* Campos de input do formulário (input, select, textarea) */
+form.row.p-3.m-3.border.border-info.rounded.shadow-lg .form-control {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente */
+    border: 1px solid #FFD700 !important; /* Borda amarelo dourado */
+    color: #333; /* Cor do texto dentro do input */
+    border-radius: 5px;
+    padding: 8px 12px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder dos campos */
+form.row.p-3.m-3.border.border-info.rounded.shadow-lg .form-control::placeholder {
+    color: #666;
+    opacity: 0.7;
+}
+
+/* Foco nos campos de input */
+form.row.p-3.m-3.border.border-info.rounded.shadow-lg .form-control:focus {
+    border-color: #FFD700 !important; /* Borda amarelo dourado no foco */
+    box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25) !important; /* Sombra de foco amarelo transparente */
+    background-color: #FFFFFF; /* Fundo branco sólido no foco */
+}
+
+/* Botões com a classe btn-outline-info dentro do formulário */
+form.row.p-3.m-3.border.border-info.rounded.shadow-lg .btn-outline-info {
+    color: #FFD700; /* Texto do botão amarelo dourado */
+    border-color: #FFD700 !important; /* Borda do botão amarelo dourado */
+    transition: all 0.3s ease;
+}
+
+form.row.p-3.m-3.border.border-info.rounded.shadow-lg .btn-outline-info:hover {
+    background-color: #FFD700 !important; /* Fundo amarelo dourado no hover */
+    color: #4b1c71; /* Texto roxo escuro no hover */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Ícone dentro do botão */
+form.row.p-3.m-3.border.border-info.rounded.shadow-lg .btn-outline-info .bi {
+    margin-right: 5px;
+    vertical-align: middle;
+    color: inherit; /* Garante que a cor do ícone siga a cor do texto do botão */
+}
+
+
+/* --- ESTILOS PADRONIZADOS PARA TABELAS (APLICADO VIA CLASSES BOOTSTRAP EXISTENTES) --- */
+
+/* Contêiner da tabela para espaçamento */
+.container.table-responsive {
+    margin-top: 20px; /* Margem superior para separar da área do formulário */
+    margin-bottom: 50px; /* Margem inferior para espaçamento na parte de baixo da página */
+}
+
+/* Cabeçalho da tabela (thead com table-info) */
+.table .table-info {
+    background-color: #7f4ca5 !important; /* Roxo mais claro do seu gradiente para o cabeçalho */
+    color: #FFD700 !important; /* Texto amarelo dourado no cabeçalho */
+    font-weight: bold;
+    border-color: #4b1c71;
+}
+
+.table .table-info th {
+    border-bottom: 2px solid #FFD700; /* Linha amarela abaixo dos títulos do cabeçalho */
+    text-align: center; /* Centraliza o texto do cabeçalho */
+}
+
+/* Linhas alternadas da tabela */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(75, 28, 113, 0.05); /* Roxo bem claro e sutil para linhas ímpares */
+}
+
+/* Efeito de hover nas linhas da tabela */
+.table-hover tbody tr:hover {
+    background-color: rgba(75, 28, 113, 0.15); /* Roxo um pouco mais escuro no hover */
+    cursor: pointer;
+}
+
+/* Botões de ação dentro da tabela (btn-outline-info) */
+.table .btn-outline-info {
+    color: #7f4ca5 !important; /* Roxo para o texto/ícone do botão */
+    border-color: #7f4ca5 !important; /* Roxo para a borda do botão */
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    margin: 0 2px;
+    transition: all 0.3s ease;
+}
+
+.table .btn-outline-info:hover {
+    background-color: #7f4ca5 !important; /* Fundo roxo no hover */
+    color: #FFD700 !important; /* Texto/ícone amarelo dourado no hover */
+    border-color: #7f4ca5 !important;
+}
+
+/* --- ESTILOS PADRONIZADOS PARA MODAIS --- */
+.modal-header {
+    background-color: #4b1c71; /* Roxo escuro para o cabeçalho do modal */
+    color: #FFD700; /* Amarelo dourado para o texto do cabeçalho do modal */
+    border-bottom: 1px solid #7f4ca5;
+}
+
+.modal-header .btn-close {
+    filter: invert(100%); /* Deixa o "X" do modal branco */
+}
+
+.modal-body {
+    color: #333; /* Cor do texto do corpo do modal */
+}
+
+.modal-footer {
+    border-top: 1px solid #ddd;
+}
+
+.modal-footer .btn-primary {
+    background-color: #7f4ca5;
+    border-color: #7f4ca5;
+    color: #FFFFFF;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #4b1c71;
+    border-color: #4b1c71;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #333;
+}
+
+/* AJUSTANDO A IMAGEM PARA OS BOTÕES */
+.btn-img-only {
+    padding: 0; /* Remove o padding padrão do botão */
+    border: none; /* Remove a borda */
+    background-color: transparent; /* Torna o fundo transparente */
+    box-shadow: none; /* Remove qualquer sombra do botão */
+}
+
+.btn-img-only:hover,
+.btn-img-only:focus,
+.btn-img-only:active {
+    background-color: transparent !important; /* Garante que o fundo continue transparente ao passar o mouse ou focar */
+    border-color: transparent !important; /* Garante que a borda continue transparente */
+    box-shadow: none !important; /* Garante que não apareça sombra ao interagir */
+}
+
+.btn-img-only img {
+    width: 80px; /* Defina o tamanho que desejar para a imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Garante que a imagem se comporte como um bloco */
+    margin: 0 auto; /* Centraliza a imagem se o botão for maior */
+}
+
+/* POSICIONANDO OS BOTÕES */
+.btn-img-only {
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            box-shadow: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-img-only:hover,
+        .btn-img-only:focus,
+        .btn-img-only:active {
+            background-color: transparent !important;
+            border-color: transparent !important;
+            box-shadow: none !important;
+            text-decoration: none !important;
+        }
+
+        .btn-img-only img {
+            margin-top: 280px;
+            width: 400px; /* Tamanho da imagem. Ajuste conforme necessário! */
+            height: auto;
+        }
+
+        /* AJUSTE DO FORMULÁRIO */
+
+        .btn-img-only {
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            box-shadow: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn-img-only:hover,
+        .btn-img-only:focus,
+        .btn-img-only:active {
+            background-color: transparent !important;
+            border-color: transparent !important;
+            box-shadow: none !important;
+            text-decoration: none !important;
+        }
+        .btn-img-only img {
+            width: 80px; /* Tamanho das suas imagens */
+            height: auto;
+        }
+
+        /* Estilo para centralizar o conteúdo da página, se desejar (opcional) */
+        /*body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }*/
